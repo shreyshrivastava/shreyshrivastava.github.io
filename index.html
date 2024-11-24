@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrey Shrivastava - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SF Pro Display Font (macOS system font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        :root {
+            --mac-accent: #007AFF;
+            --mac-border: rgba(255, 255, 255, 0.1);
+            --mac-bg: rgba(28, 28, 28, 0.95);
+            --mac-sidebar: rgba(40, 40, 40, 0.95);
+            --mac-text: #FFFFFF;
+            --mac-text-secondary: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: var(--mac-bg);
+            color: var(--mac-text);
+        }
+
+        /* macOS Window Style */
+        .mac-window {
+            background: var(--mac-bg);
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+        }
+
+        .mac-titlebar {
+            height: 28px;
+            background: rgba(50, 50, 50, 0.95);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .mac-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .mac-close { background: #FF5F56; }
+        .mac-minimize { background: #FFBD2E; }
+        .mac-maximize { background: #27C93F; }
+
+        /* Tab Transitions */
+        .tab-enter {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .tab-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 300ms, transform 300ms;
+        }
+        .tab-exit {
+            opacity: 1;
+        }
+        .tab-exit-active {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        /* macOS Sidebar Style */
+        .mac-sidebar {
+            background: var(--mac-sidebar);
+            border-right: 1px solid var(--mac-border);
+        }
+
+        /* macOS Button Style */
+        .mac-action-button {
+            background: var(--mac-accent);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .mac-action-button:hover {
+            background: rgba(0, 122, 255, 0.8);
+        }
+
+        /* Glass Effect with macOS Style */
+        .glass-effect {
+            background: rgba(50, 50, 50, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .tag {
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
+            color: var(--mac-text);
+        }
+    </style>
+</head>
+<body class="bg-[#1c1c1c]">
+    <!-- Particles.js Container -->
+    <div id="particles-js"></div>
+
+    <!-- Main Container -->
+    <div x-data="{ activeTab: 'education' }" class="min-h-screen p-8">
+        <!-- macOS Window -->
+        <div class="mac-window max-w-6xl mx-auto">
+            <!-- Window Titlebar -->
+            <div class="mac-titlebar">
+                <div class="mac-button mac-close"></div>
+                <div class="mac-button mac-minimize"></div>
+                <div class="mac-button mac-maximize"></div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex">
+                <!-- Sidebar -->
+                <div class="mac-sidebar w-64 p-4">
+                    <div class="flex items-center space-x-3 mb-8">
+                        <div class="w-10 h-10 rounded-full bg-[var(--mac-accent)] flex items-center justify-center">
+                            <span class="text-lg font-bold">S</span>
+                        </div>
+                        <div>
+                            <h1 class="font-semibold">Shrey Shrivastava</h1>
+                            <p class="text-sm text-[var(--mac-text-secondary)]">ML Engineer</p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="space-y-2">
+                        <button @click="activeTab = 'education'" 
+                                :class="{ 'bg-[var(--mac-accent)] text-white': activeTab === 'education' }"
+                                class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150">
+                            <i class="fas fa-graduation-cap mr-2"></i>Education
+                        </button>
+
+                        <button @click="activeTab = 'experience'"
+                                :class="{ 'bg-[var(--mac-accent)] text-white': activeTab === 'experience' }"
+                                class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150">
+                            <i class="fas fa-briefcase mr-2"></i>Experience
+                        </button>
+
+                        <button @click="activeTab = 'projects'"
+                                :class="{ 'bg-[var(--mac-accent)] text-white': activeTab === 'projects' }"
+                                class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150">
+                            <i class="fas fa-code-branch mr-2"></i>Projects
+                        </button>
+
+                        <button @click="activeTab = 'research'"
+                                :class="{ 'bg-[var(--mac-accent)] text-white': activeTab === 'research' }"
+                                class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150">
+                            <i class="fas fa-microscope mr-2"></i>Research
+                        </button>
+
+                        <button @click="activeTab = 'skills'"
+                                :class="{ 'bg-[var(--mac-accent)] text-white': activeTab === 'skills' }"
+                                class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150">
+                            <i class="fas fa-tools mr-2"></i>Skills
+                        </button>
+
+                        <button @click="activeTab = 'awards'"
+                                :class="{ 'bg-[var(--mac-accent)] text-white': activeTab === 'awards' }"
+                                class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150">
+                            <i class="fas fa-trophy mr-2"></i>Awards
+                        </button>
+                    </nav>
+
+                    <!-- Social Links -->
+                    <div class="mt-8 space-y-2">
+                        <a href="mailto:s.shrivastava@hss23.qmul.ac.uk" 
+                           class="flex items-center text-sm text-[var(--mac-text-secondary)] hover:text-white transition-colors">
+                            <i class="fas fa-envelope w-6"></i>Email
+                        </a>
+                        <a href="https://github.com/shreyshrivastava" target="_blank"
+                           class="flex items-center text-sm text-[var(--mac-text-secondary)] hover:text-white transition-colors">
+                            <i class="fab fa-github w-6"></i>GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/shrey-shrivastava1/" target="_blank"
+                           class="flex items-center text-sm text-[var(--mac-text-secondary)] hover:text-white transition-colors">
+                            <i class="fab fa-linkedin w-6"></i>LinkedIn
+                        </a>
+                        <a href="https://orcid.org/0000-0001-5273-2842" target="_blank"
+                           class="flex items-center text-sm text-[var(--mac-text-secondary)] hover:text-white transition-colors">
+                            <i class="fab fa-orcid w-6"></i>ORCID
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="flex-1 p-6">
+                    <!-- Tab Content Area -->
+                    <div class="h-full">
+                        <!-- Education Tab -->
+                        <div x-show="activeTab === 'education'"
+                             x-transition:enter="tab-enter tab-enter-active"
+                             x-transition:leave="tab-exit tab-exit-active"
+                             class="space-y-6">
+                            
+                            <!-- MSc -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">MSc in Artificial Intelligence</h3>
+                                            <span class="mac-action-button text-xs">Current</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">Queen Mary University of London (QMUL)</p>
+                                        <p class="text-sm mt-1">2023 - 2024</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="glass-effect px-3 py-1 rounded-md text-sm">London, U.K</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6">
+                                    <h4 class="text-sm font-medium text-[var(--mac-accent)] mb-4">Core Modules</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-brain mr-2 text-[var(--mac-accent)]"></i>Neural Networks and NLP
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-balance-scale mr-2 text-[var(--mac-accent)]"></i>Ethics, Regulation and Law
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-network-wired mr-2 text-[var(--mac-accent)]"></i>Neural Networks and Deep Learning
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-robot mr-2 text-[var(--mac-accent)]"></i>Machine Learning
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-search mr-2 text-[var(--mac-accent)]"></i>Information Retrieval
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-comments mr-2 text-[var(--mac-accent)]"></i>Natural Language Processing
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-chart-bar mr-2 text-[var(--mac-accent)]"></i>Applied Statistics
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-microchip mr-2 text-[var(--mac-accent)]"></i>Artificial Intelligence
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between text-sm text-[var(--mac-text-secondary)]">
+                                        <p>Total Credits: 180 (90 ECTS)</p>
+                                        <p>Expected: October 21, 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BTech -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">BTech in Computer Science and Information Technology</h3>
+                                            <span class="mac-action-button text-xs bg-green-500">Completed</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">Symbiosis University of Applied Sciences (SUAS)</p>
+                                        <p class="text-sm mt-1">2019 - 2022</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="glass-effect px-3 py-1 rounded-md text-sm">M.P, India</span>
+                                        <p class="mt-2 text-sm text-[var(--mac-accent)]">CGPA: 8.2/10.0</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6">
+                                    <h4 class="text-sm font-medium text-[var(--mac-accent)] mb-4">Key Areas of Study</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-code mr-2 text-[var(--mac-accent)]"></i>Data Structures & Algorithms
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-database mr-2 text-[var(--mac-accent)]"></i>Database Systems
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-cogs mr-2 text-[var(--mac-accent)]"></i>Software Engineering
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-cloud mr-2 text-[var(--mac-accent)]"></i>Cloud Computing
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-globe mr-2 text-[var(--mac-accent)]"></i>Web Development
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-desktop mr-2 text-[var(--mac-accent)]"></i>Operating Systems
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-network-wired mr-2 text-[var(--mac-accent)]"></i>Computer Networks
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-robot mr-2 text-[var(--mac-accent)]"></i>Machine Learning
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Experience Tab -->
+                        <div x-show="activeTab === 'experience'"
+                             x-transition:enter="tab-enter tab-enter-active"
+                             x-transition:leave="tab-exit tab-exit-active"
+                             class="space-y-6">
+                            
+                            <!-- Seekace -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Data Analysis and Machine Learning Intern</h3>
+                                            <span class="mac-action-button text-xs">Remote</span>
+                                        </div>
+                                        <p class="text-[var(--mac-accent)]">Seekace</p>
+                                        <p class="text-sm text-[var(--mac-text-secondary)]">July 2021 - January 2022</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="glass-effect px-3 py-1 rounded-md text-sm">6 months</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 space-y-3">
+                                    <div class="glass-effect p-3 rounded-lg text-sm">
+                                        <i class="fas fa-chart-line mr-2 text-[var(--mac-accent)]"></i>
+                                        Created models to predict customer churn, reducing churn rates by 15%
+                                    </div>
+                                    <div class="glass-effect p-3 rounded-lg text-sm">
+                                        <i class="fas fa-project-diagram mr-2 text-[var(--mac-accent)]"></i>
+                                        Executed a project focused on Telecom Churning Reduction
+                                    </div>
+                                    <div class="glass-effect p-3 rounded-lg text-sm">
+                                        <i class="fas fa-brain mr-2 text-[var(--mac-accent)]"></i>
+                                        Gained extensive knowledge of Machine Learning algorithms
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Machine Learning</span>
+                                    <span class="tag">Data Analysis</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Predictive Modeling</span>
+                                </div>
+                            </div>
+
+                            <!-- Innovians Tech -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Machine Learning Intern</h3>
+                                            <span class="mac-action-button text-xs">Remote</span>
+                                        </div>
+                                        <p class="text-[var(--mac-accent)]">Innovians Tech</p>
+                                        <p class="text-sm text-[var(--mac-text-secondary)]">May 2020 - June 2020</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="glass-effect px-3 py-1 rounded-md text-sm">2 months</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 space-y-3">
+                                    <div class="glass-effect p-3 rounded-lg text-sm">
+                                        <i class="fas fa-virus-covid mr-2 text-[var(--mac-accent)]"></i>
+                                        Facilitated Data Analysis on COVID-19 data, producing accurate forecasts
+                                    </div>
+                                    <div class="glass-effect p-3 rounded-lg text-sm">
+                                        <i class="fas fa-database mr-2 text-[var(--mac-accent)]"></i>
+                                        Enhanced understanding of data cleansing and pre-processing
+                                    </div>
+                                    <div class="glass-effect p-3 rounded-lg text-sm">
+                                        <i class="fas fa-chart-bar mr-2 text-[var(--mac-accent)]"></i>
+                                        Generated visualizations to present pandemic trends and forecasts
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Data Analysis</span>
+                                    <span class="tag">Visualization</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Time Series</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projects Tab -->
+                        <div x-show="activeTab === 'projects'"
+                             x-transition:enter="tab-enter tab-enter-active"
+                             x-transition:leave="tab-exit tab-exit-active"
+                             class="space-y-6">
+                            
+                            <!-- BERT Expert -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">BERT Expert</h3>
+                                            <span class="mac-action-button text-xs">Latest</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">News Claim Detection System</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Specialized in fine-tuning BERT models for analyzing Russia-Ukraine conflict news.
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Achieved 90.68% F1 score in claim detection
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Implemented advanced NLP techniques for news analysis
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">BERT</span>
+                                    <span class="tag">SVM</span>
+                                    <span class="tag">RSS</span>
+                                    <span class="tag">NLP</span>
+                                </div>
+                            </div>
+                            <!-- NLP & Sentiment Analysis -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">NLP & Sentiment Analysis Specialist</h3>
+                                            <span class="mac-action-button text-xs bg-green-500">85.65% F1</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">Advanced Text Processing System</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Advanced text preprocessing expertise demonstrated through sentiment classifier processing 27,000 tweets using LinearSVC
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Processed 27,000 tweets with high accuracy
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Implemented LinearSVC for optimal classification
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">NLTK</span>
+                                    <span class="tag">scikit-learn</span>
+                                    <span class="tag">LinearSVC</span>
+                                </div>
+                            </div>
+
+                            <!-- CNN Architecture -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">CNN Architecture Specialist</h3>
+                                            <span class="mac-action-button text-xs bg-blue-500">76.92% Accuracy</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">CIFAR10 Image Classification</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Deep learning expertise shown through custom CNN architecture using advanced augmentation techniques
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Custom CNN architecture implementation
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Advanced data augmentation techniques
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">PyTorch</span>
+                                    <span class="tag">CNN</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Deep Learning</span>
+                                </div>
+                            </div>
+
+                            <!-- Computer Vision -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Computer Vision Specialist</h3>
+                                            <span class="mac-action-button text-xs bg-purple-500">94% Accuracy</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">Real-time Vehicle Detection</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Real-time object detection expertise shown through vehicle tracking system processing 30 FPS using custom YOLOv5
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            94% accurate vehicle detection at 30 FPS
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Custom YOLOv5 implementation
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">YOLOv5</span>
+                                    <span class="tag">PyTorch</span>
+                                    <span class="tag">Computer Vision</span>
+                                </div>
+                            </div>
+                            <!-- Graph Algorithm Expert -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Graph Algorithm Expert</h3>
+                                            <span class="mac-action-button text-xs bg-green-500">40% Faster</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">Advanced Pathfinding System</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Advanced pathfinding expertise demonstrated through optimized route computation across 500+ nodes
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            40% faster route computation
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Optimized Dijkstra's implementation
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Graph Algorithms</span>
+                                    <span class="tag">Optimization</span>
+                                </div>
+                            </div>
+
+                            <!-- Time Series Analysis -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Time Series Analysis Expert</h3>
+                                            <span class="mac-action-button text-xs bg-yellow-500">85% Accuracy</span>
+                                        </div>
+                                        <p class="text-[var(--mac-text-secondary)]">COVID-19 Progression Forecasting</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Predictive modelling specialist achieving high accuracy in COVID-19 progression forecasting
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            85% accuracy in progression forecasting
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Advanced time-series techniques
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Pandas</span>
+                                    <span class="tag">Time Series</span>
+                                    <span class="tag">Google Colab</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Research Tab -->
+                        <div x-show="activeTab === 'research'"
+                             x-transition:enter="tab-enter tab-enter-active"
+                             x-transition:leave="tab-exit tab-exit-active"
+                             class="space-y-6">
+                            
+                            <!-- IGCAR Research Paper -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Gas Cylinder Detection System</h3>
+                                            <span class="mac-action-button text-xs">Published</span>
+                                        </div>
+                                        <p class="text-[var(--mac-accent)]">IGCAR Research Paper</p>
+                                        <p class="text-sm text-[var(--mac-text-secondary)]">March 2023</p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="https://github.com/shreyshrivastava" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fab fa-github mr-1"></i>Code
+                                        </a>
+                                        <a href="#" target="_blank" 
+                                           class="glass-effect px-3 py-1 rounded-md text-sm hover:bg-[var(--mac-accent)]/10 transition-colors">
+                                            <i class="fas fa-file-alt mr-1"></i>Paper
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm text-[var(--mac-text-secondary)]">
+                                        Engineered a forecasting system for predicting LPG gas cylinder deliveries, enhancing tracking efficiency and preventing illegal sales.
+                                    </p>
+                                    <div class="mt-4 space-y-3">
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Improved tracking efficiency significantly
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Implemented advanced forecasting algorithms
+                                        </div>
+                                        <div class="glass-effect p-3 rounded-lg text-sm">
+                                            <i class="fas fa-check-circle mr-2 text-[var(--mac-accent)]"></i>
+                                            Enhanced inventory management systems
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="tag">Machine Learning</span>
+                                    <span class="tag">Computer Vision</span>
+                                    <span class="tag">Forecasting</span>
+                                    <span class="tag">Python</span>
+                                </div>
+                            </div>
+
+                            <!-- Research Metrics -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="glass-effect p-4 rounded-lg text-center">
+                                    <div class="text-3xl font-bold text-[var(--mac-accent)]">1</div>
+                                    <div class="text-sm text-[var(--mac-text-secondary)]">Published Paper</div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-lg text-center">
+                                    <div class="text-3xl font-bold text-[var(--mac-accent)]">20%</div>
+                                    <div class="text-sm text-[var(--mac-text-secondary)]">Efficiency Improvement</div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-lg text-center">
+                                    <div class="text-3xl font-bold text-[var(--mac-accent)]">2023</div>
+                                    <div class="text-sm text-[var(--mac-text-secondary)]">Publication Year</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Skills Tab -->
+                        <div x-show="activeTab === 'skills'"
+                             x-transition:enter="tab-enter tab-enter-active"
+                             x-transition:leave="tab-exit tab-exit-active"
+                             class="space-y-6">
+                            
+                            <!-- Programming & Tools -->
+                            <div class="glass-effect p-6 rounded-lg">
+                                <h3 class="text-xl font-semibold mb-4">
+                                    <i class="fas fa-code text-[var(--mac-accent)] mr-2"></i>Programming & Tools
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Languages -->
+                                    <div class="space-y-3">
+                                        <h4 class="text-sm font-medium text-[var(--mac-accent)]">Programming Languages</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fab fa-python mr-2"></i>Python
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fab fa-java mr-2"></i>Java
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-code mr-2"></i>C++
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-database mr-2"></i>SQL
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ML Frameworks -->
+                                    <div class="space-y-3">
+                                        <h4 class="text-sm font-medium text-[var(--mac-accent)]">ML Frameworks</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-brain mr-2"></i>PyTorch
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-network-wired mr-2"></i>TensorFlow
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-robot mr-2"></i>HuggingFace
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tools -->
+                                    <div class="space-y-3">
+                                        <h4 class="text-sm font-medium text-[var(--mac-accent)]">Development Tools</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fab fa-docker mr-2"></i>Docker
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-dharmachakra mr-2"></i>Kubernetes
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fab fa-git-alt mr-2"></i>Git
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-infinity mr-2"></i>CI/CD
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Visualization -->
+                                    <div class="space-y-3">
+                                        <h4 class="text-sm font-medium text-[var(--mac-accent)]">Visualization</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-chart-bar mr-2"></i>Tableau
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-chart-line mr-2"></i>Matplotlib
+                                            </div>
+                                            <div class="glass-effect px-4 py-2 rounded-lg text-sm">
+                                                <i class="fas fa-chart-pie mr-2"></i>Power BI
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Technical Expertise -->
+                            <div class="glass-effect p-6 rounded-lg">
+                                <h3 class="text-xl font-semibold mb-4">
+                                    <i class="fas fa-laptop-code text-[var(--mac-accent)] mr-2"></i>Technical Expertise
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="glass-effect p-4 rounded-lg">
+                                        <h4 class="font-medium text-[var(--mac-accent)] mb-2">Deep Learning</h4>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-check-circle text-[var(--mac-accent)] mr-2"></i>
+                                                Supervised Learning
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-check-circle text-[var(--mac-accent)] mr-2"></i>
+                                                Semi-supervised Learning
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-check-circle text-[var(--mac-accent)] mr-2"></i>
+                                                Self-supervised Learning
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="glass-effect p-4 rounded-lg">
+                                        <h4 class="font-medium text-[var(--mac-accent)] mb-2">Machine Learning</h4>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-check-circle text-[var(--mac-accent)] mr-2"></i>
+                                                Predictive Modeling
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-check-circle text-[var(--mac-accent)] mr-2"></i>
+                                                Time Series Analysis
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-check-circle text-[var(--mac-accent)] mr-2"></i>
+                                                Natural Language Processing
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Awards Tab -->
+                        <div x-show="activeTab === 'awards'"
+                             x-transition:enter="tab-enter tab-enter-active"
+                             x-transition:leave="tab-exit tab-exit-active"
+                             class="space-y-6">
+                            
+                            <!-- Hackathon Win -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Big Data and Automation Hackathon</h3>
+                                            <span class="mac-action-button text-xs bg-yellow-500">Winner</span>
+                                        </div>
+                                        <p class="text-[var(--mac-accent)]">Greendeck</p>
+                                        <p class="text-sm text-[var(--mac-text-secondary)]">March 2022</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="glass-effect px-3 py-1 rounded-md text-sm">1st Place</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 text-sm text-[var(--mac-text-secondary)]">
+                                    Won first place in a three-day event focused on programmatic and logical problem-solving in big data and automation.
+                                </div>
+                            </div>
+
+                            <!-- Software Presentation -->
+                            <div class="glass-effect p-6 rounded-lg hover:scale-[1.01] transition-transform">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-semibold">Software Presentation</h3>
+                                            <span class="mac-action-button text-xs bg-silver-500">Runner-Up</span>
+                                        </div>
+                                        <p class="text-[var(--mac-accent)]">Oriental Institute of Science and Technology</p>
+                                        <p class="text-sm text-[var(--mac-text-secondary)]">February 2018</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="glass-effect px-3 py-1 rounded-md text-sm">2nd Place</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 text-sm text-[var(--mac-text-secondary)]">
+                                    Awarded second place for excellence in software presentation, demonstrating strong technical communication skills.
+                                </div>
+                            </div>
+
+                            <!-- Certifications -->
+                            <div class="glass-effect p-6 rounded-lg">
+                                <h3 class="text-xl font-semibold mb-4">
+                                    <i class="fas fa-certificate text-[var(--mac-accent)] mr-2"></i>Professional Certifications
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="glass-effect p-4 rounded-lg">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h4 class="font-medium">Android and Machine Learning</h4>
+                                                <p class="text-sm text-[var(--mac-text-secondary)]">Udemy</p>
+                                            </div>
+                                            <span class="text-sm text-[var(--mac-text-secondary)]">January 2021</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-effect p-4 rounded-lg">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h4 class="font-medium">Machine Learning Training</h4>
+                                                <p class="text-sm text-[var(--mac-text-secondary)]">Samsung - IIT Kanpur</p>
+                                            </div>
+                                            <span class="text-sm text-[var(--mac-text-secondary)]">May 2022</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-effect p-4 rounded-lg">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h4 class="font-medium">Cyber Security & Ethical Hacking</h4>
+                                                <p class="text-sm text-[var(--mac-text-secondary)]">IDEMI India</p>
+                                            </div>
+                                            <span class="text-sm text-[var(--mac-text-secondary)]">November 2017</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Particles.js Config -->
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
