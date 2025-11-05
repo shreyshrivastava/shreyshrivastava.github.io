@@ -1,4 +1,4 @@
-// ===== Smooth Scroll for Internal Links ======
+// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const targetId = this.getAttribute('href');
@@ -15,10 +15,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ===== Card Hover Glow & Reveal ======
-const cards = document.querySelectorAll('.card');
+// Card Reveal on Scroll
 const revealElements = document.querySelectorAll('.card, .hero-text, .hero-avatar');
-
 function revealOnScroll() {
   revealElements.forEach(el => {
     const rect = el.getBoundingClientRect();
@@ -30,20 +28,15 @@ function revealOnScroll() {
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
 
-// ===== Sidebar Hover Effect ======
-const sidebarLinks = document.querySelectorAll('.sidebar a');
-sidebarLinks.forEach(link => {
+// Sidebar Hover Effect
+document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('mouseenter', () => link.style.transform = 'scale(1.15)');
   link.addEventListener('mouseleave', () => link.style.transform = 'scale(1)');
 });
 
-// ===== Global Hue Sync Animation ======
+// Global Hue Sync Animation
 const root = document.documentElement;
-let hue = 180; // starting teal hue
+let hue = 180;
 function animateHue() {
-  hue = (hue + 0.15) % 360; // slow, elegant rotation
-  const color = `hsl(${hue}, 80%, 60%)`;
-  root.style.setProperty('--accent', color);
-  requestAnimationFrame(animateHue);
-}
-animateHue();
+  hue = (hue + 0.15) % 360;
+  root.style.setProperty('--accent', `hsl(${h
