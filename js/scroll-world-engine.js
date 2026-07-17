@@ -581,7 +581,12 @@ function injectCSS() {
   @keyframes sw-wheel{0%{opacity:0;top:6px}40%{opacity:1}100%{opacity:0;top:17px}}
   .sw-track{position:relative;z-index:1;width:100%;pointer-events:none;}
   @media (max-width:860px){
-    .sw-nav{display:none;}
+    .sw-topbar{align-items:flex-start;flex-direction:column;gap:8px;padding:12px 14px;background:linear-gradient(180deg,rgba(7,16,19,.94),rgba(7,16,19,.66),rgba(7,16,19,0));backdrop-filter:blur(14px);pointer-events:none;}
+    .sw-brand{max-width:calc(100vw - 28px);padding:8px 10px;border:1px solid rgba(244,251,255,.12);border-radius:999px;background:rgba(7,16,19,.68);backdrop-filter:blur(12px);pointer-events:auto;}
+    .sw-brand__name{max-width:calc(100vw - 92px);overflow:hidden;font-size:.94rem;text-overflow:ellipsis;white-space:nowrap;}
+    .sw-nav{display:flex;flex-wrap:nowrap;justify-content:flex-start;width:100%;max-width:none;overflow-x:auto;padding:6px;border-radius:14px;background:rgba(7,16,19,.78);border-color:rgba(244,251,255,.14);box-shadow:0 12px 34px rgba(0,0,0,.22);pointer-events:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+    .sw-nav::-webkit-scrollbar{display:none;}
+    .sw-nav__item{flex:0 0 auto;min-height:36px;padding:8px 12px;font-size:.8rem;white-space:nowrap;}
     .sw-copylayer::before{width:100%;height:60%;top:auto;bottom:0;background:linear-gradient(0deg,var(--sw-bg) 8%,color-mix(in srgb,var(--sw-bg) 70%,transparent) 46%,transparent 100%);}
     /* Anchor copy to the bottom, clear of the home indicator / collapsing URL bar.
        dvh + env() are progressive: browsers that lack them keep the vh fallback line. */
@@ -592,6 +597,10 @@ function injectCSS() {
     .sw-copy__items{max-width:none;max-height:34vh;}
     .sw-hint{bottom:calc(20px + env(safe-area-inset-bottom));}
     .sw-route{gap:16px;right:6px;} .sw-route__label{display:none;}
+  }
+  @media (max-width:640px){
+    .sw-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;width:100%;padding:5px;overflow:visible;border-radius:14px;}
+    .sw-nav__item{justify-content:center;min-width:0;min-height:34px;padding:7px 3px;overflow:hidden;font-size:clamp(.62rem,2.55vw,.74rem);text-align:center;text-overflow:ellipsis;}
   }
   /* Portrait phones crop a 16:9 clip hard; keep the framing centred so the focal
      subject (which the camera dives toward) stays in view. */
