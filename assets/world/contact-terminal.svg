@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Isometric contact terminal">
+  <rect width="1600" height="900" fill="#071013"/>
+  <circle cx="1120" cy="180" r="250" fill="#f96fb3" opacity="0.15"/>
+  <circle cx="430" cy="720" r="210" fill="#17d7c8" opacity="0.1"/>
+  <ellipse cx="860" cy="708" rx="430" ry="96" fill="#000" opacity="0.34"/>
+  <polygon points="446,604 858,396 1270,604 858,812" fill="#331628"/>
+  <polygon points="446,604 858,812 858,862 446,656" fill="#1b0d16"/>
+  <polygon points="1270,604 858,812 858,862 1270,656" fill="#140a11"/>
+  <rect x="660" y="456" width="392" height="230" rx="20" fill="#e9fbff"/>
+  <rect x="690" y="492" width="332" height="146" rx="10" fill="#071013"/>
+  <path d="M730 536 L790 566 L730 596" fill="none" stroke="#17d7c8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="832" y="584" width="124" height="16" rx="8" fill="#f96fb3"/>
+  <g fill="#f96fb3">
+    <circle cx="592" cy="538" r="26"/>
+    <circle cx="1124" cy="564" r="24"/>
+    <circle cx="1034" cy="430" r="14" opacity="0.75"/>
+  </g>
+  <path d="M600 638 C710 734 1010 734 1120 638" fill="none" stroke="#e9fbff" stroke-width="8" opacity="0.36"/>
+</svg>

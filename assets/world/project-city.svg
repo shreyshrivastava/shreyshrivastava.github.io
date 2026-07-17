@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Isometric portfolio project city">
+  <rect width="1600" height="900" fill="#071013"/>
+  <circle cx="1200" cy="190" r="250" fill="#6fa8ff" opacity="0.13"/>
+  <ellipse cx="850" cy="724" rx="500" ry="108" fill="#000" opacity="0.36"/>
+  <polygon points="392,602 850,372 1310,602 850,832" fill="#12233d"/>
+  <polygon points="392,602 850,832 850,878 392,652" fill="#0a1525"/>
+  <polygon points="1310,602 850,832 850,878 1310,652" fill="#08101d"/>
+  <g>
+    <rect x="568" y="520" width="132" height="170" rx="10" fill="#6fa8ff"/>
+    <rect x="728" y="450" width="144" height="238" rx="10" fill="#17d7c8"/>
+    <rect x="910" y="494" width="126" height="194" rx="10" fill="#f96fb3"/>
+    <rect x="1062" y="560" width="116" height="128" rx="10" fill="#ffb657"/>
+  </g>
+  <g fill="#071013" opacity="0.74">
+    <rect x="596" y="552" width="28" height="28" rx="4"/>
+    <rect x="644" y="552" width="28" height="28" rx="4"/>
+    <rect x="766" y="488" width="30" height="30" rx="4"/>
+    <rect x="816" y="488" width="30" height="30" rx="4"/>
+    <rect x="948" y="532" width="28" height="28" rx="4"/>
+    <rect x="994" y="532" width="28" height="28" rx="4"/>
+    <rect x="1094" y="596" width="26" height="26" rx="4"/>
+  </g>
+  <path d="M520 702 C702 610 980 610 1190 704" fill="none" stroke="#e9fbff" stroke-width="8" opacity="0.38"/>
+</svg>

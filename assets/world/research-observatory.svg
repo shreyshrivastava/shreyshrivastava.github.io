@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Isometric research observatory">
+  <rect width="1600" height="900" fill="#071013"/>
+  <circle cx="1120" cy="210" r="220" fill="#ffb657" opacity="0.16"/>
+  <ellipse cx="838" cy="714" rx="450" ry="100" fill="#000" opacity="0.34"/>
+  <polygon points="430,610 838,404 1248,610 838,814" fill="#302415"/>
+  <polygon points="430,610 838,814 838,862 430,658" fill="#1a130c"/>
+  <polygon points="1248,610 838,814 838,862 1248,658" fill="#130f0a"/>
+  <g>
+    <circle cx="842" cy="548" r="112" fill="#f9ddac"/>
+    <path d="M738 548 A104 104 0 0 1 946 548 L946 650 L738 650 Z" fill="#ffb657"/>
+    <rect x="788" y="432" width="108" height="36" rx="18" fill="#e9fbff"/>
+    <path d="M896 450 L1058 384" stroke="#e9fbff" stroke-width="28" stroke-linecap="round"/>
+    <circle cx="1082" cy="374" r="38" fill="#e9fbff"/>
+  </g>
+  <g fill="none" stroke="#ffb657" stroke-width="6" opacity="0.75">
+    <path d="M552 640 C648 594 722 594 810 642"/>
+    <path d="M870 660 C970 606 1078 604 1168 652"/>
+  </g>
+  <g fill="#e9fbff">
+    <circle cx="472" cy="348" r="5"/>
+    <circle cx="548" cy="280" r="4"/>
+    <circle cx="1248" cy="312" r="5"/>
+    <circle cx="1308" cy="438" r="4"/>
+  </g>
+</svg>
