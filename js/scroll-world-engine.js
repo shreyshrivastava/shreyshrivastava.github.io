@@ -315,7 +315,7 @@ function mountScrollWorld(container, config) {
       const c = copies[i];
       c.style.opacity = cop;
       if (mobileCopy) {
-        c.style.transform = 'none';
+        c.style.transform = 'translateX(-50%)';
       } else {
         const drift = reduce ? 0 : (0.5 - pr) * 4;
         c.style.transform = `translateY(calc(-50% + ${drift}vh))`;
