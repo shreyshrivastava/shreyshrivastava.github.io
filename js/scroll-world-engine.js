@@ -299,19 +299,28 @@ function mountScrollWorld(container, config) {
       const seg = SECTIONS[i]._seg;
       const pr = clamp((y - seg.start) / (seg.end - seg.start), 0, 1);
       const before = y < seg.start, after = y > seg.end;
+      const mobileCopy = isMobile();
       let cop;
-      if (i === 0) cop = after ? 0 : smooth(1 - pr / 0.62);            // greets on landing
-      else if (i === N - 1) cop = before ? 0 : smooth(pr / 0.4);       // holds CTA at the end
-      else cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - 0.5) / 0.5);
+      if (i === 0) {
+        cop = after ? 0 : smooth(1 - pr / (mobileCopy ? 0.88 : 0.62));  // greets on landing
+        if (mobileCopy && !after) cop = Math.max(0.24, cop);
+      } else if (i === N - 1) {
+        cop = before ? 0 : smooth(pr / (mobileCopy ? 0.32 : 0.4));      // holds CTA at the end
+        if (mobileCopy && !before) cop = Math.max(0.35, cop);
+      } else if (mobileCopy) {
+        cop = (before || after) ? 0 : 0.28 + 0.72 * smooth(1 - Math.abs(pr - 0.5) / 0.78);
+      } else {
+        cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - 0.5) / 0.5);
+      }
       const c = copies[i];
       c.style.opacity = cop;
-      if (isMobile()) {
+      if (mobileCopy) {
         c.style.transform = 'none';
       } else {
         const drift = reduce ? 0 : (0.5 - pr) * 4;
         c.style.transform = `translateY(calc(-50% + ${drift}vh))`;
       }
-      const interactive = cop > 0.5;
+      const interactive = cop > (mobileCopy ? 0.42 : 0.5);
       c.style.pointerEvents = interactive ? 'auto' : 'none';
       c.style.zIndex = interactive ? '2' : '1';
       c.classList.toggle('is-interactive', interactive);
