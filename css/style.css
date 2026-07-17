@@ -1,5 +1,6 @@
 :root,
 .sw-root {
+  color-scheme: dark;
   --sw-bg: #071013;
   --sw-ink: #f4fbff;
   --sw-ink-soft: #aec1c7;
@@ -15,12 +16,15 @@
 
 html {
   background: #071013;
+  color: #f4fbff;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   background: #071013;
+  color: #f4fbff;
 }
 
 a {
@@ -296,7 +300,7 @@ a {
   .sw-root .sw-topbar {
     align-items: flex-start;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     padding: 12px 14px;
     background: linear-gradient(180deg, rgba(7, 16, 19, 0.94), rgba(7, 16, 19, 0.66), rgba(7, 16, 19, 0));
     backdrop-filter: blur(14px);
@@ -356,7 +360,14 @@ a {
   }
 
   .sw-root .sw-copy {
-    bottom: calc(clamp(56px, 12dvh, 110px) + env(safe-area-inset-bottom));
+    top: clamp(116px, 18dvh, 146px);
+    bottom: calc(92px + env(safe-area-inset-bottom));
+    width: auto;
+    max-width: none;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--sw-accent) 68%, transparent) transparent;
   }
 
   .sw-root .sw-hint {
@@ -380,6 +391,54 @@ a {
   .sw-root .sw-profile-title__caption {
     font-size: 0.72rem;
     margin-top: 6px;
+  }
+
+  .sw-root .sw-copy__body {
+    margin-top: 12px;
+    font-size: 0.98rem;
+    line-height: 1.48;
+  }
+
+  .sw-root .sw-copy__items {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .sw-root .sw-copy__item {
+    padding: 11px 12px;
+  }
+
+  .sw-root .sw-copy__tags {
+    gap: 7px;
+    margin-top: 16px;
+  }
+
+  .sw-root .sw-copy__tags li {
+    padding: 6px 11px;
+    font-size: 0.78rem;
+  }
+
+  .sw-root .sw-copy__cta {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sw-root .sw-topbar {
+    padding: 12px 14px 46px;
+  }
+
+  .sw-root .sw-nav {
+    display: none;
+  }
+
+  .sw-root .sw-copy {
+    top: clamp(88px, 14dvh, 116px);
+  }
+
+  .sw-root .sw-copy__title {
+    font-size: clamp(1.65rem, 8.6vw, 2.25rem);
   }
 }
 
