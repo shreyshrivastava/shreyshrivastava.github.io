@@ -57,7 +57,7 @@ mountScrollWorld(worldRoot, {
       linger: 0.25,
       eyebrow: 'Projects',
       title: 'Open the project gallery.',
-      body: 'This scene is the doorway. The full project page has the readable cards, filters, GitHub links, live demo links, and publication links.',
+      body: 'Browse the strongest project evidence: implementation details, GitHub links, demos, publications, and applied AI systems.',
       items: [
         {
           title: 'Full Projects Page',

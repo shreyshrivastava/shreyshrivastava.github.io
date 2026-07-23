@@ -467,6 +467,8 @@ a {
   }
 
   .sw-root .sw-copy[data-section="projects"] {
+    width: min(calc(100vw - 44px), 560px);
+    max-width: min(calc(100vw - 44px), 560px);
     bottom: calc(84px + env(safe-area-inset-bottom));
   }
 
@@ -487,7 +489,7 @@ a {
   }
 
   .sw-root .sw-copy[data-section="projects"] .sw-copy__items {
-    margin-top: 12px;
+    display: none;
   }
 
   .sw-root .sw-copy[data-section="projects"] .sw-copy__item {
@@ -518,8 +520,16 @@ a {
     display: none;
   }
 
+  .sw-root .sw-copy[data-section="projects"] .sw-copy__tags li:nth-child(n + 3) {
+    display: none;
+  }
+
   .sw-root .sw-copy[data-section="projects"] .sw-copy__cta {
     margin-top: 14px;
+  }
+
+  .sw-root .sw-copy[data-section="projects"] .sw-btn--ghost {
+    display: none;
   }
 
   .sw-root .sw-copy[data-section="projects"] .sw-btn {
@@ -1524,6 +1534,11 @@ a {
     max-width: 100%;
   }
 
+  .site-header {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
   .site-nav {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1546,21 +1561,22 @@ a {
   }
 
   .project-shell {
-    width: min(100% - 28px, 1180px);
-    padding-top: 154px;
+    width: min(100% - 24px, 1180px);
+    padding-top: 142px;
+    padding-bottom: 72px;
   }
 
   .contact-page .project-shell {
-    padding-top: 154px;
+    padding-top: 142px;
   }
 
   .contact-page .world-peek {
-    grid-template-rows: 190px auto;
+    grid-template-rows: 150px auto;
   }
 
   .contact-page .world-peek__scene,
   .contact-page .world-peek__scene img {
-    min-height: 190px;
+    min-height: 150px;
   }
 
   .contact-hub {
@@ -1587,13 +1603,56 @@ a {
     overflow-wrap: anywhere;
   }
 
+  .project-hero {
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  .project-hero--bridge {
+    gap: 16px;
+  }
+
+  .project-hero__copy {
+    max-width: min(100%, 360px);
+    margin: 0 auto;
+  }
+
   .project-hero h1 {
-    font-size: clamp(2rem, 12vw, 3.1rem);
+    font-size: clamp(1.86rem, 10vw, 2.7rem);
+    line-height: 1.02;
   }
 
   .project-hero p:not(.eyebrow) {
-    font-size: 0.98rem;
-    line-height: 1.55;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .project-hero__actions {
+    justify-content: center;
+  }
+
+  .world-peek {
+    grid-template-rows: 155px auto;
+  }
+
+  .world-peek__scene,
+  .world-peek__scene img {
+    min-height: 155px;
+  }
+
+  .world-peek__panel {
+    padding: 14px;
+    text-align: center;
+  }
+
+  .world-peek__panel strong {
+    font-size: 1rem;
+  }
+
+  .world-peek__panel p {
+    font-size: 0.86rem;
   }
 
   .project-card {
@@ -1607,7 +1666,7 @@ a {
 
   .project-card__visual,
   .project-card__visual img {
-    min-height: 190px;
+    min-height: 168px;
   }
 
   .project-card__top {
@@ -1622,11 +1681,25 @@ a {
 
   .project-card__summary,
   .project-card__details {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .project-card__actions,
+  .project-card__tags {
+    justify-content: center;
   }
 
   .project-card__tags li {
     font-size: 0.72rem;
+  }
+
+  .project-btn,
+  .project-card__actions a,
+  .filter-chip {
+    min-height: 36px;
+    padding: 8px 10px;
+    font-size: 0.82rem;
   }
 
   .filter-row {
