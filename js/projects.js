@@ -3,6 +3,9 @@ const filters = ['All', 'Featured', 'GenAI', 'NLP', 'Computer Vision', 'Research
 const projects = [
   {
     title: 'AcademicForge',
+    image: 'academicforge.png',
+    imageAlt: 'AcademicForge research search interface with paper results and research lens controls',
+    imageCaption: 'Research search interface',
     category: 'Featured',
     icon: 'project',
     tags: ['GenAI', 'Hybrid retrieval', 'FastAPI', 'Streamlit', 'BGE', 'Gemma'],
@@ -12,6 +15,9 @@ const projects = [
   },
   {
     title: 'AI Healthcare Intel Engine',
+    image: 'healthcare-intel.png',
+    imageAlt: 'Healthcare Intel Engine application showing drug interaction analysis',
+    imageCaption: 'Drug interaction analysis interface',
     category: 'Featured',
     icon: 'project',
     tags: ['Healthcare AI', 'Risk scoring', 'Drug interaction'],
@@ -57,6 +63,9 @@ const projects = [
   },
   {
     title: 'Claim Detection on Russia-Ukraine Conflict',
+    image: 'claim-detection.png',
+    imageAlt: 'Confusion matrix saved by the BERT and SVM claim detection notebook',
+    imageCaption: 'Original notebook output',
     category: 'NLP',
     icon: 'project',
     tags: ['BERT', 'SVM', 'Fact checking'],
@@ -75,6 +84,9 @@ const projects = [
   },
   {
     title: 'Pupil Anomaly Detection',
+    image: 'pupil-anomaly.png',
+    imageAlt: 'Pupil Anomaly Detection Streamlit application interface',
+    imageCaption: 'Pupil tracking application',
     category: 'Computer Vision',
     icon: 'project',
     tags: ['MediaPipe', 'Real-time CV', 'Anomaly detection'],
@@ -93,6 +105,9 @@ const projects = [
   },
   {
     title: 'CIFAR-10 Image Classification',
+    image: 'cifar10.png',
+    imageAlt: 'Training and evaluation curves saved by the CIFAR-10 classification notebook',
+    imageCaption: 'Original training and evaluation plots',
     category: 'Computer Vision',
     icon: 'project',
     tags: ['PyTorch', 'CNN', '76.92% accuracy'],
@@ -129,6 +144,9 @@ const projects = [
   },
   {
     title: 'COVID-19 Tracker',
+    image: 'covid-tracker.png',
+    imageAlt: 'Confirmed COVID-19 case forecast saved by the tracker notebook',
+    imageCaption: 'Original case forecast',
     category: 'Data',
     icon: 'project',
     tags: ['Forecasting', 'Visualization', 'India data'],
@@ -138,6 +156,9 @@ const projects = [
   },
   {
     title: 'Diabetes Regression Analysis',
+    image: 'diabetes-regression.png',
+    imageAlt: 'Cost curve and prediction scatter plot from the diabetes regression notebook',
+    imageCaption: 'Original regression analysis output',
     category: 'Data',
     icon: 'project',
     tags: ['Regression', 'Regularization', 'Coursework'],
@@ -147,6 +168,9 @@ const projects = [
   },
   {
     title: 'Friends Character Similarity',
+    image: 'friends-similarity.png',
+    imageAlt: 'Character similarity heatmap from the Friends NLP notebook',
+    imageCaption: 'Original character similarity heatmap',
     category: 'NLP',
     icon: 'project',
     tags: ['Vectors', 'Classification', 'NLP'],
@@ -165,6 +189,9 @@ const projects = [
   },
   {
     title: 'Neural Network Introduction',
+    image: 'neural-network.png',
+    imageAlt: 'Saved neural network notebook visualization',
+    imageCaption: 'Original neural network notebook output',
     category: 'Data',
     icon: 'project',
     tags: ['Neural networks', 'Iris', 'Notebook'],
@@ -174,6 +201,9 @@ const projects = [
   },
   {
     title: 'Logistic Regression Iris Classification',
+    image: 'iris-classification.png',
+    imageAlt: 'Iris classification scatter plot and learned decision boundary',
+    imageCaption: 'Original classification decision boundary',
     category: 'Data',
     icon: 'project',
     tags: ['PyTorch', 'Logistic regression', 'Iris'],
@@ -216,9 +246,15 @@ function projectCard(project) {
   ].filter(Boolean).join('');
 
   return `<article class="project-card project-card--scene project-card--${slug(project.category)} ${project.category === 'Featured' ? 'project-card--featured' : ''}">
-    <div class="project-card__visual">
-      <img src="assets/gallery/project-${slug(project.title)}.svg" alt="">
-    </div>
+    ${project.image ? `<figure class="project-card__visual gallery-media gallery-media--evidence">
+      <a class="gallery-media__open" href="assets/evidence/${project.image}" data-gallery-image aria-label="Enlarge ${project.title} image" title="Enlarge image">
+        <img src="assets/evidence/${project.image}" alt="${project.imageAlt}" loading="lazy" decoding="async">
+      </a>
+      <figcaption><span>${project.imageCaption}</span><a href="${project.github}" target="_blank" rel="noopener noreferrer">${icon('github')}Source</a></figcaption>
+    </figure>` : `<figure class="project-card__visual gallery-media gallery-media--illustration">
+      <img src="assets/gallery/project-${slug(project.title)}.svg" alt="" loading="lazy" decoding="async">
+      <figcaption>Project illustration</figcaption>
+    </figure>`}
     <div class="project-card__top">
       <span class="project-card__icon">${icon(project.icon || filterIcon(project.category))}</span>
       <span class="project-card__category">${project.category}</span>

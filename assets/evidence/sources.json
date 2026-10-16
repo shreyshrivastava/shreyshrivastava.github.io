@@ -1,0 +1,82 @@
+[
+  {
+    "file": "academicforge.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/AcademicForge/HEAD/docs/assets/academicforge-search-results.png",
+    "kind": "Project screenshot"
+  },
+  {
+    "file": "healthcare-intel.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/ai-healthcare-intel-engine/HEAD/docs/screenshots/streamlit-drug-interactions.png",
+    "kind": "Project screenshot"
+  },
+  {
+    "file": "pupil-anomaly.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/pupil-anomaly-detection/HEAD/docs/screenshots/streamlit-demo.png",
+    "kind": "Project screenshot"
+  },
+  {
+    "file": "claim-detection.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/claim-detection-project-on-Russia-and-conflict/HEAD/BERT%20and%20SVM%20Final%20model%20for%20claim-detection%20and%20fact-checking%20.ipynb",
+    "cell": 6,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "cifar10.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/CIFAR10-Image-Classification_shrey/HEAD/Deep%20Learning%20Assignment1%20shrey%20shrivastava(230442438)%20.ipynb",
+    "cell": 6,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "covid-tracker.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/COVID-TRACKER-SYSTEM/HEAD/Covid3_02.ipynb",
+    "cell": 30,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "diabetes-regression.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/Diabetes-Regression-Analysis/HEAD/wk3_Regression_230442438_shrey_shrivastava.ipynb",
+    "cell": 18,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "friends-similarity.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/friends-character-similarity/HEAD/NLP_Assignment.ipynb",
+    "cell": 18,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "neural-network.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/Neural-Network-Introduction/HEAD/wk6%20NN_shrey_shrivastava.ipynb",
+    "cell": 17,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "iris-classification.png",
+    "source": "https://raw.githubusercontent.com/shreyshrivastava/-Logistic_Regression_Iris_Classification/HEAD/wk4_Classification_shrey_shrivastava.ipynb",
+    "cell": 22,
+    "kind": "Original saved notebook output"
+  },
+  {
+    "file": "queen-mary-campus.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Queens%27_Building,_Queen_Mary_University_of_London.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Queens%27_Building%2C_Queen_Mary_University_of_London.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Paul the Archivist",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "file": "bhopal-upper-lake.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:BadaTalaabBhopal3.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1d/BadaTalaabBhopal3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Sanyam Bahga",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+    "file": "symbiosis-campus.jpg",
+    "source": "https://www.suas.ac.in/about-symbiosis-indore-infrastructure/",
+    "original": "https://www.suas.ac.in/wp-content/uploads/2025/09/symbiosis-university-indore-side-picture-1024x711-1.jpg",
+    "author": "Symbiosis University of Applied Sciences",
+    "kind": "Official campus photograph"
+  }
+]
