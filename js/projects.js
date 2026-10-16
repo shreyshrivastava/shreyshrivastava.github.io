@@ -27,6 +27,9 @@ const projects = [
   },
   {
     title: 'Agentic Honeypot System',
+    image: 'agentic-honeypot.png',
+    imageAlt: 'Agentic Honeypot API returning scam detection and extracted intelligence for synthetic input',
+    imageCaption: 'Local API run / Lightweight rules mode',
     category: 'Featured',
     icon: 'project',
     tags: ['Agents', 'Security', 'Prompt pipelines'],
@@ -36,6 +39,9 @@ const projects = [
   },
   {
     title: 'Academic Search Engine for Papers',
+    image: 'academic-search-repo.png',
+    imageAlt: 'GitHub repository for Academic Search Engine for Research Papers',
+    imageCaption: 'GitHub repository',
     category: 'NLP',
     icon: 'project',
     tags: ['BM25', 'Semantic reranking', 'arXiv', 'Pinecone', 'FAISS'],
@@ -45,6 +51,9 @@ const projects = [
   },
   {
     title: 'ATS Resume Checker',
+    image: 'ats-resume-checker.png',
+    imageAlt: 'ATS Resume Checker running locally with a synthetic resume and a computed match report',
+    imageCaption: 'Local app run / Synthetic sample resume',
     category: 'GenAI',
     icon: 'project',
     tags: ['Gemma3', 'Resume matching', 'Privacy'],
@@ -54,6 +63,9 @@ const projects = [
   },
   {
     title: 'Local Lore Generator',
+    image: 'local-lore.png',
+    imageAlt: 'Local Lore Generator running locally with context, tone, and audience controls before generation',
+    imageCaption: 'Local application / Input interface',
     category: 'GenAI',
     icon: 'project',
     tags: ['LLaMA', 'DALL-E', 'Story generation'],
@@ -75,6 +87,9 @@ const projects = [
   },
   {
     title: 'Sentiment Analysis on Tweets',
+    image: 'sentiment-analysis-repo.png',
+    imageAlt: 'GitHub repository for Sentiment Analysis on Tweets',
+    imageCaption: 'GitHub repository',
     category: 'NLP',
     icon: 'project',
     tags: ['LinearSVC', '27k tweets', 'Text preprocessing'],
@@ -96,6 +111,9 @@ const projects = [
   },
   {
     title: 'Car Detection System',
+    image: 'car-detection-repo.png',
+    imageAlt: 'GitHub repository for Car Detection System with its notebook and documentation',
+    imageCaption: 'GitHub repository',
     category: 'Computer Vision',
     icon: 'project',
     tags: ['YOLOv5', 'Object detection', 'Traffic'],
@@ -117,6 +135,9 @@ const projects = [
   },
   {
     title: 'Gas Cylinder Detection System',
+    image: 'gas-cylinder-publication.png',
+    imageAlt: 'Springer publication page for Deep Learning Based Object Detection on Gas Cylinders',
+    imageCaption: 'Published research / Springer',
     category: 'Research',
     icon: 'book',
     tags: ['Publication', 'Forecasting', 'AI safety'],
@@ -126,6 +147,9 @@ const projects = [
   },
   {
     title: 'Polygon Arbitrage Bot',
+    image: 'polygon-arbitrage-repo.png',
+    imageAlt: 'GitHub repository for the Rust Polygon Arbitrage Opportunity Detector Bot',
+    imageCaption: 'GitHub repository',
     category: 'Systems',
     icon: 'code',
     tags: ['Rust', 'ethers-rs', 'SQLite', 'Polygon'],
@@ -135,6 +159,9 @@ const projects = [
   },
   {
     title: 'Tube Network Route Finder',
+    image: 'tube-route-repo.png',
+    imageAlt: 'GitHub repository for Tube Network Route Finder with graph search algorithms',
+    imageCaption: 'GitHub repository',
     category: 'Systems',
     icon: 'code',
     tags: ['DFS', 'BFS', 'UCS', 'Graphs'],
@@ -180,6 +207,9 @@ const projects = [
   },
   {
     title: 'Llama2 Prompt Exploration',
+    image: 'llama2-prompt-repo.png',
+    imageAlt: 'GitHub repository containing the Llama2 Prompt Exploration notebook',
+    imageCaption: 'GitHub repository',
     category: 'GenAI',
     icon: 'project',
     tags: ['LLaMA 2', 'Prompting', 'NLP'],
@@ -239,6 +269,7 @@ function render() {
 }
 
 function projectCard(project) {
+  const source = project.github || project.publication;
   const actions = [
     project.github && `<a href="${project.github}" target="_blank" rel="noopener noreferrer">${icon('github')}GitHub</a>`,
     project.demo && `<a href="${project.demo}" target="_blank" rel="noopener noreferrer">${icon('external')}Live Demo</a>`,
@@ -246,15 +277,12 @@ function projectCard(project) {
   ].filter(Boolean).join('');
 
   return `<article class="project-card project-card--scene project-card--${slug(project.category)} ${project.category === 'Featured' ? 'project-card--featured' : ''}">
-    ${project.image ? `<figure class="project-card__visual gallery-media gallery-media--evidence">
+    <figure class="project-card__visual gallery-media gallery-media--evidence">
       <a class="gallery-media__open" href="assets/evidence/${project.image}" data-gallery-image aria-label="Enlarge ${project.title} image" title="Enlarge image">
         <img src="assets/evidence/${project.image}" alt="${project.imageAlt}" loading="lazy" decoding="async">
       </a>
-      <figcaption><span>${project.imageCaption}</span><a href="${project.github}" target="_blank" rel="noopener noreferrer">${icon('github')}Source</a></figcaption>
-    </figure>` : `<figure class="project-card__visual gallery-media gallery-media--illustration">
-      <img src="assets/gallery/project-${slug(project.title)}.svg" alt="" loading="lazy" decoding="async">
-      <figcaption>Project illustration</figcaption>
-    </figure>`}
+      <figcaption><span>${project.imageCaption}</span><a href="${source}" target="_blank" rel="noopener noreferrer">${icon(project.github ? 'github' : 'book')}Source</a></figcaption>
+    </figure>
     <div class="project-card__top">
       <span class="project-card__icon">${icon(project.icon || filterIcon(project.category))}</span>
       <span class="project-card__category">${project.category}</span>

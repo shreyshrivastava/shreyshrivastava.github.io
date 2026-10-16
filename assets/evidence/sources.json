@@ -96,5 +96,78 @@
     "source": "https://collegeindia.in/college/18153-rajeev-gandhi-prodyogiki-mahavidyalaya-rgpm/contact",
     "original": "https://collegeindia.s3.ap-south-1.amazonaws.com/uploads/university_logo/rajeev-gandhi-prodyogiki-mahavidyalaya-rgpm-logo-28-07-2017.gif",
     "kind": "Institution logo from college listing"
+  },
+  {
+    "file": "ats-resume-checker.png",
+    "source": "https://github.com/shreyshrivastava/ats_resume_checker_gemma3_hf",
+    "kind": "Local application screenshot",
+    "mode": "Deterministic scoring; synthetic repository sample resume and job description; MLX disabled",
+    "capturedOn": "2026-10-16",
+    "commit": "718aad5d9e920e9833e0b8a82df1c2b99bc18cd3"
+  },
+  {
+    "file": "agentic-honeypot.png",
+    "source": "https://github.com/shreyshrivastava/agentic-honeypot",
+    "kind": "Local API execution screenshot",
+    "mode": "Documented rules detector and lightweight reply fallback; synthetic input; Swagger UI",
+    "capturedOn": "2026-10-16",
+    "commit": "97a8ce8624c5469c80365b2a23f05db97d1e1af3"
+  },
+  {
+    "file": "local-lore.png",
+    "source": "https://github.com/shreyshrivastava/local-lore-generator",
+    "kind": "Local application interface screenshot",
+    "mode": "Input interface only; generation not executed because Groq and OpenAI credentials are unavailable",
+    "capturedOn": "2026-10-16",
+    "commit": "90ffe6752f7c3df7862be19d50440e983cfbdb29"
+  },
+  {
+    "file": "academic-search-repo.png",
+    "source": "https://github.com/shreyshrivastava/Academic-Search-Engine-for-Research-Papers",
+    "kind": "GitHub repository screenshot",
+    "mode": "Repository fallback; original dataset, model weights, or standalone runnable UI unavailable",
+    "capturedOn": "2026-10-16"
+  },
+  {
+    "file": "sentiment-analysis-repo.png",
+    "source": "https://github.com/shreyshrivastava/SentimentAnalysisTweets",
+    "kind": "GitHub repository screenshot",
+    "mode": "Repository fallback; original dataset, model weights, or standalone runnable UI unavailable",
+    "capturedOn": "2026-10-16"
+  },
+  {
+    "file": "car-detection-repo.png",
+    "source": "https://github.com/shreyshrivastava/Car-Detection-System",
+    "kind": "GitHub repository screenshot",
+    "mode": "Repository fallback; original dataset, model weights, or standalone runnable UI unavailable",
+    "capturedOn": "2026-10-16"
+  },
+  {
+    "file": "polygon-arbitrage-repo.png",
+    "source": "https://github.com/shreyshrivastava/polygon-arbitrage-bot",
+    "kind": "GitHub repository screenshot",
+    "mode": "Repository fallback; original dataset, model weights, or standalone runnable UI unavailable",
+    "capturedOn": "2026-10-16"
+  },
+  {
+    "file": "tube-route-repo.png",
+    "source": "https://github.com/shreyshrivastava/Ai_tube",
+    "kind": "GitHub repository screenshot",
+    "mode": "Repository fallback; original dataset, model weights, or standalone runnable UI unavailable",
+    "capturedOn": "2026-10-16"
+  },
+  {
+    "file": "llama2-prompt-repo.png",
+    "source": "https://github.com/shreyshrivastava/llama2-prompt-exploration",
+    "kind": "GitHub repository screenshot",
+    "mode": "Repository fallback; original dataset, model weights, or standalone runnable UI unavailable",
+    "capturedOn": "2026-10-16"
+  },
+  {
+    "file": "gas-cylinder-publication.png",
+    "source": "https://link.springer.com/chapter/10.1007/978-3-031-56586-1_75",
+    "kind": "Publisher page screenshot",
+    "mode": "Publication-only project; no linked code repository",
+    "capturedOn": "2026-10-16"
   }
 ]
