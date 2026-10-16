@@ -329,6 +329,17 @@ function mountScrollWorld(container, config) {
     const cur = SEGMENTS[ci];
     const near = clamp(cur.kind === 'dive' ? cur.si
       : (((y - cur.start) / (cur.end - cur.start)) > 0.5 ? cur.si + 1 : cur.si), 0, N - 1);
+    if (config.copyMode === 'chapter') {
+      copies.forEach((copy, index) => {
+        const visible = index === near;
+        copy.style.opacity = visible ? '1' : '0';
+        copy.style.pointerEvents = visible ? 'auto' : 'none';
+        copy.style.zIndex = visible ? '2' : '1';
+        copy.classList.toggle('is-interactive', visible);
+        copy.inert = !visible;
+        copy.setAttribute('aria-hidden', String(!visible));
+      });
+    }
     if (near !== activeIndex) {
       activeIndex = near;
       dots.forEach((d, k) => d.classList.toggle('is-active', k === near));
@@ -336,6 +347,7 @@ function mountScrollWorld(container, config) {
       const accent = SECTIONS[near].accent || '';
       container.style.setProperty('--sw-accent', accent);
       container.style.setProperty('--sw-nav-accent', accent);
+      container.dispatchEvent(new CustomEvent('world:sectionchange', { detail: { index: near, id: SECTIONS[near].id } }));
     }
     scrollbarFill.style.transform = `scaleX(${clamp(y / (totalW * vh))})`;
     hint.style.opacity = clamp(1 - y / (0.5 * vh));
