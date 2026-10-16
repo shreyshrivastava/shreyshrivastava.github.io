@@ -2,15 +2,29 @@ const filters = ['All', 'Featured', 'GenAI', 'NLP', 'Computer Vision', 'Research
 
 const projects = [
   {
+    title: 'FallGuard AI',
+    hackathon: 'IBM hackathon project',
+    image: 'fallguard-dashboard.png',
+    imageAlt: 'FallGuard AI Android app dashboard showing on-device monitoring and emergency SOS controls',
+    imageCaption: 'Android app dashboard / Repository screenshot',
+    category: 'Featured',
+    icon: 'code',
+    tags: ['Kotlin', 'PyTorch Mobile', 'Sensor fusion', 'On-device ML', 'Systems'],
+    summary: 'Android fall-detection prototype combining local activity recognition with a cancellable emergency countdown, contact alerts, and last-known GPS location.',
+    details: 'Fuses accelerometer and gyroscope data at 50 Hz. A foreground service runs TorchScript inference on 100-sample, six-channel windows every 400 ms, then applies four-phase temporal confirmation before emergency escalation. Battery-aware inference, sensitivity calibration, and incident history support practical on-device operation.',
+    github: 'https://github.com/kushagr-tech/fall_detection'
+  },
+  {
     title: 'AcademicForge',
+    hackathon: 'AMD hackathon project',
     image: 'academicforge.png',
     imageAlt: 'AcademicForge research search interface with paper results and research lens controls',
     imageCaption: 'Research search interface',
     category: 'Featured',
     icon: 'project',
-    tags: ['GenAI', 'Hybrid retrieval', 'FastAPI', 'Streamlit', 'BGE', 'Gemma'],
-    summary: 'Hackathon research-to-implementation assistant for live academic search, evidence selection, summaries, paper guidance, and structured research plans.',
-    details: 'Uses arXiv and Semantic Scholar, BM25 lexical retrieval, BGE dense embeddings, Reciprocal Rank Fusion, BGE cross-encoder reranking, local Gemma, and Fireworks DeepSeek fallback.',
+    tags: ['GenAI', 'Hybrid retrieval', 'FastAPI', 'Streamlit', 'BGE', 'Gemma', 'MLX', 'ROCm'],
+    summary: 'Research-to-implementation assistant that turns live paper search and user-selected evidence into summaries, practical paper guidance, and structured research plans.',
+    details: 'A FastAPI backend combines arXiv and Semantic Scholar retrieval with BM25, BGE dense embeddings, Reciprocal Rank Fusion, and cross-encoder reranking. Streamlit streams model output; local Gemma runs through MLX on Apple Silicon or Transformers on AMD/ROCm. Research plans use Fireworks DeepSeek when configured, otherwise local Gemma.',
     github: 'https://github.com/shreyshrivastava/AcademicForge'
   },
   {
@@ -288,6 +302,7 @@ function projectCard(project) {
       <span class="project-card__category">${project.category}</span>
     </div>
     <h2>${project.title}</h2>
+    ${project.hackathon ? `<p class="project-card__context">${icon('code')}${project.hackathon}</p>` : ''}
     <p class="project-card__summary">${project.summary}</p>
     <p class="project-card__details">${project.details}</p>
     <ul class="project-card__tags">${project.tags.map(tag => `<li>${tag}</li>`).join('')}</ul>

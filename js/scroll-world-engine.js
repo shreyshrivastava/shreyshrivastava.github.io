@@ -208,6 +208,7 @@ function mountScrollWorld(container, config) {
   const lingerEase = (x, L) => { L = clamp(L); const c = x - 0.5; return (1 - L) * x + L * (4 * c * c * c + 0.5); };
   let vh = window.innerHeight, stageX = 0, totalW = 0, activeIndex = -1, ticking = false;
   let laidOutW = window.innerWidth;   // width the current layout was computed at (see onResize)
+  const isAboutOnly = () => config.aboutOnly === true;
 
   function layout() {
     vh = window.innerHeight;
@@ -216,7 +217,10 @@ function mountScrollWorld(container, config) {
     let off = 0;
     SEGMENTS.forEach(s => { s.start = off * vh; off += s.w; s.end = off * vh; });
     totalW = off;
-    track.style.height = (totalW * vh + vh) + 'px';   // +1vh so the last flight completes
+    const aboutOnly = isAboutOnly();
+    container.classList.toggle('sw-about-only', aboutOnly);
+    copies.forEach((copy, index) => { copy.hidden = aboutOnly && index !== 0; });
+    track.style.height = aboutOnly ? '0px' : (totalW * vh + vh) + 'px';
     read();
     if (!layout._hashDone) {
       layout._hashDone = true;
@@ -229,6 +233,14 @@ function mountScrollWorld(container, config) {
   }
 
   function jumpTo(i, behavior = 'smooth') {
+    if (isAboutOnly()) {
+      if (i > 0) {
+        window.location.assign(SECTIONS[i].href?.startsWith('#') ? `${SECTIONS[i].id}.html` : SECTIONS[i].href || `${SECTIONS[i].id}.html`);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+      return;
+    }
     window.scrollTo({ top: sectionTargetTop(i), behavior: reduce ? 'auto' : behavior });
     requestAnimationFrame(read);
   }
@@ -275,6 +287,33 @@ function mountScrollWorld(container, config) {
 
   function read() {
     const y = window.scrollY || window.pageYOffset;
+    if (isAboutOnly()) {
+      // A standalone About page uses ordinary document scrolling, not the chapter track.
+      copies.forEach((copy, index) => {
+        const visible = index === 0;
+        copy.style.opacity = visible ? '1' : '0';
+        copy.style.pointerEvents = visible ? 'auto' : 'none';
+        copy.style.transform = 'none';
+        copy.classList.toggle('is-interactive', visible);
+        copy.inert = !visible;
+        copy.setAttribute('aria-hidden', String(!visible));
+      });
+      SEGMENTS.forEach((segment, index) => {
+        segment.el.style.opacity = index === 0 ? '1' : '0';
+        segment.visible = index === 0;
+      });
+      if (activeIndex !== 0) {
+        activeIndex = 0;
+        nav.querySelectorAll('.sw-nav__item').forEach((link, index) => link.classList.toggle('is-active', index === 0));
+        container.style.setProperty('--sw-accent', SECTIONS[0].accent || '');
+        container.style.setProperty('--sw-nav-accent', SECTIONS[0].accent || '');
+        container.dispatchEvent(new CustomEvent('world:sectionchange', { detail: { index: 0, id: SECTIONS[0].id } }));
+      }
+      const distance = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      scrollbarFill.style.transform = `scaleX(${Math.max(0.045, clamp(y / distance))})`;
+      ticking = false;
+      return;
+    }
     const fade = CROSSFADE * vh;
     let ci = 0;
     for (let i = 0; i < NSEG; i++) if (y >= SEGMENTS[i].start) ci = i;

@@ -1,7 +1,7 @@
 (() => {
   const sections = [
     { id: 'about', label: 'About', short: 'ABT', href: 'index.html#about', accent: '#17d7c8', title: 'Shrey Shrivastava', description: 'AI / ML Engineer working across retrieval, healthcare ML, NLP, computer vision, and deployable systems.', action: 'Explore About', detail: 'AI / ML engineering' },
-    { id: 'projects', label: 'Projects', short: 'PRJ', href: 'projects.html', accent: '#38bdf8', title: 'Code, systems, and research.', description: 'Twenty projects with application screenshots, notebook results, repository links, and published research.', action: 'Open Projects', detail: '20 project entries' },
+    { id: 'projects', label: 'Projects', short: 'PRJ', href: 'projects.html', accent: '#38bdf8', title: 'Code, systems, and research.', description: 'Explore FallGuard AI, AcademicForge, and more projects through application screenshots, notebook results, code, and published research.', action: 'Open Projects', detail: '21 project entries' },
     { id: 'experience', label: 'Experience', short: 'EXP', href: 'experience.html', accent: '#ffb657', title: 'From data to deployed workflows.', description: 'Healthcare ML engineering at CRO Prime, followed by applied machine learning and data analysis internships.', action: 'Open Experience', detail: '3 experience entries' },
     { id: 'education', label: 'Education', short: 'EDU', href: 'education.html', accent: '#34d399', title: 'Computer science to artificial intelligence.', description: 'MSc Artificial Intelligence, BTech Computer Science, and Diploma Computer Science. A continuous technical foundation.', action: 'Open Education', detail: '3 academic qualifications' },
     { id: 'contact', label: 'Contact', short: 'CNT', href: 'contact.html', accent: '#f472b6', title: 'Let’s build something useful.', description: 'Direct routes for hiring, collaboration, and research conversations through email, LinkedIn, GitHub, and ORCID.', action: 'Open Contact', detail: '4 direct contact channels' }
@@ -79,24 +79,33 @@
       field.element.classList.remove('is-typing');
     });
     if (reducedMotion.matches) return;
+    let quickArrival = performance.getEntriesByType('navigation')[0]?.activationStart > 0;
+    try {
+      const arrival = JSON.parse(sessionStorage.getItem('portfolio-scroll-arrival') || 'null');
+      quickArrival ||= arrival?.pathname === location.pathname && Date.now() - arrival.time < 15000;
+    } catch { /* Use the standard typing speed when storage is unavailable. */ }
+    const titleStep = quickArrival ? 10 : 28;
+    const descriptionStep = quickArrival ? 5 : 14;
+    const pause = quickArrival ? 40 : 120;
     const started = performance.now();
-    const titleDuration = section.title.length * 28;
+    const titleDuration = section.title.length * titleStep;
     function tick(now) {
       const elapsed = now - started;
       terminalFields.forEach((field, index) => {
         const text = section[field.name];
-        const localTime = elapsed - (index === 0 ? 0 : titleDuration + 120);
-        const count = Math.max(0, Math.min(text.length, Math.floor(localTime / (index === 0 ? 28 : 14))));
+        const localTime = elapsed - (index === 0 ? 0 : titleDuration + pause);
+        const count = Math.max(0, Math.min(text.length, Math.floor(localTime / (index === 0 ? titleStep : descriptionStep))));
         field.output.textContent = text.slice(0, count);
         field.element.classList.toggle('is-typing', localTime >= 0 && count < text.length);
       });
-      if (elapsed < titleDuration + 120 + section.description.length * 14) {
+      if (elapsed < titleDuration + pause + section.description.length * descriptionStep) {
         typingFrame = requestAnimationFrame(tick);
       }
     }
     typingFrame = requestAnimationFrame(tick);
   }
   reducedMotion.addEventListener('change', () => typeReadout(sections[selected]));
+  document.addEventListener('prerenderingchange', () => typeReadout(sections[selected]), { once: true });
 
   function positionMobileConsole() {
     if (!home) {
@@ -132,6 +141,8 @@
     const open = consolePanel.querySelector('[data-console-open]');
     open.href = section.href;
     open.textContent = section.action + ' \u2197';
+    open.hidden = selected === initial;
+    open.parentElement.classList.toggle('console-actions--navigation-only', open.hidden);
     [['prev', selected - 1], ['next', selected + 1]].forEach(([direction, index]) => {
       const link = consolePanel.querySelector(`[data-console-${direction}]`);
       const destination = sections[index];

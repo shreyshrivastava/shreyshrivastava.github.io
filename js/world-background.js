@@ -14,17 +14,24 @@ const camera = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 0.1, 10
 const root = new THREE.Group();
 scene.add(root);
 let renderer;
+let started = false;
 
-try {
-  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power', preserveDrawingBuffer: true });
-} catch {
-  // The existing page remains usable when WebGL is unavailable.
+function initialize() {
+  if (started) return;
+  started = true;
+  try {
+    const mobile = innerWidth <= 960;
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !mobile, powerPreference: 'low-power', preserveDrawingBuffer: true });
+  } catch {
+    // The existing page remains usable when WebGL is unavailable.
+  }
+  if (renderer) start();
 }
-
-if (renderer) start();
+if (document.prerendering) document.addEventListener('prerenderingchange', initialize, { once: true });
+else initialize();
 
 function start() {
-  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 640 ? 1.25 : 1.5));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth <= 960 ? 1 : 1.5));
   renderer.setSize(innerWidth, innerHeight);
   renderer.setClearColor('#070e10', 0);
   const canvas = renderer.domElement;
@@ -37,8 +44,7 @@ function start() {
   const surfaceMaterial = new THREE.MeshBasicMaterial({ color: '#12353d', transparent: true, opacity: 0.45, depthWrite: false });
   const markerMaterial = new THREE.MeshBasicMaterial({ color: palette[active], transparent: true, opacity: 0.8 });
   const markerGeometry = new THREE.BoxGeometry(0.13, 0.13, 0.13);
-  const models = pageIds.map((_, index) => makeModel(index));
-  models.forEach(model => root.add(model));
+  const models = new Array(pageIds.length);
   const grid = new THREE.GridHelper(64, 48, palette[active], '#1c343d');
   grid.position.y = -4.5;
   grid.position.z = -8;
@@ -51,6 +57,7 @@ function start() {
   let animation = 0;
   let lastTime = 0;
   let phase = 0;
+  let lastPaint = -Infinity;
 
   function box(parent, position, size, filled = true) {
     const geometry = new THREE.BoxGeometry(...size);
@@ -118,12 +125,51 @@ function start() {
       });
       box(group, [0, 0, -6], [2, 2, 2], false);
     }
+    return innerWidth <= 960 ? batchModel(group) : group;
+  }
+
+  function batchModel(group) {
+    const batches = new Map();
+    const geometries = new Set();
+    const point = new THREE.Vector3();
+    group.updateMatrixWorld(true);
+    // These diagrams are rigid: bake child transforms once and share one draw call per material.
+    group.traverse(object => {
+      if (!object.geometry) return;
+      const positions = object.geometry.getAttribute('position');
+      const indices = object.geometry.getIndex();
+      const count = indices ? indices.count : positions.count;
+      if (!batches.has(object.material)) batches.set(object.material, { positions: [], lines: object.isLine });
+      const batch = batches.get(object.material);
+      const append = index => {
+        point.fromBufferAttribute(positions, indices ? indices.getX(index) : index).applyMatrix4(object.matrixWorld);
+        batch.positions.push(point.x, point.y, point.z);
+      };
+      if (object.isLine && !object.isLineSegments) {
+        for (let i = 0; i < count - 1; i++) { append(i); append(i + 1); }
+      } else {
+        for (let i = 0; i < count; i++) append(i);
+      }
+      if (object.geometry !== markerGeometry) geometries.add(object.geometry);
+    });
+    group.clear();
+    geometries.forEach(geometry => geometry.dispose());
+    batches.forEach((batch, material) => {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(batch.positions, 3));
+      geometry.computeBoundingSphere();
+      group.add(batch.lines ? new THREE.LineSegments(geometry, material) : new THREE.Mesh(geometry, material));
+    });
     return group;
   }
 
   function setSection(index) {
     active = Math.max(0, Math.min(4, index));
-    models.forEach((model, i) => { model.visible = i === active; });
+    if (!models[active]) {
+      models[active] = makeModel(active);
+      root.add(models[active]);
+    }
+    models.forEach((model, i) => { if (model) model.visible = i === active; });
     edgeMaterial.color.set(palette[active]);
     connectionMaterial.color.set(palette[active]);
     markerMaterial.color.set(palette[active]);
@@ -134,11 +180,17 @@ function start() {
   function resize() {
     camera.aspect = innerWidth / innerHeight;
     camera.position.set(0, innerWidth < 640 ? 6 : 7, innerWidth < 640 ? 31 : 23);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth <= 960 ? 1 : 1.5));
     renderer.setSize(innerWidth, innerHeight);
     camera.updateProjectionMatrix();
     if (reducedMotion.matches) render(performance.now());
   }
   function render(time) {
+    if (!reducedMotion.matches && innerWidth <= 960 && time - lastPaint < 1000 / 30 - 1) {
+      if (!document.hidden) animation = requestAnimationFrame(render);
+      return;
+    }
+    lastPaint = time;
     const delta = Math.min((time - lastTime) / 1000 || 0, 0.05);
     lastTime = time;
     if (!reducedMotion.matches) phase += delta * 0.045;
@@ -149,7 +201,10 @@ function start() {
     focus.y = -0.5 + scroll * 1.2;
     camera.lookAt(focus);
     renderer.render(scene, camera);
-    if (frame++ % 15 === 0) canvas.dataset.frames = String(frame);
+    if (frame++ % 15 === 0) {
+      canvas.dataset.frames = String(frame);
+      canvas.dataset.drawCalls = String(renderer.info.render.calls);
+    }
     if (!document.hidden && !reducedMotion.matches) animation = requestAnimationFrame(render);
   }
   addEventListener('pointermove', event => {

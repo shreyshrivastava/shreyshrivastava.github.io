@@ -1,5 +1,12 @@
 [
   {
+    "file": "fallguard-dashboard.png",
+    "source": "https://raw.githubusercontent.com/kushagr-tech/fall_detection/main/screenshots/01_dashboard_guard.png",
+    "kind": "Project screenshot",
+    "mode": "Original Android dashboard screenshot supplied by the project repository; not a locally executed app capture",
+    "retrievedOn": "2026-10-17"
+  },
+  {
     "file": "academicforge.png",
     "source": "https://raw.githubusercontent.com/shreyshrivastava/AcademicForge/HEAD/docs/assets/academicforge-search-results.png",
     "kind": "Project screenshot"

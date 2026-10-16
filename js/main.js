@@ -10,6 +10,7 @@ mountScrollWorld(worldRoot, {
   connScroll: 0.78,
   crossfade: 0.1,
   copyMode: 'chapter',
+  aboutOnly: true,
   sections: [
     {
       id: 'about',
@@ -63,12 +64,12 @@ mountScrollWorld(worldRoot, {
         {
           title: 'Full Projects Page',
           icon: 'project',
-          body: 'Browse AcademicForge, Healthcare Intel Engine, Agentic Honeypot, Academic Search, computer vision, NLP, research, systems, and data projects in a full-width layout.',
+          body: 'Browse FallGuard AI, AcademicForge, Healthcare Intel Engine, Agentic Honeypot, Academic Search, computer vision, NLP, research, systems, and data projects in a full-width layout.',
           href: 'projects.html',
           linkLabel: 'Open gallery'
         }
       ],
-      tags: ['AcademicForge', 'Hybrid retrieval', 'GenAI', 'NLP', 'Computer vision'],
+      tags: ['FallGuard AI', 'AcademicForge', 'On-device ML', 'Hybrid retrieval', 'GenAI'],
       cta: {
         primary: { label: 'View all projects', href: 'projects.html', icon: 'external' },
         secondary: { label: 'Experience', href: 'experience.html', icon: 'briefcase' }
@@ -129,7 +130,7 @@ mountScrollWorld(worldRoot, {
     {
       id: 'contact',
       label: 'Contact',
-      href: '#contact',
+      href: 'contact.html',
       still: scenePath + 'contact-terminal.svg',
       accent: '#f472b6',
       scroll: 1.35,
