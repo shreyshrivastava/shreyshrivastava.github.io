@@ -78,5 +78,23 @@
     "original": "https://www.suas.ac.in/wp-content/uploads/2025/09/symbiosis-university-indore-side-picture-1024x711-1.jpg",
     "author": "Symbiosis University of Applied Sciences",
     "kind": "Official campus photograph"
+  },
+  {
+    "file": "queen-mary-logo.png",
+    "source": "https://www.qmul.ac.uk/",
+    "original": "https://www.qmul.ac.uk/media/ow-assets/assets/icons/Queen-Mary_Est_1785_RGB_White_Dark-Yellow-3.png",
+    "kind": "Official institution logo"
+  },
+  {
+    "file": "symbiosis-logo.jpg",
+    "source": "https://www.suas.ac.in/",
+    "original": "https://www.suas.ac.in/wp-content/uploads/2025/09/Suas-Logo-white-Bg.jpg",
+    "kind": "Official institution logo"
+  },
+  {
+    "file": "rgpm-logo.gif",
+    "source": "https://collegeindia.in/college/18153-rajeev-gandhi-prodyogiki-mahavidyalaya-rgpm/contact",
+    "original": "https://collegeindia.s3.ap-south-1.amazonaws.com/uploads/university_logo/rajeev-gandhi-prodyogiki-mahavidyalaya-rgpm-logo-28-07-2017.gif",
+    "kind": "Institution logo from college listing"
   }
 ]

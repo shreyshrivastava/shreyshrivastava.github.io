@@ -1891,3 +1891,40 @@ a {
   font-size: 1.8rem;
   cursor: pointer;
 }
+
+.education-page .education-logo {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  min-height: 180px;
+  padding: 28px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.education-page .education-logo::before,
+.education-page .education-logo::after {
+  display: none;
+}
+
+.education-page .education-logo--queen-mary {
+  background: #071013;
+}
+
+.education-page .education-logo img,
+.education-page .education-logo:hover img {
+  position: static;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  min-height: 0;
+  max-height: 140px;
+  object-fit: contain;
+  transform: none;
+  filter: none;
+}
+
+.education-page .education-logo--rgpm img {
+  width: 106px;
+  height: 76px;
+}
