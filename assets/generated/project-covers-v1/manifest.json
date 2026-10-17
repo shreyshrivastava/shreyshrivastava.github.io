@@ -1,0 +1,84 @@
+{
+  "created": "2026-10-17",
+  "tool": "Built-in image_gen",
+  "type": "AI-generated conceptual portfolio illustrations; not screenshots or execution evidence",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "sharedBrief": "Distinct project-specific 3D editorial illustrations, dark neutral backgrounds, polished glass and matte materials, subject-specific accent colors, landscape 3:2. No baked-in text, logos, watermarks or invented performance claims.",
+  "assets": [
+    {
+      "title": "Agentic Honeypot System",
+      "file": "agentic-honeypot-system.png",
+      "designBrief": "A conversational decoy inside a glass containment chamber receives suspicious message packets; a cyan extraction pipeline sorts identifiers into evidence trays.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-af3b23bf-e7dc-4661-a1e2-419cdceb4876.png"
+    },
+    {
+      "title": "Claim Detection on Russia-Ukraine Conflict",
+      "file": "claim-detection-russia-ukraine.png",
+      "designBrief": "News documents pass through a semantic lattice with evidence links and a magnifying lens on a statement. Blue and amber accents; no political figures, flags, military imagery or fake statistics.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-1236a455-f611-41a9-8635-7a8da1fe3f19.png"
+    },
+    {
+      "title": "Car Detection System",
+      "file": "car-detection-system.png",
+      "designBrief": "High-angle miniature realistic street intersection with cars outlined by lime-green detection boxes. No invented scores or interface labels.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-d941e895-5828-4334-b56f-ddf65dde0cb9.png"
+    },
+    {
+      "title": "CIFAR-10 Image Classification",
+      "file": "cifar-10-image-classification.png",
+      "designBrief": "Ten image classes, airplane, car, bird, cat, deer, dog, frog, horse, ship and truck, pass through glass convolution grids into grouped output tokens.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-6c08a7b8-c3e4-48a9-b60a-a9295e249e75.png"
+    },
+    {
+      "title": "Polygon Arbitrage Bot",
+      "file": "polygon-arbitrage-bot.png",
+      "designBrief": "Two glass liquidity pools with abstract token pairs connected by a violet and mint quote bridge, a central monitoring prism and a database stack. No profit claims.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-daa8cc76-1123-4587-bcfe-c27e9e557303.png"
+    },
+    {
+      "title": "Tube Network Route Finder",
+      "file": "tube-network-route-finder.png",
+      "designBrief": "An isometric underground transit graph with colored routes, a highlighted cyan selected path and a miniature metro train, without station labels.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-5e875f23-f4a5-4902-aae5-e3b1b1f3cfcd.png"
+    },
+    {
+      "title": "COVID-19 Tracker",
+      "file": "covid-19-tracker.png",
+      "designBrief": "India map tiles with coral and teal bars, a time-series ribbon, blank calendar sheets and a small coronavirus model in a glass enclosure. No invented statistics.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-b476ddc2-4778-4742-9533-a42e977a529a.png"
+    },
+    {
+      "title": "Diabetes Regression Analysis",
+      "file": "diabetes-regression-analysis.png",
+      "generationPrompt": "Use case: stylized-concept. Asset type: landscape portfolio project cover for Diabetes Regression Analysis. Create an elegant high-detail 3D editorial illustration of exploratory regression analysis: emerald and amber observation points suspended above a charcoal plotting surface, a translucent fitted regression plane passing through the point cloud, a small separate translucent panel showing residual distances and a smooth regularization curve as physical luminous lines. A restrained medical dataset cue, a glass clinical sample vial beside blank tabular data sheets, is secondary. This represents academic machine learning analysis, not a clinical diagnostic tool. Centered coherent composition, polished glass and matte metal, soft directional studio lighting, clearly readable forms at thumbnail size. Dark neutral background, emerald, white and amber accents. No text, no letters, no numbers, no labels, no watermark, no medical results or accuracy claims. Landscape 3:2.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-803403e3-2e60-4b92-afa3-be9a3e92b630.png"
+    },
+    {
+      "title": "Friends Character Similarity",
+      "file": "friends-character-similarity.png",
+      "generationPrompt": "Use case: stylized-concept. Asset type: landscape portfolio cover for Friends Character Similarity, an NLP project comparing six sitcom characters using dialogue vectors and cosine similarity. Create a sophisticated 3D editorial illustration: six distinct abstract human profile medallions, each a different subtle color, arranged in a semicircle around a translucent similarity matrix made of softly illuminated square cells. Small glass dialogue bubbles containing only abstract horizontal strokes flow from each profile into linked vector points; selected pairs are connected with clearly weighted luminous lines. Warm television-studio light mixed with cyan and coral data highlights on a graphite background. Friendly, analytical, elegant physical miniature aesthetic, polished glass and matte materials, close coherent composition, clear at thumbnail size. No actual actors or celebrity likenesses, no recognizable TV branding, no logos, no words, no letters, no numbers, no watermark. This is conceptual NLP artwork, not a screenshot or measured result. Landscape 3:2.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-3c36852a-e932-4d8c-948f-8d3228209167.png"
+    },
+    {
+      "title": "Llama2 Prompt Exploration",
+      "file": "llama2-prompt-exploration.png",
+      "generationPrompt": "Use case: stylized-concept. Asset type: landscape portfolio cover for Llama2 Prompt Exploration. Create a refined 3D editorial still life representing controlled language-model prompt experiments in a notebook: three glass prompt cards with differing arrangements of abstract short line marks enter a small central layered transformer-like processing block, and emerge as three visually distinct structured response ribbons. One card is being selected by a delicate illuminated cursor shape. Behind the model, a subtle open computational notebook with blank ruled cells; objects are physical miniature forms, not a fake screenshot. Strong visual hierarchy, generous uncluttered spacing, neutral charcoal studio background, electric blue and warm amber with white highlights, frosted glass and brushed aluminum. Centered scene, beautiful directional lighting, crisp legible silhouettes. No text, no letters, no numbers, no logos, no watermark, no mascot, no animal. Conceptual project illustration, not evidence of a deployed application. Landscape 3:2.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-e56882e6-1e6e-433a-a9b9-3338cd703e9c.png"
+    },
+    {
+      "title": "Neural Network Introduction",
+      "file": "neural-network-introduction.png",
+      "generationPrompt": "Use case: stylized-concept. Asset type: landscape portfolio project cover for Neural Network Introduction, foundational machine-learning coursework. Create a beautiful precise physical 3D model of a small feedforward neural network: four translucent cyan input spheres at left, two ordered hidden layers of softly lit warm yellow nodes, and two coral output spheres at right, connected by fine metallic weighted wires. A bright training signal passes through a few connections while a subtle return path underneath suggests learning. In the foreground a smooth tiny topographic loss surface with a single marble moving toward its basin, no graph labels. Show a compact understandable network, not a chaotic galaxy, not a brain. Neutral dark graphite tabletop and studio background, cyan, golden yellow and coral accents, soft light, crisp geometry, elegant scientific teaching-object aesthetic. Centered landscape composition 3:2. No text, letters, numbers, labels, logos, watermark or performance metrics. Conceptual illustration, not a measured experimental result.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-23ba838f-778a-4ab9-ba14-9ec469ef6e2f.png"
+    },
+    {
+      "title": "Logistic Regression Iris Classification",
+      "file": "logistic-regression-iris-classification.png",
+      "generationPrompt": "Use case: stylized-concept. Asset type: landscape portfolio project cover for Logistic Regression Iris Classification. Create a sophisticated 3D scientific editorial still life: three small botanically recognizable iris specimens with different petal shapes and violet, pale lavender and ivory coloring beside a transparent glass scatterplot containing three distinct color-coded clusters. Two thin planar decision boundaries separate the three clusters; the data view is an illustrative abstraction, not claimed measured results. Fine caliper-like measurement guides near petals suggest sepal and petal features without labels. Neutral dark graphite background and table, natural botanical textures contrasted with clear glass and restrained violet, jade and pale gold data accents. Beautiful soft studio light, crisp centered composition, generous clean spacing, forms recognizable at thumbnail size. No equations, no text, no letters, no numbers, no axes labels, no logos, no watermark. Landscape 3:2. Do not depict a neural-network mesh; emphasize simple classification and flower measurements.",
+      "source": "/Users/shreyshrivastava/.codex/generated_images/019f6c85-dffd-7302-a906-7a332b19a316/exec-827a3488-7894-447a-ba72-59b554eeac32.png"
+    }
+  ]
+}
