@@ -1,0 +1,58 @@
+# Shrey Shrivastava
+
+> AI/ML engineer. Currently an AI Engineer at CRO Prime, building healthcare machine-learning pipelines. Holds an MSc in Artificial Intelligence from Queen Mary University of London. This site presents each project as the problem it addresses, how it was built, and what came out of it.
+
+How to read the claims below: results are quoted from each project's own repository or notebook, with sample sizes where they exist. Several projects are university coursework or demos, and they are labelled that way. Where a project reports no measured result, none is stated here.
+
+## Contact
+
+- Email: shrey.shrivastava@yahoo.com
+- GitHub: https://github.com/shreyshrivastava
+- LinkedIn: https://www.linkedin.com/in/shrey-shrivastava1
+- ORCID: https://orcid.org/0000-0001-5273-2842
+
+## Work
+
+- AI Engineer, CRO Prime (February 2025 to present): builds four-stage healthcare ML pipelines (ingestion, preprocessing, training, inference) that can be re-run reliably, designs medical data models that a prediction service can plug into, and turns requirements from three stakeholder workflows into reusable ML components and review dashboards.
+- Data Analysis / Machine Learning intern, Seekace (remote): customer churn prediction, from framing the retention problem and preparing data to turning model output into a signal a team can act on.
+- Data Analysis / Machine Learning intern, Innovians Tech (remote): COVID-19 case forecasting (time series), text pipelines for NLP, and image recognition for computer vision.
+
+## Education
+
+- MSc Artificial Intelligence, Queen Mary University of London, UK
+- BTech Computer Science, Symbiosis University of Applied Sciences, India
+- Diploma in Computer Science, Rajiv Gandhi Proudhyogiki Mahavidhyalaya, Bhopal, India
+
+## Featured projects
+
+- [agent-ops](https://github.com/shreyshrivastava/agent-ops): a terminal coding agent that runs on a local Ollama model and asks before every file change and every command. On 8 small payments tasks run twice each, bug fixes passed 9 of 10 with its system prompt against 7 of 10 for a plain prompt, and took 108 s against 200 s on average; feature tasks tied at 3 of 6. The sample is small and the model is a 9B local one.
+- [FallGuard AI](https://github.com/kushagr-tech/fall_detection): an IBM hackathon prototype that detects falls from phone motion sensors with a small PyTorch model running on the device, then starts a cancellable countdown before alerting contacts with the last known location. A team project; it is not a certified medical device.
+- [AcademicForge](https://github.com/shreyshrivastava/AcademicForge): searches arXiv and Semantic Scholar, lets the user pick papers, and builds summaries and a research plan from only those. Runs a local Gemma model on Apple Silicon, NVIDIA or AMD ROCm. Built for the AMD hackathon.
+- [AI Healthcare Intel Engine](https://github.com/shreyshrivastava/ai-healthcare-intel-engine): a demo with symptom-to-specialist ranking, a second-opinion risk check and a drug-interaction lookup, on synthetic data with deterministic rules by default. Live demo: https://healthcare-intel-engine-shrey.streamlit.app. A portfolio project, not a medical device or medical advice.
+- [Agentic Honeypot System](https://github.com/shreyshrivastava/agentic-honeypot): flags likely scam messages, writes a controlled reply, and extracts UPI IDs, bank accounts, IFSC codes and URLs. Evaluated on synthetic messages only.
+- [Bhopal Safety Intelligence](https://github.com/shreyshrivastava/bhopal-crime-safety-intelligence): a map dashboard built from nine hand-checked Bhopal Police publications (April to October 2026) plus 48 police facilities. It shows only what has been publicly reported, with no risk scores or invented data.
+
+## Other projects
+
+- [Claim Detection on the Russia-Ukraine conflict](https://github.com/shreyshrivastava/claim-detection-project-on-Russia-and-conflict): MSc dissertation at Queen Mary; turns a BERT and SVM notebook into a FastAPI app that screens claims and retrieves evidence. Demo: https://claim-detection-project.vercel.app. Not a production fact-checker.
+- [ATS Resume Checker](https://github.com/shreyshrivastava/ats_resume_checker_gemma3_hf): scores a PDF resume against a job description with plain arithmetic, and an optional local Gemma model explains the result without changing the score.
+- [Pupil Anomaly Detection](https://github.com/shreyshrivastava/pupil-anomaly-detection): measures pupil radius from video for each eye, compares them, and produces a report. Demo: https://pupil-response-analyzer.onrender.com. A screening demo, not a diagnosis.
+- [Local Lore Generator](https://github.com/shreyshrivastava/local-lore-generator): writes region-specific Indian fables with Llama 4 (via Groq) and illustrations with DALL-E. Demo: https://huggingface.co/spaces/shrey2105/local-lore-generator
+- [Academic Search Engine for Papers](https://github.com/shreyshrivastava/Academic-Search-Engine-for-Research-Papers): BM25 plus embedding re-ranking over the arXiv dataset; the first version AcademicForge grew from.
+- [Sentiment Analysis on Tweets](https://github.com/shreyshrivastava/SentimentAnalysisTweets): university assignment; LinearSVC on 27,000 tweets, precision 85.69%, recall 85.86%, F1 85.65%.
+- [CIFAR-10 Image Classification](https://github.com/shreyshrivastava/CIFAR10-Image-Classification_shrey): a PyTorch CNN with 76.92% test accuracy; a learning project.
+- [Car Detection System](https://github.com/shreyshrivastava/Car-Detection-System): custom YOLOv5 training notebook; reports no accuracy figures.
+- [Polygon Arbitrage Bot](https://github.com/shreyshrivastava/polygon-arbitrage-bot): a Rust bot that compares token prices on QuickSwap and SushiSwap and logs simulated profit; it places no trades.
+- Coursework notebooks: [Tube Network Route Finder](https://github.com/shreyshrivastava/Ai_tube), [COVID-19 Tracker](https://github.com/shreyshrivastava/COVID-TRACKER-SYSTEM), [Diabetes Regression Analysis](https://github.com/shreyshrivastava/Diabetes-Regression-Analysis), [Friends Character Similarity](https://github.com/shreyshrivastava/friends-character-similarity), [Llama2 Prompt Exploration](https://github.com/shreyshrivastava/llama2-prompt-exploration), [Neural Network Introduction](https://github.com/shreyshrivastava/Neural-Network-Introduction), [Logistic Regression Iris Classification](https://github.com/shreyshrivastava/-Logistic_Regression_Iris_Classification).
+
+## Publication
+
+- Deep Learning Based Object Detection on Gas Cylinders (Springer book chapter): https://link.springer.com/chapter/10.1007/978-3-031-56586-1_75
+
+## Pages on this site
+
+- Home: https://shreyshrivastava.com/
+- Projects: https://shreyshrivastava.com/projects.html
+- Experience: https://shreyshrivastava.com/experience.html
+- Education: https://shreyshrivastava.com/education.html
+- Contact: https://shreyshrivastava.com/contact.html

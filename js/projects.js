@@ -2,6 +2,19 @@ const filters = ['All', 'Featured', 'GenAI', 'NLP', 'Computer Vision', 'Research
 
 const projects = [
   {
+    title: 'agent-ops',
+    image: 'agent-ops.png',
+    imageAlt: 'agent-ops terminal session fixing a webhook signature check with a local model',
+    imageCaption: 'Terminal session / Repository screenshot',
+    category: 'Featured',
+    icon: 'code',
+    tags: ['Python', 'Ollama', 'Local model', 'CLI'],
+    problem: 'Coding agents edit your files and run commands, often through a cloud service, and it is hard to see or control what they do.',
+    built: 'A terminal coding agent that runs on a local Ollama model. It shows a diff before every file write and the exact command before every run, and nothing happens until you type y. Each run is saved so you can replay it.',
+    result: 'On 8 small payments tasks run twice each, bug fixes passed 9 of 10 with my system prompt against 7 of 10 for a plain prompt, and took 108 s against 200 s. Feature tasks tied at 3 of 6. The sample is small and the model is a 9B local one, so I treat the numbers as rough.',
+    github: 'https://github.com/shreyshrivastava/agent-ops'
+  },
+  {
     title: 'FallGuard AI',
     hackathon: 'IBM hackathon project',
     image: 'fallguard-dashboard.png',
@@ -10,8 +23,9 @@ const projects = [
     category: 'Featured',
     icon: 'code',
     tags: ['Kotlin', 'PyTorch Mobile', 'Sensor fusion', 'On-device ML', 'Systems'],
-    summary: 'Android fall-detection prototype combining local activity recognition with a cancellable emergency countdown, contact alerts, and last-known GPS location.',
-    details: 'Fuses accelerometer and gyroscope data at 50 Hz. A foreground service runs TorchScript inference on 100-sample, six-channel windows every 400 ms, then applies four-phase temporal confirmation before emergency escalation. Battery-aware inference, sensitivity calibration, and incident history support practical on-device operation.',
+    problem: 'Someone who falls while alone, often an older person, may not be able to reach a phone to ask for help.',
+    built: 'An Android app that reads the phone\'s motion sensors 50 times a second and runs a small PyTorch model on the phone every 400 ms. If it spots a fall, it starts a countdown the person can cancel, then alerts their contacts with the last known GPS location.',
+    result: 'Detection runs on the phone itself, so it does not depend on a connection. It is a hackathon prototype, not a certified medical device.',
     github: 'https://github.com/kushagr-tech/fall_detection'
   },
   {
@@ -23,8 +37,9 @@ const projects = [
     category: 'Featured',
     icon: 'project',
     tags: ['GenAI', 'Hybrid retrieval', 'FastAPI', 'Streamlit', 'BGE', 'Gemma', 'MLX', 'ROCm'],
-    summary: 'Research-to-implementation assistant that turns live paper search and user-selected evidence into summaries, practical paper guidance, and structured research plans.',
-    details: 'A FastAPI backend combines arXiv and Semantic Scholar retrieval with BM25, BGE dense embeddings, Reciprocal Rank Fusion, and cross-encoder reranking. Streamlit streams model output; local Gemma runs through MLX on Apple Silicon or Transformers on AMD/ROCm. Research plans use Fireworks DeepSeek when configured, otherwise local Gemma.',
+    problem: 'Going from a research question to a plan means searching several paper sources, skimming dozens of abstracts and then writing the plan yourself.',
+    built: 'A search over arXiv and Semantic Scholar that ranks papers by keywords and by meaning. You pick the papers you trust, and it summarises each one and builds a research plan from only those. A local Gemma model does the writing by default, so nothing has to leave your machine.',
+    result: 'Built for the AMD hackathon and tested on Apple Silicon, NVIDIA and AMD ROCm. A lightweight demo mode runs with no API keys.',
     github: 'https://github.com/shreyshrivastava/AcademicForge'
   },
   {
@@ -35,8 +50,9 @@ const projects = [
     category: 'Featured',
     icon: 'project',
     tags: ['Healthcare AI', 'Risk scoring', 'Drug interaction'],
-    summary: 'Enterprise-grade healthcare engine featuring symptom-to-specialist matching, risk stratification, and drug interaction analysis.',
-    details: 'Strong product-oriented AI systems project with a health decision-support framing.',
+    problem: 'Healthcare AI demos often overclaim, and lean on an opaque model for every decision.',
+    built: 'A demo with three tools: ranking likely specialists from symptoms, a second-opinion risk check, and a drug-interaction lookup. It runs on synthetic data with plain deterministic rules by default, and a sentence-embedding model is optional.',
+    result: 'It is deployed as a live demo with tests running in CI. It is a portfolio project, not a medical device and not medical advice.',
     github: 'https://github.com/shreyshrivastava/ai-healthcare-intel-engine'
   },
   {
@@ -47,9 +63,23 @@ const projects = [
     category: 'Featured',
     icon: 'project',
     tags: ['Agents', 'Security', 'Prompt pipelines'],
-    summary: 'AI-driven honeypot designed to simulate intelligent interactions to detect and analyze fraud and scam attempts.',
-    details: 'Uses agent-based workflows, prompt-driven pipelines, modular architecture, and fallback handling for reliable real-time execution.',
+    problem: 'Scam messages push victims to pay into UPI IDs and bank accounts, and the details are hard to collect and compare at scale.',
+    built: 'A service that flags a likely scam message, writes a controlled reply to keep the scammer talking, and pulls out UPI IDs, bank accounts, IFSC codes and URLs with pattern matching. Simple rules do the first pass, and a local model can be switched on for scoring and replies.',
+    result: 'It runs locally with no private data, and tests plus a benchmark run in CI. Evaluation so far uses synthetic messages only.',
     github: 'https://github.com/shreyshrivastava/agentic-honeypot'
+  },
+  {
+    title: 'Bhopal Safety Intelligence',
+    image: 'bhopal-safety.jpg',
+    imageAlt: 'Bhopal Safety Intelligence dashboard with a map of locality pins and police facilities',
+    imageCaption: 'Dashboard preview / Repository screenshot',
+    category: 'Data',
+    icon: 'project',
+    tags: ['Streamlit', 'Leaflet', 'Python', 'Open data'],
+    problem: 'Bhopal Police publish crime and enforcement reports as separate press posts, so it is hard to see where they cluster. Dashboards that fill the gaps tend to invent data.',
+    built: 'A map dashboard built from nine locatable police publications from April to October 2026, each checked by hand against the source text. Pins are approximate locality references, and each popup links to the official post. It also maps 48 police facilities and exports CSV with sources and missing values kept.',
+    result: 'It shows what has been publicly reported and no more. There are no risk scores or density heatmaps, because the data cannot support them, and a category with no record reads as nothing loaded, not zero crime.',
+    github: 'https://github.com/shreyshrivastava/bhopal-crime-safety-intelligence'
   },
   {
     title: 'Academic Search Engine for Papers',
@@ -59,8 +89,9 @@ const projects = [
     category: 'NLP',
     icon: 'project',
     tags: ['BM25', 'Semantic reranking', 'arXiv', 'Pinecone', 'FAISS'],
-    summary: 'Custom academic search engine for arXiv papers with BM25 ranking, semantic re-ranking, and filters.',
-    details: 'Useful retrieval/Search signal; the older foundation that AcademicForge builds beyond.',
+    problem: 'Keyword search over a large paper archive misses papers that mean the same thing in different words.',
+    built: 'A search engine over the arXiv dataset. BM25 ranks papers by keywords, then embeddings (FAISS or Pinecone) re-rank them by meaning. You can filter by citation count, date and journal impact factor, from a Streamlit app or the command line.',
+    result: 'Scored with standard retrieval metrics (MAP, nDCG and Precision@K). It is the first version that AcademicForge later grew from.',
     github: 'https://github.com/shreyshrivastava/Academic-Search-Engine-for-Research-Papers'
   },
   {
@@ -71,8 +102,9 @@ const projects = [
     category: 'GenAI',
     icon: 'project',
     tags: ['Gemma3', 'Resume matching', 'Privacy'],
-    summary: 'Privacy-focused tool to check resume compatibility with job descriptions using Gemma3.',
-    details: 'Practical GenAI utility with clear job-search use case.',
+    problem: 'Applicants rarely learn why a resume scored badly against a job post, or what to change.',
+    built: 'Upload a PDF resume and a job description and get a score built from keyword overlap, job-title match, structure and depth, with the matched and missing terms listed. The score is plain arithmetic. An optional local Gemma model writes the explanation, and it cannot change the score.',
+    result: 'Resumes stay on your machine, and scanned or image-only PDFs fail with a clear message instead of a wrong score.',
     github: 'https://github.com/shreyshrivastava/ats_resume_checker_gemma3_hf'
   },
   {
@@ -83,8 +115,10 @@ const projects = [
     category: 'GenAI',
     icon: 'project',
     tags: ['LLaMA', 'DALL-E', 'Story generation'],
-    summary: 'Generates region-specific Indian fables and myths with LLaMA and DALL-E visuals.',
-    details: 'Shows multimodal product thinking: text generation paired with visual output.',
+    problem: 'I wanted to see whether a model could write fables rooted in a specific part of India, not generic fantasy.',
+    built: 'A Gradio app where you pick a region, a tone and an audience. Llama 4 (through Groq) writes the story and DALL·E draws an illustration. If image generation hits its limit, a local placeholder is shown instead.',
+    result: 'It runs as a live Hugging Face Space, so you can try it without installing anything.',
+    demo: 'https://huggingface.co/spaces/shrey2105/local-lore-generator',
     github: 'https://github.com/shreyshrivastava/local-lore-generator'
   },
   {
@@ -95,8 +129,9 @@ const projects = [
     category: 'NLP',
     icon: 'project',
     tags: ['BERT', 'SVM', 'Fact checking'],
-    summary: 'Automated fact-checking using BERT + SVM to detect claims in news articles.',
-    details: 'Hybrid NLP pipeline combining transformer representations with classical classification.',
+    problem: 'News about the conflict is full of claims, and checking them by hand does not scale.',
+    built: 'My MSc dissertation at Queen Mary. I turned an experimental BERT and SVM notebook into a FastAPI app that screens claims, retrieves evidence and gives a coarse stance. It falls back through four modes, down to simple rules, so it never crashes.',
+    result: 'A live demo runs on Vercel. The cloud demo uses a hosted Llama model, because the original BERT model is too large for serverless. It is not a production fact-checker.',
     github: 'https://github.com/shreyshrivastava/claim-detection-project-on-Russia-and-conflict'
   },
   {
@@ -107,8 +142,9 @@ const projects = [
     category: 'NLP',
     icon: 'project',
     tags: ['LinearSVC', '27k tweets', 'Text preprocessing'],
-    summary: 'Classifies sentiment on 27,000 tweets using NLP preprocessing and LinearSVC.',
-    details: 'Repository description reports precision 85.69%, recall 85.86%, and F1 85.65%.',
+    problem: 'Sorting tens of thousands of tweets by sentiment by hand is not realistic.',
+    built: 'A university assignment. I cleaned the text (lowercasing, stop-word removal, lemmatising), turned it into single-word and two-word features, and trained a LinearSVC classifier on 27,000 tweets, 80% for training and 20% for testing.',
+    result: 'Precision 85.69%, recall 85.86% and F1 85.65%.',
     github: 'https://github.com/shreyshrivastava/SentimentAnalysisTweets'
   },
   {
@@ -119,8 +155,9 @@ const projects = [
     category: 'Computer Vision',
     icon: 'project',
     tags: ['MediaPipe', 'Real-time CV', 'Anomaly detection'],
-    summary: 'Real-time eye tracking with anomaly detection using MediaPipe and ML.',
-    details: 'Applied CV project with real-time tracking constraints.',
+    problem: 'Comparing how the left and right pupils react is subjective when done by eye.',
+    built: 'A tool that measures the pupil radius of each eye from video with MediaPipe, compares the two over time, flags sudden jumps, and produces a score and a PDF report.',
+    result: 'A live demo runs on Render with synthetic samples. It is a screening demo, not a diagnosis.',
     github: 'https://github.com/shreyshrivastava/pupil-anomaly-detection'
   },
   {
@@ -131,8 +168,9 @@ const projects = [
     category: 'Computer Vision',
     icon: 'project',
     tags: ['YOLOv5', 'Object detection', 'Traffic'],
-    summary: 'YOLOv5 model trained to detect vehicles for parking and traffic management.',
-    details: 'Practical object detection use case.',
+    problem: 'Parking and traffic systems need to find and count cars automatically.',
+    built: 'I trained a custom YOLOv5 model on a set of car images in a notebook, from setting up the environment through training to checking the detections on test images.',
+    result: 'The notebook shows the detections on test images. It reports no accuracy figures.',
     github: 'https://github.com/shreyshrivastava/Car-Detection-System'
   },
   {
@@ -143,8 +181,9 @@ const projects = [
     category: 'Computer Vision',
     icon: 'project',
     tags: ['PyTorch', 'CNN', '76.92% accuracy'],
-    summary: 'CNN for CIFAR-10 using PyTorch, data augmentation, and optimization.',
-    details: 'Repository description reports 76.92% test accuracy.',
+    problem: 'Teaching a small network to recognise ten kinds of everyday objects in tiny 32×32 pixel images.',
+    built: 'A convolutional neural network in PyTorch, with data augmentation and tuned optimisation.',
+    result: '76.92% test accuracy. It is a learning project, well below what the best published models reach.',
     github: 'https://github.com/shreyshrivastava/CIFAR10-Image-Classification_shrey'
   },
   {
@@ -155,8 +194,9 @@ const projects = [
     category: 'Research',
     icon: 'book',
     tags: ['Publication', 'Forecasting', 'AI safety'],
-    summary: 'Predicts and prevents illegal sale of LPG cylinders using AI and forecasting techniques.',
-    details: 'Published research item linked through Springer.',
+    problem: 'LPG cylinders are sold illegally, and spotting and tracking them by hand is slow.',
+    built: 'A deep-learning object detector for gas cylinders, combined with forecasting techniques to predict where illegal sales are likely.',
+    result: 'Published as a chapter in a Springer book, linked on the card.',
     publication: 'https://link.springer.com/chapter/10.1007/978-3-031-56586-1_75'
   },
   {
@@ -167,8 +207,9 @@ const projects = [
     category: 'Systems',
     icon: 'code',
     tags: ['Rust', 'ethers-rs', 'SQLite', 'Polygon'],
-    summary: 'Rust-based arbitrage opportunity detector comparing token prices across QuickSwap and SushiSwap.',
-    details: 'Queries Polygon RPC, calculates simulated arbitrage profits, and logs opportunities to SQLite.',
+    problem: 'The same token can trade at slightly different prices on different exchanges, and the gap is hard to spot by hand.',
+    built: 'A Rust bot that reads prices from QuickSwap and SushiSwap on Polygon, works out the simulated profit from the gap, and logs the profitable cases to SQLite. It runs continuously at a set interval.',
+    result: 'It only simulates profit and places no trades. Gas costs are not fully modelled, so treat the figures as estimates.',
     github: 'https://github.com/shreyshrivastava/polygon-arbitrage-bot'
   },
   {
@@ -179,8 +220,9 @@ const projects = [
     category: 'Systems',
     icon: 'code',
     tags: ['DFS', 'BFS', 'UCS', 'Graphs'],
-    summary: 'Optimizes subway routes using graph algorithms: DFS, BFS, UCS.',
-    details: 'Algorithmic fundamentals and search implementation.',
+    problem: 'Finding a route across a subway network means choosing between the fewest stops and the lowest travel cost.',
+    built: 'I built the network as a graph from a CSV of stations, links, travel costs and zones. Then I implemented depth-first, breadth-first and uniform-cost search to find routes through it.',
+    result: 'You can compare what each algorithm returns for the same journey.',
     github: 'https://github.com/shreyshrivastava/Ai_tube'
   },
   {
@@ -191,8 +233,9 @@ const projects = [
     category: 'Data',
     icon: 'project',
     tags: ['Forecasting', 'Visualization', 'India data'],
-    summary: 'Data analysis on Indian COVID-19 data, visualization, and forecasting.',
-    details: 'Data-analysis and forecasting project.',
+    problem: 'Case numbers were reported state by state, which made the spread across India hard to see.',
+    built: 'I analysed India\'s COVID-19 dataset with Python and Pandas: confirmed, cured and death counts by state, charts of how the spread differed between regions, and a forecast of confirmed cases.',
+    result: 'Charts and a case forecast in a notebook. It analyses a historical dataset and is not a live tracker.',
     github: 'https://github.com/shreyshrivastava/COVID-TRACKER-SYSTEM'
   },
   {
@@ -203,8 +246,9 @@ const projects = [
     category: 'Data',
     icon: 'project',
     tags: ['Regression', 'Regularization', 'Coursework'],
-    summary: 'Regression analysis using the diabetes dataset, including underfitting, overfitting, and regularization.',
-    details: 'Coursework repo with practical regression analysis.',
+    problem: 'How much can a model learn from a small medical dataset before it starts memorising it?',
+    built: 'Coursework on the diabetes dataset. I fitted regression models, compared underfitting with overfitting, and used regularisation to control it.',
+    result: 'Notebooks with a cost curve and prediction plots, plus a written report.',
     github: 'https://github.com/shreyshrivastava/Diabetes-Regression-Analysis'
   },
   {
@@ -215,8 +259,9 @@ const projects = [
     category: 'NLP',
     icon: 'project',
     tags: ['Vectors', 'Classification', 'NLP'],
-    summary: 'NLP-based similarity classification of TV show characters using vector representations.',
-    details: 'Supporting vector-representation project.',
+    problem: 'Can a computer tell which character said a line, from the words alone?',
+    built: 'An NLP assignment on the Friends script. I built vector representations of each character\'s lines, improved them with preprocessing, feature extraction and transformations, and scored them by how well similarity search matched lines to characters.',
+    result: 'A similarity heatmap and the evaluation are in the notebook.',
     github: 'https://github.com/shreyshrivastava/friends-character-similarity'
   },
   {
@@ -227,8 +272,9 @@ const projects = [
     category: 'GenAI',
     icon: 'project',
     tags: ['LLaMA 2', 'Prompting', 'NLP'],
-    summary: 'Exploration of LLaMA 2 prompts and fine-tuning for NLP tasks.',
-    details: 'Learning-oriented prompt engineering repository.',
+    problem: 'The same model gives very different answers depending on how you phrase the prompt.',
+    built: 'A lab notebook where I wrote and compared prompts for different language tasks with Llama 2.',
+    result: 'A learning exercise, with the prompts and outputs in the notebook.',
     github: 'https://github.com/shreyshrivastava/llama2-prompt-exploration'
   },
   {
@@ -239,8 +285,9 @@ const projects = [
     category: 'Data',
     icon: 'project',
     tags: ['Neural networks', 'Iris', 'Notebook'],
-    summary: 'Introductory neural-network project using the Iris dataset, with visualizations and report material.',
-    details: 'Foundational ML coursework.',
+    problem: 'A first look at how a neural network learns, on a small dataset where the result is easy to check.',
+    built: 'A simple neural network on the Iris flower dataset in a Jupyter notebook, with visualisations and a written report.',
+    result: 'Foundational coursework. The notebook shows the training and the results.',
     github: 'https://github.com/shreyshrivastava/Neural-Network-Introduction'
   },
   {
@@ -251,8 +298,9 @@ const projects = [
     category: 'Data',
     icon: 'project',
     tags: ['PyTorch', 'Logistic regression', 'Iris'],
-    summary: 'PyTorch notebook for understanding classification with logistic regression on the Iris dataset.',
-    details: 'Foundational classification coursework.',
+    problem: 'Telling three iris species apart from four flower measurements.',
+    built: 'Logistic regression written in PyTorch, step by step, on the Iris dataset.',
+    result: 'The notebook plots the decision boundary the model learned.',
     github: 'https://github.com/shreyshrivastava/-Logistic_Regression_Iris_Classification'
   }
 ];
@@ -262,7 +310,6 @@ let activeFilter = 'All';
 const filterHost = document.getElementById('project-filters');
 const grid = document.getElementById('project-grid');
 
-mountPageScrollbar();
 
 filterHost.innerHTML = filters.map(name => `<button class="filter-chip${name === activeFilter ? ' is-active' : ''}" data-filter="${name}">${icon(name === 'All' ? 'project' : filterIcon(name))}${name}</button>`).join('');
 document.querySelectorAll('[data-icon]').forEach(node => {
@@ -303,8 +350,12 @@ function projectCard(project) {
     </div>
     <h2>${project.title}</h2>
     ${project.hackathon ? `<p class="project-card__context">${icon('code')}${project.hackathon}</p>` : ''}
-    <p class="project-card__summary">${project.summary}</p>
-    <p class="project-card__details">${project.details}</p>
+    ${project.problem ? `<dl class="project-card__story">
+      <div><dt>The problem</dt><dd>${project.problem}</dd></div>
+      <div><dt>What I built</dt><dd>${project.built}</dd></div>
+      <div><dt>What came out</dt><dd>${project.result}</dd></div>
+    </dl>` : `<p class="project-card__summary">${project.summary}</p>
+    <p class="project-card__details">${project.details}</p>`}
     <ul class="project-card__tags">${project.tags.map(tag => `<li>${tag}</li>`).join('')}</ul>
     <div class="project-card__actions">${actions}</div>
   </article>`;
@@ -314,21 +365,6 @@ function slug(value) {
   return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-function mountPageScrollbar() {
-  const fill = document.querySelector('.page-scrollbar span');
-  const hint = document.querySelector('.page-scroll-hint');
-  if (!fill) return;
-  const minVisibleProgress = 0.045;
-  const update = () => {
-    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    const progress = Math.min(1, Math.max(0, window.scrollY / max));
-    fill.style.transform = `scaleX(${Math.max(minVisibleProgress, progress)})`;
-    if (hint) hint.classList.toggle('is-hidden', window.scrollY > 32);
-  };
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-}
 
 let revealObserver;
 function mountRevealMotion() {
@@ -346,7 +382,10 @@ function mountRevealMotion() {
       revealObserver.unobserve(entry.target);
     });
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.18 });
-  cards.forEach(card => revealObserver.observe(card));
+  cards.forEach((card, index) => {
+    card.style.setProperty('--reveal-delay', `${(index % 3) * 70}ms`);
+    revealObserver.observe(card);
+  });
 }
 
 function filterIcon(name) {

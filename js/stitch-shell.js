@@ -1,10 +1,10 @@
 (() => {
   const sections = [
-    { id: 'about', label: 'About', short: 'ABT', href: 'index.html#about', accent: '#17d7c8', title: 'Shrey Shrivastava', description: 'AI / ML Engineer working across retrieval, healthcare ML, NLP, computer vision, and deployable systems.', action: 'Explore About', detail: 'AI / ML engineering' },
-    { id: 'projects', label: 'Projects', short: 'PRJ', href: 'projects.html', accent: '#38bdf8', title: 'Code, systems, and research.', description: 'Explore FallGuard AI, AcademicForge, and more projects through application screenshots, notebook results, code, and published research.', action: 'Open Projects', detail: '21 project entries' },
-    { id: 'experience', label: 'Experience', short: 'EXP', href: 'experience.html', accent: '#ffb657', title: 'From data to deployed workflows.', description: 'Healthcare ML engineering at CRO Prime, followed by applied machine learning and data analysis internships.', action: 'Open Experience', detail: '3 experience entries' },
-    { id: 'education', label: 'Education', short: 'EDU', href: 'education.html', accent: '#34d399', title: 'Computer science to artificial intelligence.', description: 'MSc Artificial Intelligence, BTech Computer Science, and Diploma Computer Science. A continuous technical foundation.', action: 'Open Education', detail: '3 academic qualifications' },
-    { id: 'contact', label: 'Contact', short: 'CNT', href: 'contact.html', accent: '#f472b6', title: 'Let’s build something useful.', description: 'Direct routes for hiring, collaboration, and research conversations through email, LinkedIn, GitHub, and ORCID.', action: 'Open Contact', detail: '4 direct contact channels' }
+    { id: 'about', label: 'About', short: 'ABT', href: 'index.html#about', accent: '#17d7c8', title: 'About', description: 'Who I am, what I build and how to reach me.', action: 'Explore About', detail: 'Intro, latest work, contact' },
+    { id: 'projects', label: 'Projects', short: 'PRJ', href: 'projects.html', accent: '#38bdf8', title: 'Projects', description: 'FallGuard AI, AcademicForge and more: the problem, how I built it and what came out.', action: 'Open Projects', detail: '23 project entries' },
+    { id: 'experience', label: 'Experience', short: 'EXP', href: 'experience.html', accent: '#ffb657', title: 'Experience', description: 'Healthcare ML at CRO Prime, after two internships in applied machine learning.', action: 'Open Experience', detail: '3 experience entries' },
+    { id: 'education', label: 'Education', short: 'EDU', href: 'education.html', accent: '#34d399', title: 'Education', description: 'MSc Artificial Intelligence, BTech Computer Science, and Diploma Computer Science. A continuous technical foundation.', action: 'Open Education', detail: '3 academic qualifications' },
+    { id: 'contact', label: 'Contact', short: 'CNT', href: 'contact.html', accent: '#f472b6', title: 'Contact', description: 'Direct routes for hiring, collaboration, and research conversations through email, LinkedIn, GitHub, and ORCID.', action: 'Open Contact', detail: '4 direct contact channels' }
   ];
   const home = Boolean(document.getElementById('world'));
   const filename = location.pathname.split('/').pop() || 'index.html';
@@ -13,7 +13,11 @@
   document.body.classList.add('stitch-theme', home ? 'stitch-home' : 'stitch-gallery');
   document.querySelectorAll('.site-nav a, .sw-nav__item').forEach((link, index) => {
     const section = sections[index];
-    if (section) link.style.setProperty('--section-accent', section.accent);
+    if (!section) return;
+    link.style.setProperty('--section-accent', section.accent);
+    // Full word on wide screens, the short code on phones; the full name stays the accessible label.
+    link.setAttribute('aria-label', section.label);
+    link.innerHTML = `<span class="nav-full">${section.label}</span><span class="nav-code" aria-hidden="true">${section.short}</span>`;
   });
 
   const consolePanel = document.createElement('aside');
@@ -45,10 +49,8 @@
     while (shell.firstChild) content.append(shell.firstChild);
     const stripe = document.createElement('div');
     stripe.className = 'stitch-status';
-    stripe.innerHTML = `<span>0${initial + 1} / 05 <b>${sections[initial].label.toUpperCase()}</b></span><span>SHREY SHRIVASTAVA / AI & ML</span>`;
+    stripe.innerHTML = `<span>0${initial + 1} / 05 <b>${sections[initial].label.toUpperCase()}</b></span><span>AI / ML</span>`;
     content.prepend(stripe);
-    const scrollHint = document.querySelector('.page-scroll-hint');
-    if (scrollHint) content.querySelector('.project-hero').after(scrollHint);
     shell.classList.add('stitch-layout');
     shell.append(content, consolePanel);
   }

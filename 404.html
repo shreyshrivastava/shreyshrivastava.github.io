@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page not found | Shrey Shrivastava</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#071013">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css?v=20261105r">
+  <link rel="stylesheet" href="/css/stitch.css?v=20261105r">
+</head>
+<body class="projects-page stitch-theme stitch-gallery lost-page">
+  <!-- GitHub Pages serves this file for any missing address, so every link here starts with "/". -->
+  <header class="site-header">
+    <a class="site-brand" href="/index.html#top" aria-label="Shrey Shrivastava home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Shrey Shrivastava</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/index.html#about" style="--section-accent:#17d7c8" aria-label="About"><span class="nav-full">About</span><span class="nav-code" aria-hidden="true">ABT</span></a>
+      <a href="/projects.html" style="--section-accent:#38bdf8" aria-label="Projects"><span class="nav-full">Projects</span><span class="nav-code" aria-hidden="true">PRJ</span></a>
+      <a href="/experience.html" style="--section-accent:#ffb657" aria-label="Experience"><span class="nav-full">Experience</span><span class="nav-code" aria-hidden="true">EXP</span></a>
+      <a href="/education.html" style="--section-accent:#34d399" aria-label="Education"><span class="nav-full">Education</span><span class="nav-code" aria-hidden="true">EDU</span></a>
+      <a href="/contact.html" style="--section-accent:#f472b6" aria-label="Contact"><span class="nav-full">Contact</span><span class="nav-code" aria-hidden="true">CNT</span></a>
+    </nav>
+  </header>
+
+  <main class="project-shell">
+    <section class="project-hero">
+      <div class="project-hero__copy">
+        <p class="hero-term__cmd"><span class="hero-term__prompt" aria-hidden="true">&gt;</span><span class="hero-term__text" id="lost-cmd" style="--chars:25">shrey open this-page</span></p>
+        <p class="eyebrow">[404] Page not found</p>
+        <h1>That page doesn't exist.</h1>
+        <p>The address may have moved or been mistyped. Everything on this site is reachable from the menu at the top, or you can start again from the home page.</p>
+        <div class="project-hero__actions">
+          <a class="project-btn project-btn--primary" href="/index.html#about">Back to home</a>
+          <a class="project-btn" href="/projects.html">See projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Show the address that was not found, in the same typed prompt the other pages use.
+    (() => {
+      const text = 'shrey open ' + (location.pathname.replace(/^\/+/, '') || 'this-page');
+      const cmd = document.getElementById('lost-cmd');
+      cmd.textContent = text.length > 46 ? text.slice(0, 45) + '…' : text;
+      cmd.style.setProperty('--chars', Math.min(text.length, 46));
+    })();
+  </script>
+  <script src="/js/thread.js?v=20261105r"></script>
+  <script type="module" src="/js/world-background.js?v=20261105r"></script>
+</body>
+</html>

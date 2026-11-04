@@ -2,32 +2,19 @@ document.querySelectorAll('[data-icon]').forEach(node => {
   node.insertAdjacentHTML('afterbegin', icon(node.dataset.icon));
 });
 
-mountPageScrollbar();
 mountRevealMotion();
 
-function mountPageScrollbar() {
-  const fill = document.querySelector('.page-scrollbar span');
-  const hint = document.querySelector('.page-scroll-hint');
-  if (!fill) return;
-  const minVisibleProgress = 0.045;
-  const update = () => {
-    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    const progress = Math.min(1, Math.max(0, window.scrollY / max));
-    fill.style.transform = `scaleX(${Math.max(minVisibleProgress, progress)})`;
-    if (hint) hint.classList.toggle('is-hidden', window.scrollY > 32);
-  };
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-}
 
 function mountRevealMotion() {
-  const cards = [...document.querySelectorAll('.project-card')];
+  const cards = [...document.querySelectorAll('.project-card, .contact-card')];
   if (!cards.length) return;
   if (!('IntersectionObserver' in window)) {
     cards.forEach(card => card.classList.add('is-visible'));
     return;
   }
+  // Same entrance on every page: fade and rise, with a short stagger across each row.
+  document.documentElement.classList.add('reveal-ready');
+  cards.forEach((card, index) => card.style.setProperty('--reveal-delay', `${(index % 3) * 70}ms`));
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
