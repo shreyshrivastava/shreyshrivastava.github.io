@@ -520,3 +520,39 @@ html:not(.has-splash) .splash { display: none; }
 .hero__photo { height: calc(var(--name-h, .86em) - .054em - .069em); }
 /* Phones: a larger two-line name, with the photo spanning both lines */
 @media (max-width: 760px) { .hero__id { font-size: 13vw; gap: .12em; } }
+
+/* =========== Readability: bolder, brighter text everywhere (the 3D stays at full strength) =========== */
+:root { --mute: #bdb6a9; }
+body { font-weight: 450; }
+.hero__lede, .page__lede, .hello > p, .latest__text > p { font-weight: 500; color: rgba(239, 233, 222, .92) !important; }
+.story dt, .card__cat, .proj__cat, .arow__c, .page__status b, .block__label { font-weight: 600; }
+.story dd, .proj__side .story dd, .arow__body .story dd, .card__details, .points p, .ccard p, .arow__t span, .about-item p {
+  font-weight: 450; color: rgba(239, 233, 222, .88) !important;
+}
+.card__summary { font-weight: 600; }
+.points h3, .card h3, .ccard h3, .arow__t, .proj__title, .page__h, .contact__h, .block h2 { font-weight: 650; }
+.tags li, .mono, .eyebrow, .readout, .term__out { font-weight: 500; }
+.term__out, .readout em, .readout b { color: #c9c2b5; }
+/* a soft dark halo keeps glyph edges crisp when a 3D line passes behind them */
+.hero__lede, .page__lede, .page__h, .proj__title, .proj__side, .points, .arow__head, .arow__body, .cv__row, .card, .ccard, .contact__h, .hello, .block__label, .page__status {
+  text-shadow: 0 1px 2px rgba(10, 10, 9, .55), 0 0 18px rgba(10, 10, 9, .55);
+}
+.btn, .filter-chip, .nav__menu a { text-shadow: none; }
+
+/* Organic scroll-in: elements start slightly low, soft and transparent; GSAP releases them */
+.motion [data-reveal] { opacity: 0; transform: translateY(42px); filter: blur(6px); will-change: transform, opacity, filter; }
+@media (prefers-reduced-motion: reduce) { .motion [data-reveal] { opacity: 1; transform: none; filter: none; } }
+
+/* "All projects": the densest text on the page sits on a frosted panel, so the 3D knot
+   stays at full strength around it and only shows softly through it. */
+.archive__list {
+  position: relative; padding: 4px clamp(14px, 2vw, 28px);
+  background: rgba(14, 14, 13, .72);
+  backdrop-filter: blur(14px) saturate(1.1); -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid var(--rule); border-radius: 10px;
+}
+.archive .arow:last-child { border-bottom: 0; }
+.archive .arow.is-open, .archive .arow:hover { background: rgba(239, 233, 222, .035); }
+.arow__head, .arow__body { text-shadow: none; }
+.arow__t { font-weight: 650; }
+.arow__t span, .arow__s { color: rgba(239, 233, 222, .86) !important; }

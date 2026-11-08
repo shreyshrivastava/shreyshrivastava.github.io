@@ -197,5 +197,21 @@
   $$('.split').filter(h => !h.closest('.hero')).forEach(h => {
     gsap.from($$('.w > span', h), { yPercent: 105, duration: .76, stagger: .055, ease, scrollTrigger: { trigger: h, start: 'top 85%' } });
   });
+  // Organic scroll-in: things drift up out of a soft blur as they enter, in small staggered groups,
+  // with a long expo ease so the motion settles rather than stops. Each element animates once.
+  const revealSel = [
+    '.page__status', '.cmd', '.eyebrow', '.page__lede', '.page__actions', '.block__label',
+    '.points li', '.hello > p', '.proj__top', '.proj__media', '.proj__side > *', '.arow',
+    '.grid > .card', '.contact-hub > .ccard', '.hero__lede', '.readout', '.hero__cap'
+  ].join(',');
+  $$(revealSel).forEach(el => el.setAttribute('data-reveal', ''));
+  ScrollTrigger.batch('[data-reveal]', {
+    start: 'top 88%', once: true,
+    onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.15, ease: 'expo.out', stagger: .09, overwrite: true,
+      onComplete() { batch.forEach(el => { el.style.willChange = 'auto'; }); } })
+  });
+  // A gentle parallax on project screenshots so the chapters breathe as you scroll past.
+  $$('.proj__media .clip img').forEach(img => gsap.fromTo(img, { yPercent: -4, scale: 1.08 }, { yPercent: 4, scale: 1.08, ease: 'none',
+    scrollTrigger: { trigger: img.closest('.proj'), start: 'top bottom', end: 'bottom top', scrub: .8 } }));
   addEventListener('load', () => ScrollTrigger.refresh());
 })();
