@@ -21,7 +21,10 @@ window.PROJECTS = [
   "built": "A search over arXiv and Semantic Scholar that ranks papers by keywords and by meaning. You pick the papers you trust, and it summarises each one and builds a research plan from only those. A local Gemma model does the writing by default, so nothing has to leave your machine.",
   "result": "Built for the AMD hackathon and tested on Apple Silicon, NVIDIA and AMD ROCm. A lightweight demo mode runs with no API keys.",
   "github": "https://github.com/shreyshrivastava/AcademicForge",
-  "demo": "https://academicforge-demo.streamlit.app/"
+  "demo": "https://academicforge-demo.streamlit.app/",
+  "video": "assets/video/academicforge-demo.mp4",
+  "poster": "assets/video/academicforge-demo-poster.jpg",
+  "videoAlt": "AcademicForge demo: a research question, papers ranked from arXiv, a summary and a plan with findings cited back to the papers"
  },
  {
   "title": "agent-ops",

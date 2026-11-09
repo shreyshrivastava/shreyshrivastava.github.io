@@ -5,6 +5,8 @@
   const safeUrl = u => (/^(https:|mailto:)/i.test(String(u || '')) ? u : '#');
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const IMG = 'assets/evidence/';
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const demoVideo = (p, cls = '') => `<video class="${cls}" ${calm ? 'controls' : 'autoplay loop'} muted playsinline preload="metadata" width="960" height="540" poster="${esc(p.poster)}" aria-label="${esc(p.videoAlt || p.imageAlt)}"><source src="${esc(p.video)}" type="video/mp4"><img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}"></video>`;
   const ICONS = window.ICONS || {};
   const icon = name => `<span class="ui-icon">${ICONS[name] || ICONS.project || ''}</span>`;
   const projects = window.PROJECTS || [];
@@ -47,8 +49,8 @@
         <h3 class="proj__title" id="p-${i}">${esc(p.title)}${p.hackathon ? `<small>${icon('code')}${esc(p.hackathon)}</small>` : ''}</h3>
         <p class="proj__result"><span class="mono">Result</span>${esc((p.result.match(/^[^.]*\./) || [p.result])[0])}</p>
         <figure class="proj__media">
-          <div class="clip"><img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="${i ? 'lazy' : 'eager'}" decoding="async"></div>
-          <figcaption class="mono"><span>${esc(p.imageCaption)}</span>${source ? `<a href="${esc(safeUrl(source))}" target="_blank" rel="noopener noreferrer">${icon(p.github ? 'github' : 'book')}Source</a>` : ''}</figcaption>
+          <div class="clip">${p.video ? demoVideo(p, 'clip__video') : `<img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="${i ? 'lazy' : 'eager'}" decoding="async">`}</div>
+          <figcaption class="mono"><span>${esc(p.video ? 'Demo video / Repository' : p.imageCaption)}</span><span class="fig__links">${p.demo ? `<a class="fig__live" href="${esc(safeUrl(p.demo))}" target="_blank" rel="noopener noreferrer">● Try it live ↗</a>` : ''}${source ? `<a href="${esc(safeUrl(source))}" target="_blank" rel="noopener noreferrer">${icon(p.github ? 'github' : 'book')}Source</a>` : ''}</span></figcaption>
         </figure>
         <div class="proj__side">
           <dl class="story">
@@ -83,7 +85,7 @@
       <div class="arow__more" id="${id}"><div class="arow__inner">
         <figure class="arow__media">
           <img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy" decoding="async">
-          <figcaption class="mono"><span>${esc(p.imageCaption)}</span>${source ? `<a href="${esc(safeUrl(source))}" target="_blank" rel="noopener noreferrer">${icon(p.github ? 'github' : 'book')}Source</a>` : ''}</figcaption>
+          <figcaption class="mono"><span>${esc(p.video ? 'Demo video / Repository' : p.imageCaption)}</span><span class="fig__links">${p.demo ? `<a class="fig__live" href="${esc(safeUrl(p.demo))}" target="_blank" rel="noopener noreferrer">● Try it live ↗</a>` : ''}${source ? `<a href="${esc(safeUrl(source))}" target="_blank" rel="noopener noreferrer">${icon(p.github ? 'github' : 'book')}Source</a>` : ''}</span></figcaption>
         </figure>
         <div class="arow__body">
           <p class="proj__cat mono">${icon(p.icon || 'project')}${esc(p.category)}</p>
@@ -127,8 +129,8 @@
       const on = isLive(p), href = on ? p.demo : (p.github || p.demo);
       return {
         cmd: (on ? 'open --live ' : 'open ') + slug(p.title),
-        html: true, shot: true,
-        out: `<a class="term__shot" href="${esc(safeUrl(href))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(p.title)}${on ? ' live demo' : ''}"><img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" decoding="async"><span>${on ? '<b>● live</b> ' : ''}${esc(p.title)}${on ? `<i class="host"> · ${esc(host(p.demo))}</i>` : (p.hackathon ? `<i class="host"> · ${esc(p.hackathon)}</i>` : '')}</span></a>`
+        html: true, shot: true, video: !!p.video,
+        out: `<a class="term__shot" href="${esc(safeUrl(href))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(p.title)}${on ? ' live demo' : ''}">${p.video ? demoVideo(p, 'shot__video') : `<img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" decoding="async">`}<span>${on ? '<b>● live</b> ' : ''}${esc(p.title)}${on ? `<i class="host"> · ${esc(host(p.demo))}</i><em class="try">Try it live ↗</em>` : (p.hackathon ? `<i class="host"> · ${esc(p.hackathon)}</i>` : '')}</span></a>`
       };
     };
     const scripts = [
@@ -179,7 +181,9 @@
         const out = document.createElement('div'); out.className = 'term__out';
         if (s.html) out.innerHTML = s.out; else out.textContent = s.out;
         screen.append(out);
-        const img = out.querySelector('img');
+        const vid = out.querySelector('video');
+        if (vid) { await new Promise(r => { if (vid.readyState >= 1) r(); else { vid.addEventListener('loadedmetadata', r, { once: true }); setTimeout(r, 1500); } }); vid.play && vid.play().catch(() => {}); }
+        const img = vid ? null : out.querySelector('img');
         if (img) {
           await (img.decode ? img.decode().catch(() => {}) : Promise.resolve());
           out.classList.toggle('is-portrait', img.naturalHeight > img.naturalWidth);
@@ -187,7 +191,7 @@
         if (s.html) { [...out.querySelectorAll('li')].forEach((li, j) => { li.style.animationDelay = `${j * 90}ms`; }); }
         if (s.shot) while (screen.children.length > 2) screen.firstElementChild.remove();
         fitBox();
-        await sleep(s.shot ? 3400 : 2200);
+        await sleep(s.video ? 11000 : s.shot ? 3400 : 2200);
       }
     })();
   })();
