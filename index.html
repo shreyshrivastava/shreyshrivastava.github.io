@@ -42,7 +42,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Inter+Tight:wght@500..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="style.css?v=44">
 </head>
 <body>
   <div class="splash" aria-hidden="true">
@@ -61,6 +61,7 @@
   <!-- Same menu as the original site. Desktop: full labels. Phone: always-visible tab bar with the original codes. -->
   <header class="nav">
     <a class="nav__brand" href="#about" aria-label="Shrey Shrivastava home"><span class="nav__mark" aria-hidden="true">&gt;_</span>Shrey Shrivastava</a>
+    <a class="nav__email" href="mailto:shrey.shrivastava@yahoo.com" aria-label="Send email to Shrey">Email</a>
     <nav class="nav__menu" aria-label="Primary navigation">
       <a href="#about" data-sec="about"><span class="nav-full">About</span><span class="nav-code" aria-hidden="true">ABT</span></a>
       <a href="#projects" data-sec="projects"><span class="nav-full">Projects</span><span class="nav-code" aria-hidden="true">PRJ</span></a>
@@ -81,9 +82,24 @@
           <p class="mono hero__cap">AI / ML Engineer</p>
         </div>
       </div>
+      <p class="hero__tagline split" aria-label="Building products that matter to real people.">Building products that matter to real people.</p>
       <div class="hero__grid">
-        <p class="hero__lede">I’m an AI/ML engineer. I build systems that take a model out of a notebook and into something people can use, covering search, classification, forecasting and detection, plus the testing and deployment around them.</p>
-        <div class="readout" aria-label="Portfolio sections" data-typing>
+        <div class="hero__copy">
+          <p class="hero__sub">I take models out of the notebook and turn them into things people can actually use.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects" data-icon="project">See projects</a>
+            <a class="btn" href="mailto:shrey.shrivastava@yahoo.com" data-icon="mail">Send email</a>
+          </div>
+          <ul class="proof" aria-label="At a glance">
+            <li><b>23</b> projects</li>
+            <li>MSc AI, Queen Mary</li>
+            <li>AI Engineer at CRO Prime</li>
+            <li><b>6</b> live demos</li>
+          </ul>
+          <p class="hero__lede">Paper search, medical data pipelines, scam detection, on-device sensing and a local coding agent. I care as much about the testing and deployment around a model as the model itself, and every project says plainly what it can and can’t do.</p>
+          <p class="trust" aria-label="Where my work has been"><span>Queen Mary University of London</span><span>CRO Prime</span><span>IBM hackathon</span><span>AMD hackathon</span><span>Springer publication</span></p>
+        </div>
+        <div class="readout readout--show" aria-label="Portfolio sections and project previews" data-typing>
           <p class="readout__cmd"><span>&gt;</span> shrey open portfolio</p>
           <ul>
             <li><a href="#about"><b>[ABT]</b>About<em>who I am and what I build</em></a></li>
@@ -105,6 +121,7 @@
         <h2 id="projects-h" class="page__h split" aria-label="The problem, the build and the result.">The problem, the build and the result.</h2>
         <p class="page__lede">Each project says what it set out to fix, how I built it and what came out, with links to the code and demos.</p>
         <div class="page__actions"><a class="btn btn--primary" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer" data-icon="github">GitHub Profile</a><a class="btn" href="#about" data-icon="external">Portfolio home</a></div>
+        <nav class="jump" aria-label="Featured projects"></nav>
       </header>
     <!-- > how i build / > learned the hard way (the ivory 30%) -->
       <section class="block chapter" data-bg="#0e0e0d" data-form="layers" data-sec="projects" data-glow="7">
@@ -142,34 +159,34 @@
         <article class="card card--featured" data-form="graph">
           <div class="card__top"><span class="card__icon" data-icon="briefcase"></span><span class="card__cat">Feb 2025 - Present</span></div>
           <h3>AI Engineer, CRO Prime</h3>
+          <ul class="tags tags--head"><li>Healthcare ML</li><li>4-stage pipelines</li><li>API-ready models</li><li>Dashboards</li></ul>
           <dl class="story">
             <div><dt>The problem</dt><dd>Healthcare teams hold medical data in many forms, structured records and free text, and turning it into predictions people can review needs a pipeline that gives the same result every run.</dd></div>
             <div><dt>What I built</dt><dd>I built four-stage pipelines (ingestion, preprocessing, training and inference) that can be re-run reliably. I designed the medical data models so a prediction service can plug in, keeping accuracy and response time in mind, and I turned requirements from three stakeholder workflows into reusable ML components and review dashboards.</dd></div>
             <div><dt>What came out</dt><dd>Delivery across those three stakeholder workflows got faster, because they share the same components and dashboards.</dd></div>
           </dl>
-          <ul class="tags"><li>Healthcare ML</li><li>4-stage pipelines</li><li>API-ready models</li><li>Dashboards</li></ul>
         </article>
         <article class="card" data-form="wave">
           <div class="card__top"><span class="card__icon" data-icon="briefcase"></span><span class="card__cat">Internship</span></div>
           <h3>Seekace</h3>
           <p class="card__summary">Data Analysis / Machine Learning Internship, remote.</p>
+          <ul class="tags tags--head"><li>Customer churn</li><li>Data analysis</li><li>Machine learning</li></ul>
           <dl class="story">
             <div><dt>The problem</dt><dd>A business wants to know which customers are likely to leave, early enough to act.</dd></div>
             <div><dt>What I built</dt><dd>I framed it as a retention problem, prepared the structured data, chose the features that predict churn, and turned the model's output into a signal a team could act on.</dd></div>
             <div><dt>What came out</dt><dd>A churn prediction used as a decision signal, and my first hands-on experience of ML for a business decision. I have no figures to share from it.</dd></div>
           </dl>
-          <ul class="tags"><li>Customer churn</li><li>Data analysis</li><li>Machine learning</li></ul>
         </article>
         <article class="card" data-form="helix">
           <div class="card__top"><span class="card__icon" data-icon="briefcase"></span><span class="card__cat">Internship</span></div>
           <h3>Innovians Tech</h3>
           <p class="card__summary">Data Analysis / Machine Learning Internship, remote.</p>
+          <ul class="tags tags--head"><li>Forecasting</li><li>NLP</li><li>Computer vision</li></ul>
           <dl class="story">
             <div><dt>The problem</dt><dd>Different kinds of data need different approaches: numbers over time, text and images.</dd></div>
             <div><dt>What I built</dt><dd>I worked on three projects: COVID-19 case forecasting (time series), text pipelines for NLP, and image recognition for computer vision.</dd></div>
             <div><dt>What came out</dt><dd>One internship that covered three areas of applied ML.</dd></div>
           </dl>
-          <ul class="tags"><li>Forecasting</li><li>NLP</li><li>Computer vision</li></ul>
         </article>
       </div>
     </section>
@@ -214,13 +231,15 @@
     <section id="contact" class="page contact chapter" data-glow="5" data-bg="#0e0e0d" data-form="globe" data-sec="contact">
       <div class="page__status mono"><span>05 / 05 <b>Contact</b></span><span>AI / ML</span></div>
       <p class="cmd"><span>&gt;</span> shrey open contact</p>
-      <p class="eyebrow">[CNT] Contact</p>
+      <div class="cta-band">
+        <p class="eyebrow">[CNT] Contact</p>
       <h2 class="contact__h split" aria-label="Let’s connect.">Let’s connect.</h2>
       <p class="page__lede">If you are hiring, collaborating or have a question about a project, email is the quickest way to reach me.</p>
       <div class="page__actions">
         <a class="btn btn--primary" href="mailto:shrey.shrivastava@yahoo.com" data-icon="mail">Send email</a>
         <a class="btn" href="https://www.linkedin.com/in/shrey-shrivastava1" target="_blank" rel="noopener noreferrer" data-icon="linkedin">LinkedIn</a>
         <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer" data-icon="github">GitHub</a>
+      </div>
       </div>
       <div class="contact-hub">
         <article class="ccard ccard--primary">
@@ -253,11 +272,11 @@
 
   <script src="splash.js?v=2"></script>
   <script src="icons.js?v=1"></script>
-  <script src="data.js?v=1"></script>
+  <script src="data.js?v=2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="app.js?v=11" defer></script>
+  <script src="app.js?v=20" defer></script>
   <script type="module" src="bg3d.js?v=2"></script>
 </body>
 </html>

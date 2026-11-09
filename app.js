@@ -17,8 +17,20 @@
     p.demo && `<a class="btn" href="${esc(safeUrl(p.demo))}" target="_blank" rel="noopener noreferrer">${icon('external')}Live Demo</a>`,
     p.publication && `<a class="btn" href="${esc(safeUrl(p.publication))}" target="_blank" rel="noopener noreferrer">${icon('book')}Publication</a>`
   ].filter(Boolean).join('');
-  const featured = projects.filter(p => p.category === 'Featured');
-  const rest = projects.filter(p => p.category !== 'Featured');
+  // Projects ordered by impact: shipped/live, real users or institutions, published or hackathon-backed
+  // work first; coursework and learning notebooks last. The top five become the full chapters.
+  const IMPACT = [
+    'AcademicForge', 'AI Healthcare Intel Engine', 'FallGuard AI', 'Claim Detection on Russia-Ukraine Conflict',
+    'Bhopal Safety Intelligence', 'Gas Cylinder Detection System', 'agent-ops', 'Agentic Honeypot System',
+    'Pupil Anomaly Detection', 'ATS Resume Checker', 'Academic Search Engine for Papers', 'Local Lore Generator',
+    'Polygon Arbitrage Bot', 'Tube Network Route Finder', 'Sentiment Analysis on Tweets', 'Car Detection System',
+    'CIFAR-10 Image Classification', 'COVID-19 Tracker', 'Diabetes Regression Analysis', 'Friends Character Similarity',
+    'Llama2 Prompt Exploration', 'Neural Network Introduction', 'Logistic Regression Iris Classification'
+  ];
+  const rank = t => { const i = IMPACT.indexOf(t); return i < 0 ? 999 : i; };
+  projects.sort((a, b) => rank(a.title) - rank(b.title));
+  const featured = projects.slice(0, 5);
+  const rest = projects.slice(5);
 
   $('.chapters').innerHTML = featured.map((p, i) => {
     const source = p.github || p.publication;
@@ -33,6 +45,7 @@
       <div class="proj__inner">
         <p class="proj__top mono"><span>${String(i + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}</span><span class="proj__cat">${icon(p.icon || 'project')}${esc(p.category)}</span></p>
         <h3 class="proj__title" id="p-${i}">${esc(p.title)}${p.hackathon ? `<small>${icon('code')}${esc(p.hackathon)}</small>` : ''}</h3>
+        <p class="proj__result"><span class="mono">Result</span>${esc((p.result.match(/^[^.]*\./) || [p.result])[0])}</p>
         <figure class="proj__media">
           <div class="clip"><img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="${i ? 'lazy' : 'eager'}" decoding="async"></div>
           <figcaption class="mono"><span>${esc(p.imageCaption)}</span>${source ? `<a href="${esc(safeUrl(source))}" target="_blank" rel="noopener noreferrer">${icon(p.github ? 'github' : 'book')}Source</a>` : ''}</figcaption>
@@ -52,6 +65,10 @@
   }).join('');
 
   // Every other project: a compact row that expands into the full card (screenshot, story, tags, buttons).
+  // Jump bar: go straight to any featured project (like the product tabs on YC landing pages)
+  const jumpBar = $('.jump');
+  if (jumpBar) jumpBar.innerHTML = featured.map((p, i) => `<a href="#p-${i}"><span class="mono">${String(i + 1).padStart(2, '0')}</span>${esc(p.title)}</a>`).join('');
+
   $('.archive__list').innerHTML = rest.map((p, i) => {
     const n = featured.length + i + 1, id = `row-${n}`, source = p.github || p.publication;
     return `
@@ -98,26 +115,59 @@
     const reducedT = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedT) return; // the static list in the HTML stays as is
     const list = box.querySelector('ul').outerHTML;
+    // The terminal doubles as a product shot, showing only projects that are live right now,
+    // led by AcademicForge. Each screenshot opens its live demo.
+    const HERO = ['AcademicForge', 'Bhopal Safety Intelligence', 'FallGuard AI', 'AI Healthcare Intel Engine', 'Pupil Anomaly Detection'];
+    const VERIFIED_LIVE = ['AcademicForge', 'AI Healthcare Intel Engine', 'Bhopal Safety Intelligence', 'Claim Detection on Russia-Ukraine Conflict', 'Local Lore Generator', 'Pupil Anomaly Detection'];
+    const live = HERO.map(t => projects.find(p => p.title === t)).filter(Boolean);
+    const isLive = p => VERIFIED_LIVE.includes(p.title) && p.demo;
+    const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const host = u => { try { return new URL(u).host; } catch (e) { return ''; } };
+    const shot = p => {
+      const on = isLive(p), href = on ? p.demo : (p.github || p.demo);
+      return {
+        cmd: (on ? 'open --live ' : 'open ') + slug(p.title),
+        html: true, shot: true,
+        out: `<a class="term__shot" href="${esc(safeUrl(href))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(p.title)}${on ? ' live demo' : ''}"><img src="${IMG}${esc(p.image)}" alt="${esc(p.imageAlt)}" decoding="async"><span>${on ? '<b>● live</b> ' : ''}${esc(p.title)}${on ? `<i class="host"> · ${esc(host(p.demo))}</i>` : (p.hackathon ? `<i class="host"> · ${esc(p.hackathon)}</i>` : '')}</span></a>`
+      };
+    };
     const scripts = [
       { cmd: 'shrey open portfolio', out: list, html: true },
-      { cmd: 'whoami', out: 'Shrey Shrivastava · AI / ML Engineer' },
-      { cmd: 'cat focus.txt', out: 'Making models useful to real people: paper search, medical data pipelines, scam detection, on-device sensing and a local coding agent.' },
-      { cmd: 'ls projects | wc -l', out: String(projects.length) },
-      { cmd: 'agent-ops --bench', out: 'bug fixes passed   9 / 10  (plain prompt 7 / 10)\ntime per bug fix   108 s   (plain prompt 200 s)' },
+      ...live.flatMap((p, i) => i === 1 ? [{ cmd: 'whoami', out: 'Shrey Shrivastava · AI / ML Engineer' }, shot(p)]
+                                : i === 3 ? [{ cmd: 'cat focus.txt', out: 'Making models useful to real people: paper search, medical data pipelines, scam detection, on-device sensing and a local coding agent.' }, shot(p)]
+                                : [shot(p)]),
+      { cmd: 'ls --live', out: projects.filter(isLive).map(p => '● ' + p.title).join('\n') },
       { cmd: 'open mailto:shrey.shrivastava@yahoo.com', out: 'For roles, interviews or collaboration, email me directly.' }
     ];
     box.innerHTML = '<div class="term__screen" aria-live="off"></div><p class="visually-hidden">Animated terminal; the section links are also in the menu above.</p>';
     const screen = box.firstChild;
+    // The window grows and shrinks to whatever is on screen (a tall phone screenshot, a wide dashboard, a one-line answer).
+    const fitBox = () => {
+      if (!box.classList.contains('readout--show')) return;
+      const cs = getComputedStyle(box);
+      const chrome = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+      const need = [...screen.children].reduce((h, el) => h + el.getBoundingClientRect().height + parseFloat(getComputedStyle(el).marginTop) + parseFloat(getComputedStyle(el).marginBottom), 0) + chrome;
+      box.style.height = Math.max(200, Math.ceil(need)) + 'px';
+    };
+    addEventListener('resize', () => fitBox());
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     let visible = true;
     new IntersectionObserver(e => (visible = e[0].isIntersecting)).observe(box);
     const waitVisible = async () => { while (!visible || document.hidden) await sleep(300); };
+    // Start already showing the first exchange (the section list), so the box is never empty.
+    const first = document.createElement('p'); first.className = 'readout__cmd';
+    first.innerHTML = '<span>&gt;</span> <em class="t"></em>';
+    first.querySelector('.t').textContent = scripts[0].cmd;
+    const firstOut = document.createElement('div'); firstOut.className = 'term__out'; firstOut.innerHTML = scripts[0].out;
+    screen.append(first, firstOut);
+    requestAnimationFrame(fitBox);
     (async function loop() {
-      for (let k = 0; ; k = (k + 1) % scripts.length) {
+      await sleep(2600);
+      for (let k = 1; ; k = (k + 1) % scripts.length) {
         const s = scripts[k];
-        // keep only the previous exchange on screen, so it reads like a live session without growing
-        if (k === 0) screen.innerHTML = '';
-        while (screen.children.length > 2) screen.firstElementChild.remove();
+        // keep the previous exchange visible while the next one types; the screen is bottom-anchored,
+        // so the newest lines always show and older ones scroll off the top
+        while (screen.children.length > (scripts[k].shot ? 2 : 4)) screen.firstElementChild.remove();
         const line = document.createElement('p'); line.className = 'readout__cmd';
         line.innerHTML = '<span>&gt;</span> <em class="t"></em><i class="caret"></i>';
         screen.append(line);
@@ -129,8 +179,15 @@
         const out = document.createElement('div'); out.className = 'term__out';
         if (s.html) out.innerHTML = s.out; else out.textContent = s.out;
         screen.append(out);
+        const img = out.querySelector('img');
+        if (img) {
+          await (img.decode ? img.decode().catch(() => {}) : Promise.resolve());
+          out.classList.toggle('is-portrait', img.naturalHeight > img.naturalWidth);
+        }
         if (s.html) { [...out.querySelectorAll('li')].forEach((li, j) => { li.style.animationDelay = `${j * 90}ms`; }); }
-        await sleep(k === 0 ? 3200 : 2200);
+        if (s.shot) while (screen.children.length > 2) screen.firstElementChild.remove();
+        fitBox();
+        await sleep(s.shot ? 3400 : 2200);
       }
     })();
   })();
@@ -138,7 +195,12 @@
   /* ---------- Hero photo matches the full height of the name, however many lines it wraps to ---------- */
   (() => {
     const id = $('.hero__id'), name = $('.hero__name'); if (!id || !name) return;
-    const fit = () => id.style.setProperty('--name-h', name.getBoundingClientRect().height + 'px');
+    // the photo spans the identity block: from the cap of the name to the bottom of the role line
+    const fit = () => {
+      id.style.setProperty('--name-h', name.getBoundingClientRect().height + 'px');
+      const block = name.parentElement.getBoundingClientRect(), nameTop = name.getBoundingClientRect().top;
+      id.style.setProperty('--id-h', (block.bottom - nameTop) + 'px');
+    };
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(name);
     if (document.fonts) document.fonts.ready.then(fit);
@@ -208,7 +270,8 @@
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%', once: true,
     onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.15, ease: 'expo.out', stagger: .09, overwrite: true,
-      onComplete() { batch.forEach(el => { el.style.willChange = 'auto'; }); } })
+      // once settled, drop the leftover transform/filter so text renders on crisp whole pixels
+      onComplete() { batch.forEach(el => { el.removeAttribute('data-reveal'); gsap.set(el, { clearProps: 'transform,filter,opacity,willChange' }); }); } })
   });
   // A gentle parallax on project screenshots so the chapters breathe as you scroll past.
   $$('.proj__media .clip img').forEach(img => gsap.fromTo(img, { yPercent: -4, scale: 1.08 }, { yPercent: 4, scale: 1.08, ease: 'none',

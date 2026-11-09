@@ -1,5 +1,29 @@
 window.PROJECTS = [
  {
+  "title": "AcademicForge",
+  "hackathon": "AMD hackathon project",
+  "image": "academicforge.png",
+  "imageAlt": "AcademicForge research search interface with paper results and research lens controls",
+  "imageCaption": "Research search interface",
+  "category": "Featured",
+  "icon": "project",
+  "tags": [
+   "GenAI",
+   "Hybrid retrieval",
+   "FastAPI",
+   "Streamlit",
+   "BGE",
+   "Gemma",
+   "MLX",
+   "ROCm"
+  ],
+  "problem": "Going from a research question to a plan means searching several paper sources, skimming dozens of abstracts and then writing the plan yourself.",
+  "built": "A search over arXiv and Semantic Scholar that ranks papers by keywords and by meaning. You pick the papers you trust, and it summarises each one and builds a research plan from only those. A local Gemma model does the writing by default, so nothing has to leave your machine.",
+  "result": "Built for the AMD hackathon and tested on Apple Silicon, NVIDIA and AMD ROCm. A lightweight demo mode runs with no API keys.",
+  "github": "https://github.com/shreyshrivastava/AcademicForge",
+  "demo": "https://academicforge-demo.streamlit.app/"
+ },
+ {
   "title": "agent-ops",
   "image": "agent-ops.png",
   "imageAlt": "agent-ops terminal session fixing a webhook signature check with a local model",
@@ -38,29 +62,6 @@ window.PROJECTS = [
   "github": "https://github.com/kushagr-tech/fall_detection"
  },
  {
-  "title": "AcademicForge",
-  "hackathon": "AMD hackathon project",
-  "image": "academicforge.png",
-  "imageAlt": "AcademicForge research search interface with paper results and research lens controls",
-  "imageCaption": "Research search interface",
-  "category": "Featured",
-  "icon": "project",
-  "tags": [
-   "GenAI",
-   "Hybrid retrieval",
-   "FastAPI",
-   "Streamlit",
-   "BGE",
-   "Gemma",
-   "MLX",
-   "ROCm"
-  ],
-  "problem": "Going from a research question to a plan means searching several paper sources, skimming dozens of abstracts and then writing the plan yourself.",
-  "built": "A search over arXiv and Semantic Scholar that ranks papers by keywords and by meaning. You pick the papers you trust, and it summarises each one and builds a research plan from only those. A local Gemma model does the writing by default, so nothing has to leave your machine.",
-  "result": "Built for the AMD hackathon and tested on Apple Silicon, NVIDIA and AMD ROCm. A lightweight demo mode runs with no API keys.",
-  "github": "https://github.com/shreyshrivastava/AcademicForge"
- },
- {
   "title": "AI Healthcare Intel Engine",
   "image": "healthcare-intel.png",
   "imageAlt": "Healthcare Intel Engine application showing drug interaction analysis",
@@ -75,7 +76,8 @@ window.PROJECTS = [
   "problem": "Healthcare AI demos often overclaim, and lean on an opaque model for every decision.",
   "built": "A demo with three tools: ranking likely specialists from symptoms, a second-opinion risk check, and a drug-interaction lookup. It runs on synthetic data with plain deterministic rules by default, and a sentence-embedding model is optional.",
   "result": "It is deployed as a live demo with tests running in CI. It is a portfolio project, not a medical device and not medical advice.",
-  "github": "https://github.com/shreyshrivastava/ai-healthcare-intel-engine"
+  "github": "https://github.com/shreyshrivastava/ai-healthcare-intel-engine",
+  "demo": "https://healthcare-intel-engine-shrey.streamlit.app/"
  },
  {
   "title": "Agentic Honeypot System",
@@ -110,7 +112,8 @@ window.PROJECTS = [
   "problem": "Bhopal Police publish crime and enforcement reports as separate press posts, so it is hard to see where they cluster. Dashboards that fill the gaps tend to invent data.",
   "built": "A map dashboard built from nine locatable police publications from April to October 2026, each checked by hand against the source text. Pins are approximate locality references, and each popup links to the official post. It also maps 48 police facilities and exports CSV with sources and missing values kept.",
   "result": "It shows what has been publicly reported and no more. There are no risk scores or density heatmaps, because the data cannot support them, and a category with no record reads as nothing loaded, not zero crime.",
-  "github": "https://github.com/shreyshrivastava/bhopal-crime-safety-intelligence"
+  "github": "https://github.com/shreyshrivastava/bhopal-crime-safety-intelligence",
+  "demo": "https://bhopalcrimesafety.streamlit.app/"
  },
  {
   "title": "Academic Search Engine for Papers",
@@ -181,7 +184,8 @@ window.PROJECTS = [
   "problem": "News about the conflict is full of claims, and checking them by hand does not scale.",
   "built": "My MSc dissertation at Queen Mary. I turned an experimental BERT and SVM notebook into a FastAPI app that screens claims, retrieves evidence and gives a coarse stance. It falls back through four modes, down to simple rules, so it never crashes.",
   "result": "A live demo runs on Vercel. The cloud demo uses a hosted Llama model, because the original BERT model is too large for serverless. It is not a production fact-checker.",
-  "github": "https://github.com/shreyshrivastava/claim-detection-project-on-Russia-and-conflict"
+  "github": "https://github.com/shreyshrivastava/claim-detection-project-on-Russia-and-conflict",
+  "demo": "https://claim-detection-project.vercel.app"
  },
  {
   "title": "Sentiment Analysis on Tweets",
@@ -215,7 +219,8 @@ window.PROJECTS = [
   "problem": "Comparing how the left and right pupils react is subjective when done by eye.",
   "built": "A tool that measures the pupil radius of each eye from video with MediaPipe, compares the two over time, flags sudden jumps, and produces a score and a PDF report.",
   "result": "A live demo runs on Render with synthetic samples. It is a screening demo, not a diagnosis.",
-  "github": "https://github.com/shreyshrivastava/pupil-anomaly-detection"
+  "github": "https://github.com/shreyshrivastava/pupil-anomaly-detection",
+  "demo": "https://pupil-response-analyzer.onrender.com"
  },
  {
   "title": "Car Detection System",

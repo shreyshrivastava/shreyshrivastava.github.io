@@ -556,3 +556,282 @@ body { font-weight: 450; }
 .arow__head, .arow__body { text-shadow: none; }
 .arow__t { font-weight: 650; }
 .arow__t span, .arow__s { color: rgba(239, 233, 222, .86) !important; }
+
+/* ==========================================================================
+   Visibility pass: components readable as objects, larger + sharper type.
+   The 3D background and every animation are unchanged.
+   ========================================================================== */
+:root {
+  --rule: rgba(239, 233, 222, .38);          /* outlines: 1.35:1 -> ~3.2:1 */
+  --rule-soft: rgba(239, 233, 222, .2);      /* inner dividers */
+  --raised: rgba(26, 25, 23, .92);           /* component surface, a step above onyx */
+  --raised-2: rgba(34, 33, 30, .94);
+  --chip: rgba(239, 233, 222, .08);
+  --line: var(--rule);
+}
+
+/* ---------- 3. Sharper text ---------- */
+body { font-size: 17px; font-weight: 500; -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; text-rendering: optimizeLegibility; font-optical-sizing: auto; }
+h1, h2, h3, .page__h, .proj__title, .contact__h { -webkit-font-smoothing: antialiased; }   /* large display type stays smooth */
+.story dd, .proj__side .story dd, .arow__body .story dd, .card__details, .points p, .ccard p, .arow__t span, .page__lede, .hero__lede, .hello > p, .latest__text > p { font-weight: 500 !important; }
+/* tight 1px edge instead of the blurry 18px halo */
+.hero__lede, .page__lede, .page__h, .proj__title, .proj__side, .points, .arow__head, .arow__body, .cv__row, .card, .ccard, .contact__h, .hello, .block__label, .page__status {
+  text-shadow: 0 1px 1px rgba(8, 8, 7, .85);
+}
+
+/* ---------- 2. Bigger text ---------- */
+.story dd, .proj__side .story dd, .arow__body .story dd, .card__details, .points p, .ccard p { font-size: 17px; line-height: 1.6; }
+.arow__t span { font-size: 16px; }
+.nav__menu a { font-size: 14px; font-weight: 600; }
+.page__status, .eyebrow, .block__label, .proj__top, .proj__media figcaption, .arow__media figcaption,
+.card__visual figcaption, .arow__c, .card__cat, .ccard__top, .story dt, .proj__cat, .arow__ctx, .hero__cap, .mono {
+  font-size: 13px !important; font-weight: 600 !important; letter-spacing: .05em;
+}
+.tags li { font-size: 13px !important; font-weight: 600; }
+.btn { font-size: 14.5px; font-weight: 600; }
+.card__actions .btn { font-size: 14px; }
+.readout, .term__out { font-size: 14.5px; }
+
+/* ---------- 1. Components visible ---------- */
+/* nav pill: solid ground + visible outline */
+.nav { border-bottom-color: var(--rule-soft); }
+.nav__menu { background: rgba(20, 19, 18, .92); border-color: var(--rule); }
+.nav__menu a { color: rgba(239, 233, 222, .86); }
+.nav__menu a:hover { color: var(--ivory); background: rgba(239, 233, 222, .08); }
+.nav__mark { border-color: var(--gold); }
+
+/* raised surfaces: read as objects in front of the 3D */
+.card, .ccard, .readout, .archive__list, .stats {
+  background: var(--raised) !important; border: 1px solid var(--rule) !important;
+  box-shadow: inset 0 1px 0 rgba(239, 233, 222, .07), 0 18px 40px -24px rgba(0, 0, 0, .8);
+}
+.card--featured { border-top-color: var(--gold) !important; }
+.ccard--primary { background: linear-gradient(160deg, rgba(194, 162, 106, .2), rgba(26, 25, 23, .94) 60%) !important; border-color: var(--gold) !important; }
+.stats > div { background: transparent !important; }
+.archive .arow { border-bottom-color: var(--rule-soft); }
+.page__status, .block__label, .proj__top, .points li { border-color: var(--rule-soft) !important; }
+
+/* secondary buttons + chips: filled, not outline-only */
+.btn { border-color: var(--rule); background: var(--chip); }
+.btn:hover { border-color: var(--gold); background: rgba(239, 233, 222, .12); }
+.btn--primary { background: var(--gold) !important; border-color: var(--gold) !important; color: #0e0e0d !important; }
+.tags li { background: var(--chip); border-color: var(--rule) !important; color: rgba(239, 233, 222, .9) !important; }
+.card__icon { border-color: var(--rule); background: var(--chip); }
+
+/* ---------- 4. Frosted ground for long text (the 3D stays full strength around it) ---------- */
+.proj__side {
+  padding: clamp(18px, 2vw, 26px); border-radius: 10px;
+  background: rgba(14, 14, 13, .62); border: 1px solid var(--rule-soft);
+  backdrop-filter: blur(12px) saturate(1.1); -webkit-backdrop-filter: blur(12px) saturate(1.1);
+}
+.points { position: relative; }
+.points li { padding: 18px; border-radius: 10px; background: rgba(14, 14, 13, .55); border: 1px solid var(--rule-soft) !important;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.page__lede, .hero__lede { position: relative; }
+
+@media (max-width: 760px) {
+  .nav__menu a { font-size: 13px; }
+  .nav-code { font-size: 13px !important; font-weight: 600; }
+  .story dd, .proj__side .story dd, .arow__body .story dd, .card__details, .points p, .ccard p { font-size: 16.5px; }
+  .proj__side { padding: 16px; }
+}
+/* remaining small text up to the 13px floor */
+.proj__title small { font-size: 13px !important; font-weight: 600; }
+.stats p:not(.mono), .stats__note p { font-size: 13.5px !important; font-weight: 500; color: rgba(239, 233, 222, .86) !important; }
+.stats b small { font-size: .36em !important; }
+.nav__mark { font-size: 12px; }
+
+/* ==========================================================================
+   Landing pass (YC patterns): one-line positioning, actions + proof in the
+   first screen, compact terminal, pinned Email on phones, tighter mobile rhythm.
+   Visibility rules still hold: >=3:1 outlines, >=13px text, solid/frosted surfaces.
+   ========================================================================== */
+
+/* Tagline: the one plain line that says what you do */
+.hero__tagline {
+  margin-top: clamp(20px, 2.6vw, 34px); max-width: 22ch;
+  font: 650 clamp(30px, 4.2vw, 60px)/1.04 var(--display); letter-spacing: -.04em; color: var(--ivory);
+  text-shadow: 0 1px 1px rgba(8, 8, 7, .85); -webkit-font-smoothing: antialiased;
+}
+.hero__grid { margin-top: clamp(22px, 3vw, 40px); align-items: start; }
+.hero__copy { display: flex; flex-direction: column; gap: 22px; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero__actions .btn { min-height: 48px; padding: 0 22px; font-size: 15px; }
+
+/* Proof strip: existing facts as small raised chips */
+.proof { display: flex; flex-wrap: wrap; gap: 8px; }
+.proof li {
+  padding: 7px 12px; border-radius: 999px; background: var(--raised); border: 1px solid var(--rule);
+  font: 600 13px/1.3 var(--mono); letter-spacing: .02em; color: rgba(239, 233, 222, .9);
+  box-shadow: inset 0 1px 0 rgba(239, 233, 222, .06);
+}
+.proof b { color: var(--gold); font-weight: 700; }
+
+/* Compact terminal: fixed height, bottom-anchored, never empty */
+.readout[data-typing] { min-height: 0; height: 232px; overflow: hidden; display: flex; flex-direction: column; }
+.readout[data-typing] .term__screen { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.readout[data-typing] .term__screen > * { flex: 0 0 auto; }
+
+/* Pinned Email: always one tap away on phones */
+.nav__email { display: none; }
+.nav__email:focus-visible { outline: 2px solid var(--ivory); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .nav { position: fixed; }
+  .nav__email {
+    display: inline-flex; align-items: center; position: absolute; right: 14px; top: 10px; height: 34px; padding: 0 14px;
+    border-radius: 999px; background: var(--gold); color: #0e0e0d; text-decoration: none; font: 700 13px var(--body);
+  }
+
+  /* ---- mobile rhythm: only the first section reserves room for the fixed menu ---- */
+  .chapter, .projects > header.chapter, .block.chapter, .page.chapter, .archive.chapter { padding-top: 44px !important; padding-bottom: 36px !important; }
+  #about.chapter { padding-top: calc(var(--nav-h) + 28px) !important; padding-bottom: 36px !important; }
+  .proj__inner { padding-top: 44px !important; padding-bottom: 36px !important; gap: 16px !important; }
+  .projects > .block.chapter { padding-top: 28px !important; padding-bottom: 20px !important; }
+  html { scroll-padding-top: calc(var(--nav-h) + 8px); }
+
+  /* tighter inner spacing */
+  .page__status, .block__label { margin-bottom: 20px !important; padding-bottom: 12px !important; }
+  .page__lede { margin-top: 14px !important; }
+  .page__actions { margin-top: 18px !important; }
+  .page .page__actions + .grid { margin-top: 28px !important; }
+  .points { gap: 12px !important; }
+  .points li { padding: 16px !important; }
+  .grid { gap: 14px !important; }
+  .card { padding: 16px !important; gap: 12px !important; }
+  .contact-hub { margin-top: 28px !important; gap: 12px !important; }
+
+  /* type sized like the YC sites on phones (30-40px headlines) */
+  .page__h { font-size: 32px !important; line-height: 1.02 !important; }
+  .proj__title { font-size: 36px !important; margin-top: 4px !important; }
+  .contact__h { font-size: 56px !important; }
+  .block h2 { font-size: 28px !important; }
+  .hero__tagline { font-size: 30px; }
+  .proj__media .clip { aspect-ratio: 16 / 9 !important; }
+  .arow__head { padding: 14px 0 !important; }
+  .readout[data-typing] { height: 210px; }
+}
+
+/* ==========================================================================
+   YC pass: one headline, short subline, actions + proof + a product visual in
+   the first screen; scannable sections. Visibility rules unchanged.
+   ========================================================================== */
+
+/* ---------- Hero: identity line, then ONE headline ---------- */
+.hero { justify-content: flex-start; padding-top: calc(var(--nav-h) + clamp(28px, 4vw, 56px)) !important; }
+.hero .page__status { margin-bottom: clamp(18px, 2.4vw, 28px); }
+.hero__id { font-size: clamp(30px, 3vw, 44px) !important; gap: .28em !important; align-items: flex-start !important; }
+.hero__id .hero__name { letter-spacing: -.035em; line-height: .86; }
+.hero__id .hero__cap { margin-top: 8px; }
+.hero__tagline {
+  max-width: 17ch; margin-top: clamp(16px, 2vw, 26px);
+  font-size: clamp(42px, 6.2vw, 96px) !important; line-height: .98 !important; letter-spacing: -.05em !important; font-weight: 650;
+}
+.hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(22px, 2.6vw, 36px); }
+.hero__copy { gap: 18px; }
+.hero__sub { font: 500 clamp(19px, 1.6vw, 23px)/1.4 var(--body); color: var(--ivory); max-width: 34ch; text-shadow: 0 1px 1px rgba(8, 8, 7, .85); }
+.hero__lede { font-size: 16px !important; line-height: 1.6; max-width: 52ch; color: rgba(239, 233, 222, .82) !important; }
+
+/* trust row: plain names in the type system, like "Trusted by" rows */
+.trust { display: flex; flex-wrap: wrap; gap: 6px 0; padding-top: 14px; border-top: 1px solid var(--rule-soft);
+  font: 600 13px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: rgba(239, 233, 222, .72); }
+.trust span:not(:last-child)::after { content: "·"; margin: 0 10px; color: var(--gold); }
+
+/* ---------- Showcase terminal: opens real project screenshots ---------- */
+.readout--show[data-typing] { height: clamp(360px, 34vw, 440px); }
+.term__shot { display: block; text-decoration: none; margin-top: 8px; }
+.term__shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--rule); background: #111; }
+.term__shot span { display: block; margin-top: 8px; font: 600 13px var(--mono); color: var(--gold); }
+.term__shot:hover img { border-color: var(--gold); }
+.term__out:has(.term__shot) { animation: term-in .45s var(--ease) both; }
+
+/* ---------- Projects: jump bar + result line ---------- */
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.jump a { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 999px; text-decoration: none;
+  background: var(--raised); border: 1px solid var(--rule); color: var(--ivory); font: 600 14px var(--body); transition: border-color .18s var(--ease), background-color .18s var(--ease); }
+.jump a .mono { color: var(--gold); font-size: 12px !important; }
+.jump a:hover { border-color: var(--gold); background: rgba(239, 233, 222, .1); }
+.proj__result { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 12px; max-width: 70ch; margin-top: 2px;
+  font: 600 clamp(17px, 1.4vw, 20px)/1.45 var(--body); color: var(--ivory); text-shadow: 0 1px 1px rgba(8, 8, 7, .85); }
+.proj__result .mono { flex: 0 0 auto; padding: 3px 8px; border-radius: 4px; background: var(--gold); color: #0e0e0d; font-size: 11.5px !important; letter-spacing: .08em; }
+
+/* ---------- Experience: scannable header (role · company · dates, then tags) ---------- */
+#experience .card .tags--head { margin-top: 0; padding-top: 0; }
+#experience .card h3 { font-size: clamp(24px, 2vw, 30px); }
+
+/* ---------- Education: compact ---------- */
+#education .card__visual--logo { height: 92px !important; padding: 14px !important; }
+#education .card__visual--logo img { max-height: 48px !important; }
+#education .card__visual--logo img[src*="symbiosis"] { max-height: 72px !important; }
+#education .card { gap: 10px; }
+
+/* ---------- Contact: closing CTA band ---------- */
+.cta-band {
+  padding: clamp(24px, 4vw, 48px); border-radius: 14px; border: 1px solid var(--gold);
+  background: linear-gradient(150deg, rgba(194, 162, 106, .16), rgba(20, 19, 18, .92) 55%);
+  box-shadow: inset 0 1px 0 rgba(239, 233, 222, .08), 0 30px 60px -30px rgba(0, 0, 0, .8);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.cta-band .contact__h { margin-top: 10px; }
+.cta-band .page__actions .btn--primary { min-height: 54px; padding: 0 28px; font-size: 17px; }
+
+@media (max-width: 1100px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .readout--show[data-typing] { height: 380px; }
+}
+@media (max-width: 760px) {
+  #about.chapter { padding-top: calc(var(--nav-h) + 20px) !important; }
+  .hero__id { font-size: 30px !important; }
+  .hero__tagline { font-size: 40px !important; margin-top: 14px; }
+  .hero__sub { font-size: 18.5px; }
+  .hero__grid { margin-top: 18px; }
+  .hero__copy { gap: 14px; }
+  .hero__actions .btn { flex: 1 1 0; justify-content: center; }
+  .readout--show[data-typing] { height: 330px; }
+  .trust { font-size: 12.5px; }
+  .jump { gap: 6px; } .jump a { font-size: 13.5px; min-height: 38px; }
+  .proj__result { font-size: 16.5px; flex-direction: column; gap: 6px; }
+  .cta-band { padding: 20px; }
+}
+.readout--show[data-typing] { height: clamp(330px, 27vw, 390px); }
+@media (max-width: 1100px) { .readout--show[data-typing] { height: 380px; } }
+@media (max-width: 760px) { .readout--show[data-typing] { height: 330px; } }
+/* identity line: the photo spans the name and the role line */
+.hero__id .hero__photo { height: calc(var(--id-h, 1.6em) - .054em) !important; margin-top: .054em; }
+.hero__id .hero__cap { margin-top: 10px; }
+.term__shot span b { color: #7fd1a8; font-weight: 700; margin-right: 4px; }
+/* showcase screenshots: fixed frame inside the terminal window */
+.readout .term__shot img { width: 100% !important; height: clamp(170px, 15vw, 230px) !important; aspect-ratio: auto !important; object-fit: cover; object-position: top center; }
+@media (max-width: 760px) { .readout .term__shot img { height: 180px !important; } }
+/* never clip a screenshot: if a frame ever overflows, keep its top in view */
+.readout[data-typing] .term__screen { justify-content: safe flex-end; }
+.term__shot span { overflow-wrap: anywhere; }
+@media (max-width: 520px) { .term__shot .host { display: none; } .readout .term__shot img { height: 160px !important; } }
+.term__shot .host { font-style: normal; }
+
+/* ---------- Showcase frame resizes to its content: whole screenshots, never cropped ---------- */
+.readout--show[data-typing] { height: 260px; transition: height .6s cubic-bezier(.22, .61, .36, 1); }
+.readout--show[data-typing] .term__screen { justify-content: flex-end; }
+.readout .term__shot img {
+  width: 100% !important; height: auto !important; max-height: 300px; aspect-ratio: auto !important;
+  object-fit: contain !important; object-position: center !important; background: #0b0b0a;
+}
+/* tall phone screenshots (FallGuard): show the whole phone, centred, frame grows to fit */
+.readout .term__out.is-portrait .term__shot img { width: auto !important; height: 380px !important; max-height: none; margin: 0 auto; border-radius: 14px; }
+@media (max-width: 760px) {
+  .readout .term__shot img { max-height: 220px; }
+  .readout .term__out.is-portrait .term__shot img { height: 320px !important; }
+}
+@media (prefers-reduced-motion: reduce) { .readout--show[data-typing] { transition: none; } }
+
+/* ---------- Photo: clearly visible identity portrait ---------- */
+.hero__id { align-items: center !important; }
+.hero__id .hero__photo {
+  height: clamp(88px, 8.4vw, 124px) !important; width: auto !important; aspect-ratio: 3 / 4;
+  margin-top: 0 !important; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .8);
+}
+.readout .term__out.is-portrait .term__shot img { height: 310px !important; }
+@media (max-width: 760px) { .readout .term__out.is-portrait .term__shot img { height: 290px !important; } }
+/* the screenshot link is a block (image above caption), not a row like the section-list links */
+.readout a.term__shot { display: block !important; padding: 0; }
+.readout a.term__shot span { display: block; width: 100%; }
