@@ -116,7 +116,10 @@ window.PROJECTS = [
   "built": "A map dashboard built from nine locatable police publications from April to October 2026, each checked by hand against the source text. Pins are approximate locality references, and each popup links to the official post. It also maps 48 police facilities and exports CSV with sources and missing values kept.",
   "result": "It shows what has been publicly reported and no more. There are no risk scores or density heatmaps, because the data cannot support them, and a category with no record reads as nothing loaded, not zero crime.",
   "github": "https://github.com/shreyshrivastava/bhopal-crime-safety-intelligence",
-  "demo": "https://bhopalcrimesafety.streamlit.app/"
+  "demo": "https://bhopalcrimesafety.streamlit.app/",
+  "video": "assets/video/bhopal-demo.mp4",
+  "poster": "assets/video/bhopal-demo-poster.jpg",
+  "videoAlt": "Bhopal Safety Intelligence walkthrough: opening a pin's source, turning off a category, filtering by report type, and viewing analytics and records"
  },
  {
   "title": "Academic Search Engine for Papers",
