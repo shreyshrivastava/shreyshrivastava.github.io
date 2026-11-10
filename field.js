@@ -26,7 +26,7 @@ if (ctx) {
 
   // [opacity, x offset, scale]
   const SET = { knot: [.55, 0, 1], cloud: [.14, 0, 1], wave: [.3, 0, 1], layers: [.1, 2.6, .9], helix: [.3, 3, .9], rings: [.09, 0, 1.1], spiral: [.16, 2.8, .9], globe: [.7, 2.4, 1] };
-  if (small) { Object.values(SET).forEach(s => { s[1] = 0; s[2] *= .62; }); ['cloud', 'wave', 'layers', 'helix', 'rings', 'spiral'].forEach(k => SET[k][0] = 0); }
+  if (small) { Object.values(SET).forEach(s => { s[1] = 0; s[2] *= .62; }); Object.entries({ cloud: .15, wave: .2, layers: .13, helix: .2, rings: .12, spiral: .18 }).forEach(([k, a]) => { SET[k][0] = a; SET[k][1] = 1.1; }); }
   if (small) SET.globe[2] = .46;
   const LIFT = small ? { knot: 1.6, globe: 2 } : { knot: .55 };
   const COLOR = { ink: '#d6b36a', bone: '#a98a45', flame: '#a98a45' };
@@ -86,13 +86,14 @@ if (ctx) {
       if (c < 0 || c >= cols || w < 0 || w >= rows) continue;
       grid[w * cols + c] += 9 / d;
     }
+    const cap = small && now.al < .4 ? 4 : 9; // lighter characters behind reading text on phones
     ctx.clearRect(0, 0, W, H);
     ctx.fillStyle = COLOR[F.t] || COLOR.ink; ctx.globalAlpha = now.al;
     for (let w = 0; w < rows; w++) {
       let s = '', any = false;
       for (let c = 0; c < cols; c++) {
         const v = grid[w * cols + c];
-        if (v > 0) { s += RAMP[Math.min(9, 1 + (v * 2.2 | 0))]; any = true; } else s += ' ';
+        if (v > 0) { s += RAMP[Math.min(cap, 1 + (v * 2.2 | 0))]; any = true; } else s += ' ';
       }
       if (any) ctx.fillText(s, 0, w * ch);
     }

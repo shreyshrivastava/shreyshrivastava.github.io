@@ -209,3 +209,6 @@ body{padding-bottom:var(--bar)}
 .next i { display: inline-block; font-style: normal; color: var(--accent); transition: transform .4s var(--ease); }
 .next:hover i { transform: translateX(.2em); }
 .contact { padding-bottom: calc(var(--bar) + 22px); }
+
+/* Pages attached into one continuous scroll */
+.stitching main { visibility: hidden; }

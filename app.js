@@ -1,10 +1,62 @@
-(() => {
+(async () => {
   const ROOT = '', IMG = ROOT + 'assets/evidence/';
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const safe = u => { try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : '#'; } catch (e) { return '#'; } };
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  // Every page is its own HTML file. Once one has loaded, the others are attached around it so the site scrolls as one.
+  const ORDER = ['index.html', 'projects.html', 'experience.html', 'education.html', 'contact.html'];
+  const root = document.documentElement, main = $('#content');
+  const here = ORDER.indexOf(location.pathname.split('/').pop() || 'index.html');
+  let parts = [], armed = false;
+  if (here >= 0 && main) {
+    try {
+      if (here > 0) root.classList.add('stitching');
+      const pages = await Promise.all(ORDER.map((f, i) => i === here ? null : fetch(f).then(r => { if (!r.ok) throw new Error(f); return r.text(); })));
+      const built = ORDER.map((f, i) => {
+        const part = document.createElement('div');
+        part.className = 'part'; part.dataset.file = f;
+        if (i === here) {
+          part.dataset.title = document.title;
+          part.dataset.desc = $('meta[name=description]').content;
+          part.append(...main.childNodes);
+        } else {
+          const d = new DOMParser().parseFromString(pages[i], 'text/html');
+          part.dataset.title = d.title;
+          part.dataset.desc = $('meta[name=description]', d).content;
+          part.append(...$('#content', d).childNodes);
+          $$('h1', part).forEach(h => { const h2 = document.createElement('h2'); [...h.attributes].forEach(a => h2.setAttribute(a.name, a.value)); h2.innerHTML = h.innerHTML; h.replaceWith(h2); });
+        }
+        return part;
+      });
+      main.append(...built);
+      $$('.next', main).forEach(n => n.remove());
+      parts = built;
+    } catch (e) { parts = []; root.classList.remove('stitching'); }
+  }
+  const showPage = part => {
+    const f = part.dataset.file;
+    history.replaceState(null, '', f === 'index.html' ? '/' : f);
+    document.title = part.dataset.title;
+    $('meta[name=description]').content = part.dataset.desc;
+    $('link[rel=canonical]').href = 'https://shreyshrivastava.com/' + (f === 'index.html' ? '' : f);
+    $$('.nav nav a').forEach(a => { const on = a.getAttribute('href') === f; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  };
+  if (parts.length) {
+    const pageIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && armed) showPage(e.target); }), { rootMargin: '-50% 0px -50% 0px' });
+    parts.forEach(p => pageIO.observe(p));
+    document.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const i = ORDER.indexOf(a.getAttribute('href'));
+      if (i < 0) return;
+      e.preventDefault();
+      if (window.__lenis) window.__lenis.scrollTo(parts[i]); else parts[i].scrollIntoView();
+    });
+  }
+  const settle = () => { if (parts[here]) showPage(parts[here]); root.classList.remove('stitching'); armed = true; };
 
   const IMPACT = ['AcademicForge', 'Bhopal Safety Intelligence', 'AI Healthcare Intel Engine', 'FallGuard AI', 'Claim Detection on Russia-Ukraine Conflict', 'Gas Cylinder Detection System', 'agent-ops', 'Agentic Honeypot System', 'Pupil Anomaly Detection', 'ATS Resume Checker', 'Academic Search Engine for Papers', 'Local Lore Generator', 'Polygon Arbitrage Bot', 'Tube Network Route Finder', 'Sentiment Analysis on Tweets', 'Car Detection System', 'CIFAR-10 Image Classification', 'COVID-19 Tracker', 'Diabetes Regression Analysis', 'Friends Character Similarity', 'Llama2 Prompt Exploration', 'Neural Network Introduction', 'Logistic Regression Iris Classification'];
   const LIVE = ['AcademicForge', 'AI Healthcare Intel Engine', 'Bhopal Safety Intelligence', 'Claim Detection on Russia-Ukraine Conflict', 'Pupil Anomaly Detection', 'Local Lore Generator'];
@@ -110,10 +162,10 @@
   }
 
   const loader = $('.loader');
-  if (!window.gsap || calm || document.hidden) { if (loader) loader.remove(); return; }
+  if (!window.gsap || calm || document.hidden) { if (loader) loader.remove(); if (parts[here] && here > 0) parts[here].scrollIntoView(); settle(); return; }
   gsap.registerPlugin(ScrollTrigger);
   if ($('.hero')) { history.scrollRestoration = 'manual'; scrollTo(0, 0); }
-  const lenis = new Lenis({ lerp: .11 });
+  const lenis = window.__lenis = new Lenis({ lerp: .11 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t); } }));
@@ -153,10 +205,35 @@
     gsap.to(track, { x: () => -(track.scrollWidth - innerWidth), ease: 'none', scrollTrigger: { trigger: '.hscroll', pin: true, scrub: .6, end: () => '+=' + (track.scrollWidth - innerWidth), invalidateOnRefresh: true } });
   });
 
+  // Phones: gentle scroll-linked depth, with nothing pinned so reading is never interrupted
+  gsap.matchMedia().add('(max-width:899px)', () => {
+    if ($('.hero')) {
+      const rows = $$('.name__row');
+      gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: .6 } })
+        .to(FIELD, { dive: .35, duration: .7, ease: 'none' }, 0)
+        .to(FIELD, { dive: 0, duration: .3, ease: 'none' }, .7)
+        .to(rows[0], { xPercent: -4, duration: 1, ease: 'none' }, 0)
+        .to(rows[1], { xPercent: 4, duration: 1, ease: 'none' }, 0);
+    }
+    $$('.panel .media').forEach(m => gsap.fromTo(m, { rotationX: 10, scale: .94, transformPerspective: 700, transformOrigin: '50% 100%' }, { rotationX: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: m, start: 'top 95%', end: 'top 55%', scrub: .5 } }));
+  });
+
   $$('.split').filter(e => !e.closest('.hero')).forEach(el => gsap.from($$('.wi', el), { yPercent: 115, duration: 1.1, stagger: .035, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none reverse' } }));
   $$('[data-r]').filter(e => !e.closest('.hero')).forEach(el => gsap.from(el, { y: 44, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: el.closest('.contact') ? { trigger: '.contact', start: 'top 45%', toggleActions: 'play none none reverse' } : { trigger: el, start: 'top 92%', toggleActions: 'play none none reverse' } }));
   if (scrub) gsap.from($$('span', scrub), { opacity: .16, stagger: .1, ease: 'none', scrollTrigger: { trigger: scrub, start: 'top 78%', end: 'bottom 55%', scrub: true } });
   if ($('.hero')) gsap.to('.portrait img', { yPercent: 8, scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   addEventListener('load', () => ScrollTrigger.refresh());
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+  // A direct link lands on its own page; pinned sections keep resizing briefly, so hold until the position is stable.
+  if (document.fonts) await document.fonts.ready;
+  if (document.readyState !== 'complete') await Promise.race([new Promise(r => addEventListener('load', r, { once: true })), new Promise(r => setTimeout(r, 2500))]);
+  ScrollTrigger.refresh();
+  if (here > 0 && parts[here]) {
+    for (let tries = 0, steady = 0; tries < 40 && steady < 6; tries++) {
+      const top = parts[here].getBoundingClientRect().top;
+      if (Math.abs(top) > 2) { steady = 0; lenis.scrollTo(top + scrollY, { immediate: true, force: true }); } else steady++;
+      await new Promise(r => setTimeout(r, 60));
+    }
+  }
+  settle();
 })();
