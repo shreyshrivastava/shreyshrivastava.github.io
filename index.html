@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="ink">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'sha256-AhhdZsN/W+x24rrxklcKcGqFc7dOhoAHk6HJJT5kEr0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Shrey Shrivastava | AI/ML Engineer</title>
   <meta name="description" content="Shrey Shrivastava, AI/ML engineer. Projects, experience, education and contact.">
-  <meta name="theme-color" content="#0e0e0d">
+  <meta name="theme-color" content="#070707">
   <meta name="author" content="Shrey Shrivastava">
   <meta name="keywords" content="Shrey Shrivastava, AI Engineer, Machine Learning, NLP, Computer Vision, AI Portfolio, Healthcare AI, Agentic AI">
   <meta property="og:title" content="Shrey Shrivastava | AI/ML Engineer">
@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="AI/ML engineering portfolio featuring projects, experience, education, and contact links.">
   <link rel="canonical" href="https://shreyshrivastava.com/">
   <meta name="color-scheme" content="dark">
-  <script>try{if(!sessionStorage.getItem("v4-splash-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("has-splash")}}catch(e){}</script>
+  <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,242 +41,151 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Inter+Tight:wght@500..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=46">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400..700&family=Geist:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=47">
 </head>
 <body>
-  <div class="splash" aria-hidden="true">
-    <div class="splash__window">
-      <div class="splash__chrome"><i></i><i></i><i></i><span>shrey — zsh</span></div>
-      <div class="splash__body">
-        <p><span class="splash__ps">&gt;</span> <span data-type="loading Shrey’s portfolio website..."></span></p>
-        <p class="splash__bar"><i></i></p>
-        <p><span class="splash__ps">&gt;</span> <span data-type="open portfolio"></span><b class="caret"></b></p>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="loader" aria-hidden="true"><span class="loader__name">&gt; loading Shrey’s portfolio website...</span><span class="loader__n">0</span></div>
+<div class="cursor" aria-hidden="true"></div>
+<img class="peek" alt="" aria-hidden="true">
+<div class="more" aria-hidden="true">-- more -- <span class="more__d">scroll ↓</span></div>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="nav">
+  <a class="nav__brand" href="#about">shrey@portfolio<span>:~$</span></a>
+  <nav aria-label="Primary navigation">
+    <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="nav__email" href="mailto:shrey.shrivastava@yahoo.com">Email</a>
+</header>
+
+<main>
+<section id="about" class="hero" data-theme="ink" data-form="knot">
+  <p class="label">About</p>
+  <p class="dive split">Building products that matter to real people.</p>
+  <h1 class="name" aria-label="Shrey Shrivastava.">
+    <span class="name__row" aria-hidden="true"><span class="name__t">Shrey</span>
+      <span class="name__side"><span class="portrait"><img src="assets/profile/shrey-portrait.jpg" alt="" width="600" height="800"></span><span class="role">AI / ML Engineer</span></span></span>
+    <span class="name__row" aria-hidden="true"><span class="name__t">Srivastava.</span></span>
+  </h1>
+  <div class="hero__foot">
+    <p class="tagline split">Building products that matter to real people.</p>
+    <div class="hero__right" data-r>
+      <p class="sub">I take models out of the notebook and turn them into things people can actually use.</p>
+      <div class="actions">
+        <a class="btn btn--solid" href="#projects">See projects</a>
+        <a class="btn" href="mailto:shrey.shrivastava@yahoo.com">Send email</a>
       </div>
     </div>
   </div>
-  <div class="glow" aria-hidden="true"><i class="glow__a"></i><i class="glow__b"></i></div>
-  <a class="skip" href="#projects">Skip to projects</a>
+</section>
 
-  <!-- Same menu as the original site. Desktop: full labels. Phone: always-visible tab bar with the original codes. -->
-  <header class="nav">
-    <a class="nav__brand" href="#about" aria-label="Shrey Shrivastava home"><span class="nav__mark" aria-hidden="true">&gt;_</span>Shrey Shrivastava</a>
-    <a class="nav__email" href="mailto:shrey.shrivastava@yahoo.com" aria-label="Send email to Shrey">Email</a>
-    <nav class="nav__menu" aria-label="Primary navigation">
-      <a href="#about" data-sec="about"><span class="nav-full">About</span><span class="nav-code" aria-hidden="true">ABT</span></a>
-      <a href="#projects" data-sec="projects"><span class="nav-full">Projects</span><span class="nav-code" aria-hidden="true">PRJ</span></a>
-      <a href="#experience" data-sec="experience"><span class="nav-full">Experience</span><span class="nav-code" aria-hidden="true">EXP</span></a>
-      <a href="#education" data-sec="education"><span class="nav-full">Education</span><span class="nav-code" aria-hidden="true">EDU</span></a>
-      <a href="#contact" data-sec="contact"><span class="nav-full">Contact</span><span class="nav-code" aria-hidden="true">CNT</span></a>
-    </nav>
+<div class="marquee" data-theme="ink" aria-label="Where my work has been"><div class="marquee__t">
+  <span>Queen Mary University of London</span><span>CRO Prime</span><span>IBM hackathon</span><span>AMD hackathon</span><span>Springer publication</span>
+</div></div>
+
+<section class="statement" data-theme="bone" data-form="cloud">
+  <p class="scrub">Paper search, medical data pipelines, scam detection, on-device sensing and a local coding agent. I care as much about the testing and deployment around a model as the model itself, and every project says plainly what it can and can’t do.</p>
+  <ul class="stats">
+    <li data-r><b>23</b><span>projects</span></li>
+    <li data-r><b>6</b><span>live demos</span></li>
+    <li data-r class="stats__plain"><span>MSc AI, Queen Mary</span></li>
+    <li data-r class="stats__plain"><span>AI Engineer at CRO Prime</span></li>
+  </ul>
+</section>
+
+<section id="projects" data-theme="ink" data-form="wave">
+  <header class="wrap sec-head">
+    <p class="label">Projects</p>
+    <h2 class="big split">The problem, the build and the result.</h2>
+    <p class="lede" data-r>Each project says what it set out to fix, how I built it and what came out, with links to the code and demos.</p>
   </header>
+  <div class="hscroll"><div class="track"></div></div>
+</section>
 
-  <main>
-    <!-- ABOUT -->
-    <section id="about" class="hero chapter" data-glow="0" data-bg="#0e0e0d" data-form="core" data-sec="about">
-      <div class="page__status mono"><span>01 / 05 <b>About</b></span><span>AI / ML</span></div>
-      <div class="hero__id">
-        <img class="hero__photo" src="assets/profile/shrey-portrait.jpg" alt="Shrey Shrivastava in a dark suit on a London street at night" width="600" height="800">
-        <div>
-          <h1 class="hero__name split" aria-label="Shrey Shrivastava.">Shrey Shrivastava.</h1>
-          <p class="mono hero__cap">AI / ML Engineer</p>
-        </div>
-      </div>
-      <p class="hero__tagline split" aria-label="Building products that matter to real people.">Building products that matter to real people.</p>
-      <div class="hero__grid">
-        <div class="hero__copy">
-          <p class="hero__sub">I take models out of the notebook and turn them into things people can actually use.</p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#projects" data-icon="project">See projects</a>
-            <a class="btn" href="mailto:shrey.shrivastava@yahoo.com" data-icon="mail">Send email</a>
-          </div>
-          <ul class="proof" aria-label="At a glance">
-            <li><b>23</b> projects</li>
-            <li>MSc AI, Queen Mary</li>
-            <li>AI Engineer at CRO Prime</li>
-            <li><b>6</b> live demos</li>
-          </ul>
-          <p class="hero__lede">Paper search, medical data pipelines, scam detection, on-device sensing and a local coding agent. I care as much about the testing and deployment around a model as the model itself, and every project says plainly what it can and can’t do.</p>
-          <p class="trust" aria-label="Where my work has been"><span>Queen Mary University of London</span><span>CRO Prime</span><span>IBM hackathon</span><span>AMD hackathon</span><span>Springer publication</span></p>
-        </div>
-        <div class="readout readout--show" aria-label="Portfolio sections and project previews" data-typing>
-          <p class="readout__cmd"><span>&gt;</span> shrey open portfolio</p>
-          <ul>
-            <li><a href="#about"><b>[ABT]</b>About<em>who I am and what I build</em></a></li>
-            <li><a href="#projects"><b>[PRJ]</b>Projects<em>the problem, the build, the result</em></a></li>
-            <li><a href="#experience"><b>[EXP]</b>Experience<em>CRO Prime and two internships</em></a></li>
-            <li><a href="#education"><b>[EDU]</b>Education<em>MSc AI, BTech, Diploma</em></a></li>
-            <li><a href="#contact"><b>[CNT]</b>Contact<em>email, GitHub, LinkedIn</em></a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section class="method wrap" data-theme="bone" data-form="layers">
+  <div class="method__col">
+    <p class="label">How I build</p>
+    <ol class="points">
+      <li data-r><h3>Rules first, model second</h3><p>In the resume checker, the healthcare demo and the honeypot, the score or decision comes from plain rules. A model only explains or assists, so the answer is the same every run.</p></li>
+      <li data-r><h3>Limits next to results</h3><p>Each project says what it does not do. The Bhopal map shows no risk scores, the arbitrage bot places no trades, and the claim checker is not a fact-checker.</p></li>
+      <li data-r><h3>Small samples called small</h3><p>agent-ops ran 8 tasks twice each and says so. The numbers are a rough guide, not a claim.</p></li>
+    </ol>
+  </div>
+  <div class="method__col">
+    <p class="label">Learned the hard way</p>
+    <ol class="points">
+      <li data-r><h3>A review caught what I missed</h3><p>Before I shared agent-ops, a review found two bugs: truncated files could be written back with content missing, and command arguments could reach outside the workspace. I fixed both, with tests.</p></li>
+      <li data-r><h3>A model can fail the same way every time</h3><p>On my benchmark, no run got Indian digit grouping (₹1,23,456.78) right. Every failure was the model looping until it hit the step limit.</p></li>
+      <li data-r><h3>The big model does not fit everywhere</h3><p>My dissertation model is about 500 MB, too big for a serverless demo. The app falls back through four modes, down to plain rules, so it never crashes.</p></li>
+    </ol>
+  </div>
+</section>
 
-    <!-- PROJECTS: header, then one magazine chapter per featured project, then every other project as a list -->
-    <section id="projects" class="projects" aria-labelledby="projects-h">
-      <header class="chapter" data-bg="#0e0e0d" data-form="clusters" data-sec="projects" data-glow="1">
-        <div class="page__status mono"><span>02 / 05 <b>Projects</b></span><span>AI / ML</span></div>
-        <p class="cmd"><span>&gt;</span> shrey open projects</p>
-        <p class="eyebrow">[PRJ] Projects</p>
-        <h2 id="projects-h" class="page__h split" aria-label="The problem, the build and the result.">The problem, the build and the result.</h2>
-        <p class="page__lede">Each project says what it set out to fix, how I built it and what came out, with links to the code and demos.</p>
-        <div class="page__actions"><a class="btn btn--primary" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer" data-icon="github">GitHub Profile</a><a class="btn" href="#about" data-icon="external">Portfolio home</a></div>
-        <nav class="jump" aria-label="Featured projects"></nav>
-      </header>
-    <!-- > how i build / > learned the hard way (the ivory 30%) -->
-      <section class="block chapter" data-bg="#0e0e0d" data-form="layers" data-sec="projects" data-glow="7">
-        <p class="block__label">&gt; how i build</p>
-        <ul class="points">
-          <li><h3>Rules first, model second</h3><p>In the resume checker, the healthcare demo and the honeypot, the score or decision comes from plain rules. A model only explains or assists, so the answer is the same every run.</p></li>
-          <li><h3>Limits next to results</h3><p>Each project says what it does not do. The Bhopal map shows no risk scores, the arbitrage bot places no trades, and the claim checker is not a fact-checker.</p></li>
-          <li><h3>Small samples called small</h3><p>agent-ops ran 8 tasks twice each and says so. The numbers are a rough guide, not a claim.</p></li>
-        </ul>
-      </section>
-      <section class="block chapter" data-bg="#0e0e0d" data-form="trap" data-sec="projects" data-glow="8">
-        <p class="block__label">&gt; learned the hard way</p>
-        <ul class="points">
-          <li><h3>A review caught what I missed</h3><p>Before I shared agent-ops, a review found two bugs: truncated files could be written back with content missing, and command arguments could reach outside the workspace. I fixed both, with tests.</p></li>
-          <li><h3>A model can fail the same way every time</h3><p>On my benchmark, no run got Indian digit grouping (₹1,23,456.78) right. Every failure was the model looping until it hit the step limit.</p></li>
-          <li><h3>The big model does not fit everywhere</h3><p>My dissertation model is about 500 MB, too big for a serverless demo. The app falls back through four modes, down to plain rules, so it never crashes.</p></li>
-        </ul>
-      </section>
-      <div class="chapters"></div>
-      <div class="chapter archive" data-bg="#0e0e0d" data-form="knot" data-sec="projects" data-glow="2">
-        <p class="block__label">&gt; all projects</p>
-        <div class="archive__list" role="list"></div>
-      </div>
-    </section>
+<section class="index wrap" data-theme="ink" data-form="helix" aria-label="All projects">
+  <p class="label">All projects</p>
+  <div class="rows"></div>
+  <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+</section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="page chapter" data-glow="3" data-bg="#0e0e0d" data-form="graph" data-sec="experience">
-      <div class="page__status mono"><span>03 / 05 <b>Experience</b></span><span>AI / ML</span></div>
-      <p class="cmd"><span>&gt;</span> shrey open experience</p>
-      <p class="eyebrow">[EXP] Experience</p>
-      <h2 class="page__h split" aria-label="Machine learning that has to work outside a notebook.">Machine learning that has to work outside a notebook.</h2>
-      <p class="page__lede">I build healthcare ML pipelines at CRO Prime. Before that I did two internships covering customer churn, COVID-19 forecasting, text and image work.</p>
-      <div class="page__actions"><a class="btn btn--primary" href="#projects" data-icon="project">Related projects</a><a class="btn" href="#contact" data-icon="mail">Contact</a></div>
-      <div class="grid">
-        <article class="card card--featured" data-form="graph">
-          <div class="card__top"><span class="card__icon" data-icon="briefcase"></span><span class="card__cat">Feb 2025 - Present</span></div>
-          <h3>AI Engineer, CRO Prime</h3>
-          <ul class="tags tags--head"><li>Healthcare ML</li><li>4-stage pipelines</li><li>API-ready models</li><li>Dashboards</li></ul>
-          <dl class="story">
-            <div><dt>The problem</dt><dd>Healthcare teams hold medical data in many forms, structured records and free text, and turning it into predictions people can review needs a pipeline that gives the same result every run.</dd></div>
-            <div><dt>What I built</dt><dd>I built four-stage pipelines (ingestion, preprocessing, training and inference) that can be re-run reliably. I designed the medical data models so a prediction service can plug in, keeping accuracy and response time in mind, and I turned requirements from three stakeholder workflows into reusable ML components and review dashboards.</dd></div>
-            <div><dt>What came out</dt><dd>Delivery across those three stakeholder workflows got faster, because they share the same components and dashboards.</dd></div>
-          </dl>
-        </article>
-        <article class="card" data-form="wave">
-          <div class="card__top"><span class="card__icon" data-icon="briefcase"></span><span class="card__cat">Internship</span></div>
-          <h3>Seekace</h3>
-          <p class="card__summary">Data Analysis / Machine Learning Internship, remote.</p>
-          <ul class="tags tags--head"><li>Customer churn</li><li>Data analysis</li><li>Machine learning</li></ul>
-          <dl class="story">
-            <div><dt>The problem</dt><dd>A business wants to know which customers are likely to leave, early enough to act.</dd></div>
-            <div><dt>What I built</dt><dd>I framed it as a retention problem, prepared the structured data, chose the features that predict churn, and turned the model's output into a signal a team could act on.</dd></div>
-            <div><dt>What came out</dt><dd>A churn prediction used as a decision signal, and my first hands-on experience of ML for a business decision. I have no figures to share from it.</dd></div>
-          </dl>
-        </article>
-        <article class="card" data-form="helix">
-          <div class="card__top"><span class="card__icon" data-icon="briefcase"></span><span class="card__cat">Internship</span></div>
-          <h3>Innovians Tech</h3>
-          <p class="card__summary">Data Analysis / Machine Learning Internship, remote.</p>
-          <ul class="tags tags--head"><li>Forecasting</li><li>NLP</li><li>Computer vision</li></ul>
-          <dl class="story">
-            <div><dt>The problem</dt><dd>Different kinds of data need different approaches: numbers over time, text and images.</dd></div>
-            <div><dt>What I built</dt><dd>I worked on three projects: COVID-19 case forecasting (time series), text pipelines for NLP, and image recognition for computer vision.</dd></div>
-            <div><dt>What came out</dt><dd>One internship that covered three areas of applied ML.</dd></div>
-          </dl>
-        </article>
-      </div>
-    </section>
+<section id="experience" class="wrap xp" data-theme="bone" data-form="rings">
+  <p class="label">Experience</p>
+  <h2 class="big split">Machine learning that has to work outside a notebook.</h2>
+  <p class="lede" data-r>I build healthcare ML pipelines at CRO Prime. Before that I did two internships covering customer churn, COVID-19 forecasting, text and image work.</p>
+  <article class="job" data-r>
+    <div class="job__h"><span>Feb 2025 - Present</span><h3>AI Engineer, CRO Prime</h3></div>
+    <dl class="story">
+      <div><dt>The problem</dt><dd>Healthcare teams hold medical data in many forms, structured records and free text, and turning it into predictions people can review needs a pipeline that gives the same result every run.</dd></div>
+      <div><dt>What I built</dt><dd>I built four-stage pipelines (ingestion, preprocessing, training and inference) that can be re-run reliably. I designed the medical data models so a prediction service can plug in, keeping accuracy and response time in mind, and I turned requirements from three stakeholder workflows into reusable ML components and review dashboards.</dd></div>
+      <div><dt>What came out</dt><dd>Delivery across those three stakeholder workflows got faster, because they share the same components and dashboards.</dd></div>
+    </dl>
+  </article>
+  <article class="job" data-r>
+    <div class="job__h"><span>Internship, remote</span><h3>Seekace</h3></div>
+    <dl class="story">
+      <div><dt>The problem</dt><dd>A business wants to know which customers are likely to leave, early enough to act.</dd></div>
+      <div><dt>What I built</dt><dd>I framed it as a retention problem, prepared the structured data, chose the features that predict churn, and turned the model's output into a signal a team could act on.</dd></div>
+      <div><dt>What came out</dt><dd>A churn prediction used as a decision signal, and my first hands-on experience of ML for a business decision. I have no figures to share from it.</dd></div>
+    </dl>
+  </article>
+  <article class="job" data-r>
+    <div class="job__h"><span>Internship, remote</span><h3>Innovians Tech</h3></div>
+    <dl class="story">
+      <div><dt>The problem</dt><dd>Different kinds of data need different approaches: numbers over time, text and images.</dd></div>
+      <div><dt>What I built</dt><dd>I worked on three projects: COVID-19 case forecasting (time series), text pipelines for NLP, and image recognition for computer vision.</dd></div>
+      <div><dt>What came out</dt><dd>One internship that covered three areas of applied ML.</dd></div>
+    </dl>
+  </article>
+</section>
 
-    <!-- EDUCATION -->
-    <section id="education" class="page chapter" data-glow="4" data-bg="#0e0e0d" data-form="steps" data-sec="education">
-      <div class="page__status mono"><span>04 / 05 <b>Education</b></span><span>AI / ML</span></div>
-      <p class="cmd"><span>&gt;</span> shrey open education</p>
-      <p class="eyebrow">[EDU] Education</p>
-      <h2 class="page__h split" aria-label="From a computer science diploma to an MSc in AI.">From a computer science diploma to an MSc in AI.</h2>
-      <p class="page__lede">Three degrees, in order: a diploma, a BTech and an MSc in artificial intelligence.</p>
-      <div class="page__actions"><a class="btn btn--primary" href="#projects" data-icon="project">See applied work</a><a class="btn" href="#experience" data-icon="briefcase">Experience</a></div>
-      <div class="grid">
-        <article class="card card--featured" data-form="steps">
-          <div class="card__visual card__visual--logo"><img src="assets/evidence/queen-mary-logo.png" alt="Queen Mary University of London logo" width="1208" height="218" loading="lazy"></div>
-          <div class="card__top"><span class="card__icon" data-icon="education"></span><span class="card__cat">2024</span></div>
-          <h3>MSc Artificial Intelligence</h3>
-          <p class="card__summary">Queen Mary University of London, UK.</p>
-          <p class="card__details">Postgraduate study in artificial intelligence, building on my computer science background. The Projects page shows the retrieval, NLP and computer vision work I have done alongside it.</p>
-          <ul class="tags"><li>Artificial Intelligence</li><li>Graduate study</li><li>AI/ML foundation</li></ul>
-        </article>
-        <article class="card" data-form="layers">
-          <div class="card__visual card__visual--logo"><img src="assets/evidence/symbiosis-logo.jpg" alt="Symbiosis University of Applied Sciences logo" width="1600" height="504" loading="lazy"></div>
-          <div class="card__top"><span class="card__icon" data-icon="education"></span><span class="card__cat">2022</span></div>
-          <h3>BTech Computer Science</h3>
-          <p class="card__summary">Symbiosis University of Applied Sciences, India.</p>
-          <p class="card__details">Programming, data structures, algorithms, databases and software development. This is where I learned to build the pipelines, APIs and interfaces my AI projects rely on.</p>
-          <ul class="tags"><li>Computer Science</li><li>Software engineering</li><li>Systems foundation</li></ul>
-        </article>
-        <article class="card" data-form="blocks">
-          <div class="card__visual card__visual--logo"><img src="assets/evidence/rgpm-logo.gif" alt="Rajeev Gandhi Proudyogiki Mahavidyalaya logo" width="106" height="76" loading="lazy"></div>
-          <div class="card__top"><span class="card__icon" data-icon="education"></span><span class="card__cat">2019</span></div>
-          <h3>Diploma Computer Science</h3>
-          <p class="card__summary">Rajiv Gandhi Proudhyogiki Mahavidhyalaya, Bhopal, India.</p>
-          <p class="card__details">Where my formal computer science education started, before the BTech and the MSc.</p>
-          <ul class="tags"><li>Computer Science</li><li>Technical foundation</li><li>Long-term CS path</li></ul>
-        </article>
-      </div>
-    </section>
+<section id="education" class="wrap edu" data-theme="ink" data-form="spiral">
+  <p class="label">Education</p>
+  <h2 class="big split">From a computer science diploma to an MSc in AI.</h2>
+  <article class="deg" data-r><span class="deg__y">2024</span><div><h3>MSc Artificial Intelligence</h3><p class="deg__s">Queen Mary University of London, UK.</p><p>Postgraduate study in artificial intelligence, building on my computer science background. The Projects page shows the retrieval, NLP and computer vision work I have done alongside it.</p></div></article>
+  <article class="deg" data-r><span class="deg__y">2022</span><div><h3>BTech Computer Science</h3><p class="deg__s">Symbiosis University of Applied Sciences, India.</p><p>Programming, data structures, algorithms, databases and software development. This is where I learned to build the pipelines, APIs and interfaces my AI projects rely on.</p></div></article>
+  <article class="deg" data-r><span class="deg__y">2019</span><div><h3>Diploma Computer Science</h3><p class="deg__s">Rajiv Gandhi Proudhyogiki Mahavidhyalaya, Bhopal, India.</p><p>Where my formal computer science education started, before the BTech and the MSc.</p></div></article>
+</section>
 
-    <!-- CONTACT (ivory, with the gold accent on the primary action) -->
-    <section id="contact" class="page contact chapter" data-glow="5" data-bg="#0e0e0d" data-form="globe" data-sec="contact">
-      <div class="page__status mono"><span>05 / 05 <b>Contact</b></span><span>AI / ML</span></div>
-      <p class="cmd"><span>&gt;</span> shrey open contact</p>
-      <div class="cta-band">
-        <p class="eyebrow">[CNT] Contact</p>
-      <h2 class="contact__h split" aria-label="Let’s connect.">Let’s connect.</h2>
-      <p class="page__lede">If you are hiring, collaborating or have a question about a project, email is the quickest way to reach me.</p>
-      <div class="page__actions">
-        <a class="btn btn--primary" href="mailto:shrey.shrivastava@yahoo.com" data-icon="mail">Send email</a>
-        <a class="btn" href="https://www.linkedin.com/in/shrey-shrivastava1" target="_blank" rel="noopener noreferrer" data-icon="linkedin">LinkedIn</a>
-        <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer" data-icon="github">GitHub</a>
-      </div>
-      </div>
-      <div class="contact-hub">
-        <article class="ccard ccard--primary">
-          <div class="ccard__top"><span class="card__icon" data-icon="mail"></span><span>Email</span></div>
-          <h3>Best first step.</h3>
-          <p>Email works for roles, interviews, collaboration and questions about any project.</p>
-          <a class="btn btn--primary" href="mailto:shrey.shrivastava@yahoo.com" data-icon="mail">shrey.shrivastava@yahoo.com</a>
-        </article>
-        <article class="ccard">
-          <div class="ccard__top"><span class="card__icon" data-icon="linkedin"></span><span>LinkedIn</span></div>
-          <h3>My background</h3>
-          <p>My work history, and a good place for recruiter messages.</p>
-          <a class="btn" href="https://www.linkedin.com/in/shrey-shrivastava1" target="_blank" rel="noopener noreferrer" data-icon="linkedin">Open LinkedIn</a>
-        </article>
-        <article class="ccard">
-          <div class="ccard__top"><span class="card__icon" data-icon="github"></span><span>GitHub</span></div>
-          <h3>The code</h3>
-          <p>Every project’s repository, with the code and a README.</p>
-          <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer" data-icon="github">Open GitHub</a>
-        </article>
-        <article class="ccard">
-          <div class="ccard__top"><span class="card__icon" data-icon="orcid"></span><span>ORCID</span></div>
-          <h3>Research</h3>
-          <p>My academic and publication record.</p>
-          <a class="btn" href="https://orcid.org/0000-0001-5273-2842" target="_blank" rel="noopener noreferrer" data-icon="orcid">Open ORCID</a>
-        </article>
-      </div>
-    </section>
-  </main>
+<section id="contact" class="contact" data-theme="flame" data-form="globe">
+  <p class="label">Contact</p>
+  <h2 class="huge split">Let’s connect.</h2>
+  <div class="contact__foot">
+    <p class="lede" data-r>If you are hiring, collaborating or have a question about a project, email is the quickest way to reach me.</p>
+    <div class="actions" data-r>
+      <a class="btn btn--solid" href="mailto:shrey.shrivastava@yahoo.com">shrey.shrivastava@yahoo.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/shrey-shrivastava1" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
 
-  <script src="splash.js?v=2"></script>
-  <script src="icons.js?v=1"></script>
-  <script src="data.js?v=4"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="app.js?v=22" defer></script>
-  <script type="module" src="bg3d.js?v=2"></script>
+<script src="data.js?v=5"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="app.js?v=23"></script>
+<script type="module" src="field.js?v=1"></script>
 </body>
 </html>
