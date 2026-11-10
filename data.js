@@ -83,7 +83,10 @@ window.PROJECTS = [
   "built": "A demo with three tools: ranking likely specialists from symptoms, a second-opinion risk check, and a drug-interaction lookup. It runs on synthetic data with plain deterministic rules by default, and a sentence-embedding model is optional.",
   "result": "It is deployed as a live demo with tests running in CI. It is a portfolio project, not a medical device and not medical advice.",
   "github": "https://github.com/shreyshrivastava/ai-healthcare-intel-engine",
-  "demo": "https://healthcare-intel-engine-shrey.streamlit.app/"
+  "demo": "https://healthcare-intel-engine-shrey.streamlit.app/",
+  "video": "assets/video/healthcare-intel-demo.mp4",
+  "poster": "assets/video/healthcare-intel-demo-poster.jpg",
+  "videoAlt": "Healthcare Intelligence Engine demo: symptoms routed to Cardiology, a report rated High risk, and a warfarin and aspirin interaction flagged"
  },
  {
   "title": "Agentic Honeypot System",
