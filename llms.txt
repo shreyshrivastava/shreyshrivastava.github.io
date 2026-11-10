@@ -52,7 +52,7 @@ How to read the claims below: results are quoted from each project's own reposit
 ## Pages on this site
 
 - Home: https://shreyshrivastava.com/
-- Projects: https://shreyshrivastava.com/#projects
-- Experience: https://shreyshrivastava.com/#experience
-- Education: https://shreyshrivastava.com/#education
-- Contact: https://shreyshrivastava.com/#contact
+- Projects: https://shreyshrivastava.com/projects.html
+- Experience: https://shreyshrivastava.com/experience.html
+- Education: https://shreyshrivastava.com/education.html
+- Contact: https://shreyshrivastava.com/contact.html

@@ -199,3 +199,13 @@ body{padding-bottom:var(--bar)}
 .has-scene .hero__right .actions{margin-top:0;flex:none}
 .has-scene .hero__right .sub{max-width:34em}
 @media (max-width:760px){.nav nav,.nav nav[aria-label]{font-size:12.5px}}
+
+/* Separate pages */
+@view-transition { navigation: auto; }
+.seen .loader { display: none !important; }
+.next { display: flex; flex-direction: column; gap: 6px; padding: clamp(40px, 6vw, 90px) var(--gut); border-top: 1px solid var(--line); text-decoration: none; }
+.next span { font: 500 15px var(--d); color: var(--accent); }
+.next b { font: 600 clamp(40px, 9vw, 160px)/1 var(--d); letter-spacing: -.05em; }
+.next i { display: inline-block; font-style: normal; color: var(--accent); transition: transform .4s var(--ease); }
+.next:hover i { transform: translateX(.2em); }
+.contact { padding-bottom: calc(var(--bar) + 22px); }

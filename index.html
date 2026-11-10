@@ -2,24 +2,24 @@
 <html lang="en" data-theme="ink">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'sha256-/8LQ9XAKtueABIPLkzKLvIb9xXoo0xqT/UyitBjqSC0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Shrey Shrivastava | AI/ML Engineer</title>
-  <meta name="description" content="Shrey Shrivastava, AI/ML engineer. Projects, experience, education and contact.">
+  <meta name="description" content="Shrey Shrivastava, AI/ML engineer. Building products that matter to real people.">
   <meta name="theme-color" content="#070707">
   <meta name="author" content="Shrey Shrivastava">
   <meta name="keywords" content="Shrey Shrivastava, AI Engineer, Machine Learning, NLP, Computer Vision, AI Portfolio, Healthcare AI, Agentic AI">
   <meta property="og:title" content="Shrey Shrivastava | AI/ML Engineer">
-  <meta property="og:description" content="AI/ML engineering portfolio featuring projects, experience, education, and contact links.">
+  <meta property="og:description" content="Shrey Shrivastava, AI/ML engineer. Building products that matter to real people.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://shreyshrivastava.com/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Shrey Shrivastava | AI/ML Engineer">
-  <meta name="twitter:description" content="AI/ML engineering portfolio featuring projects, experience, education, and contact links.">
+  <meta name="twitter:description" content="Shrey Shrivastava, AI/ML engineer. Building products that matter to real people.">
   <link rel="canonical" href="https://shreyshrivastava.com/">
   <meta name="color-scheme" content="dark">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>var h=document.documentElement,m={'#projects':'projects.html','#experience':'experience.html','#education':'education.html','#contact':'contact.html'};if(m[location.hash])location.replace(m[location.hash]);h.classList.add('js');try{if(sessionStorage.getItem('intro-seen'))h.classList.add('seen')}catch(e){}</script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,7 +42,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400..700&family=Geist:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=47">
+  <link rel="stylesheet" href="style.css?v=48">
 </head>
 <body>
 <canvas id="field" aria-hidden="true"></canvas>
@@ -50,17 +50,17 @@
 <div class="cursor" aria-hidden="true"></div>
 <img class="peek" alt="" aria-hidden="true">
 <div class="more" aria-hidden="true">-- more -- <span class="more__d">scroll ↓</span></div>
-<a class="skip" href="#projects">Skip to projects</a>
+<a class="skip" href="#content">Skip to content</a>
 
 <header class="nav">
-  <a class="nav__brand" href="#about">shrey@portfolio<span>:~$</span></a>
+  <a class="nav__brand" href="index.html">shrey@portfolio<span>:~$</span></a>
   <nav aria-label="Primary navigation">
-    <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    <a href="index.html" class="on" aria-current="page">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="education.html">Education</a><a href="contact.html">Contact</a>
   </nav>
   <a class="nav__email" href="mailto:shrey.shrivastava@yahoo.com">Email</a>
 </header>
 
-<main>
+<main id="content">
 <section id="about" class="hero" data-theme="ink" data-form="knot">
   <p class="label">About</p>
   <p class="dive split">Building products that matter to real people.</p>
@@ -74,17 +74,15 @@
     <div class="hero__right" data-r>
       <p class="sub">I take models out of the notebook and turn them into things people can actually use.</p>
       <div class="actions">
-        <a class="btn btn--solid" href="#projects">See projects</a>
+        <a class="btn btn--solid" href="projects.html">See projects</a>
         <a class="btn" href="mailto:shrey.shrivastava@yahoo.com">Send email</a>
       </div>
     </div>
   </div>
 </section>
-
 <div class="marquee" data-theme="ink" aria-label="Where my work has been"><div class="marquee__t">
   <span>Queen Mary University of London</span><span>CRO Prime</span><span>IBM hackathon</span><span>AMD hackathon</span><span>Springer publication</span>
 </div></div>
-
 <section class="statement" data-theme="bone" data-form="cloud">
   <p class="scrub">Paper search, medical data pipelines, scam detection, on-device sensing and a local coding agent. I care as much about the testing and deployment around a model as the model itself, and every project says plainly what it can and can’t do.</p>
   <ul class="stats">
@@ -94,98 +92,13 @@
     <li data-r class="stats__plain"><span>AI Engineer at CRO Prime</span></li>
   </ul>
 </section>
-
-<section id="projects" data-theme="ink" data-form="wave">
-  <header class="wrap sec-head">
-    <p class="label">Projects</p>
-    <h2 class="big split">The problem, the build and the result.</h2>
-    <p class="lede" data-r>Each project says what it set out to fix, how I built it and what came out, with links to the code and demos.</p>
-  </header>
-  <div class="hscroll"><div class="track"></div></div>
-</section>
-
-<section class="method wrap" data-theme="bone" data-form="layers">
-  <div class="method__col">
-    <p class="label">How I build</p>
-    <ol class="points">
-      <li data-r><h3>Rules first, model second</h3><p>In the resume checker, the healthcare demo and the honeypot, the score or decision comes from plain rules. A model only explains or assists, so the answer is the same every run.</p></li>
-      <li data-r><h3>Limits next to results</h3><p>Each project says what it does not do. The Bhopal map shows no risk scores, the arbitrage bot places no trades, and the claim checker is not a fact-checker.</p></li>
-      <li data-r><h3>Small samples called small</h3><p>agent-ops ran 8 tasks twice each and says so. The numbers are a rough guide, not a claim.</p></li>
-    </ol>
-  </div>
-  <div class="method__col">
-    <p class="label">Learned the hard way</p>
-    <ol class="points">
-      <li data-r><h3>A review caught what I missed</h3><p>Before I shared agent-ops, a review found two bugs: truncated files could be written back with content missing, and command arguments could reach outside the workspace. I fixed both, with tests.</p></li>
-      <li data-r><h3>A model can fail the same way every time</h3><p>On my benchmark, no run got Indian digit grouping (₹1,23,456.78) right. Every failure was the model looping until it hit the step limit.</p></li>
-      <li data-r><h3>The big model does not fit everywhere</h3><p>My dissertation model is about 500 MB, too big for a serverless demo. The app falls back through four modes, down to plain rules, so it never crashes.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="index wrap" data-theme="ink" data-form="helix" aria-label="All projects">
-  <p class="label">All projects</p>
-  <div class="rows"></div>
-  <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-</section>
-
-<section id="experience" class="wrap xp" data-theme="bone" data-form="rings">
-  <p class="label">Experience</p>
-  <h2 class="big split">Machine learning that has to work outside a notebook.</h2>
-  <p class="lede" data-r>I build healthcare ML pipelines at CRO Prime. Before that I did two internships covering customer churn, COVID-19 forecasting, text and image work.</p>
-  <article class="job" data-r>
-    <div class="job__h"><span>Feb 2025 - Present</span><h3>AI Engineer, CRO Prime</h3></div>
-    <dl class="story">
-      <div><dt>The problem</dt><dd>Healthcare teams hold medical data in many forms, structured records and free text, and turning it into predictions people can review needs a pipeline that gives the same result every run.</dd></div>
-      <div><dt>What I built</dt><dd>I built four-stage pipelines (ingestion, preprocessing, training and inference) that can be re-run reliably. I designed the medical data models so a prediction service can plug in, keeping accuracy and response time in mind, and I turned requirements from three stakeholder workflows into reusable ML components and review dashboards.</dd></div>
-      <div><dt>What came out</dt><dd>Delivery across those three stakeholder workflows got faster, because they share the same components and dashboards.</dd></div>
-    </dl>
-  </article>
-  <article class="job" data-r>
-    <div class="job__h"><span>Internship, remote</span><h3>Seekace</h3></div>
-    <dl class="story">
-      <div><dt>The problem</dt><dd>A business wants to know which customers are likely to leave, early enough to act.</dd></div>
-      <div><dt>What I built</dt><dd>I framed it as a retention problem, prepared the structured data, chose the features that predict churn, and turned the model's output into a signal a team could act on.</dd></div>
-      <div><dt>What came out</dt><dd>A churn prediction used as a decision signal, and my first hands-on experience of ML for a business decision. I have no figures to share from it.</dd></div>
-    </dl>
-  </article>
-  <article class="job" data-r>
-    <div class="job__h"><span>Internship, remote</span><h3>Innovians Tech</h3></div>
-    <dl class="story">
-      <div><dt>The problem</dt><dd>Different kinds of data need different approaches: numbers over time, text and images.</dd></div>
-      <div><dt>What I built</dt><dd>I worked on three projects: COVID-19 case forecasting (time series), text pipelines for NLP, and image recognition for computer vision.</dd></div>
-      <div><dt>What came out</dt><dd>One internship that covered three areas of applied ML.</dd></div>
-    </dl>
-  </article>
-</section>
-
-<section id="education" class="wrap edu" data-theme="ink" data-form="spiral">
-  <p class="label">Education</p>
-  <h2 class="big split">From a computer science diploma to an MSc in AI.</h2>
-  <article class="deg" data-r><span class="deg__y">2024</span><div><h3>MSc Artificial Intelligence</h3><p class="deg__s">Queen Mary University of London, UK.</p><p>Postgraduate study in artificial intelligence, building on my computer science background. The Projects page shows the retrieval, NLP and computer vision work I have done alongside it.</p></div></article>
-  <article class="deg" data-r><span class="deg__y">2022</span><div><h3>BTech Computer Science</h3><p class="deg__s">Symbiosis University of Applied Sciences, India.</p><p>Programming, data structures, algorithms, databases and software development. This is where I learned to build the pipelines, APIs and interfaces my AI projects rely on.</p></div></article>
-  <article class="deg" data-r><span class="deg__y">2019</span><div><h3>Diploma Computer Science</h3><p class="deg__s">Rajiv Gandhi Proudhyogiki Mahavidhyalaya, Bhopal, India.</p><p>Where my formal computer science education started, before the BTech and the MSc.</p></div></article>
-</section>
-
-<section id="contact" class="contact" data-theme="flame" data-form="globe">
-  <p class="label">Contact</p>
-  <h2 class="huge split">Let’s connect.</h2>
-  <div class="contact__foot">
-    <p class="lede" data-r>If you are hiring, collaborating or have a question about a project, email is the quickest way to reach me.</p>
-    <div class="actions" data-r>
-      <a class="btn btn--solid" href="mailto:shrey.shrivastava@yahoo.com">shrey.shrivastava@yahoo.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/shrey-shrivastava1" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="btn" href="https://github.com/shreyshrivastava" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </div>
-  </div>
-</section>
+<a class="next" href="projects.html"><span>Next</span><b>Projects <i aria-hidden="true">→</i></b></a>
 </main>
 
-<script src="data.js?v=5"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="app.js?v=24"></script>
-<script type="module" src="field.js?v=1"></script>
+<script src="app.js?v=25"></script>
+<script type="module" src="field.js?v=2"></script>
 </body>
 </html>

@@ -21,13 +21,13 @@
     ? `<video ${calm ? 'controls' : 'autoplay loop'} muted playsinline preload="metadata" poster="${esc(ROOT + p.poster)}" aria-label="${esc(p.videoAlt)}"><source src="${esc(ROOT + p.video)}" type="video/mp4"></video>`
     : `<img src="${IMG + esc(p.image)}" alt="${esc(p.imageAlt)}" ${lazy ? 'loading="lazy"' : ''} decoding="async">`;
 
-  $('.track').innerHTML = projects.slice(0, 5).map((p, i) => `<article class="panel">
+  if ($('.track')) $('.track').innerHTML = projects.slice(0, 5).map((p, i) => `<article class="panel">
     <div class="panel__top"><span>~/projects/${esc(p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, ''))}</span><span>${pad(i + 1)}/05 ${esc(p.hackathon || p.tags?.[0] || '')}</span></div>
     <h3>${esc(p.title)}</h3>
     <div class="panel__body"><div class="media">${media(p, i > 0)}</div><div class="panel__txt">${story(p)}${links(p)}</div></div>
   </article>`).join('');
 
-  $('.rows').innerHTML = projects.slice(5).map((p, i) => `<div class="row" data-img="${p.image ? IMG + esc(p.image) : ''}">
+  if ($('.rows')) $('.rows').innerHTML = projects.slice(5).map((p, i) => `<div class="row" data-img="${p.image ? IMG + esc(p.image) : ''}">
     <button class="row__b" aria-expanded="false" aria-controls="r${i}"><span class="row__n">${pad(i + 6)}</span><span class="row__t">${esc(p.title)}</span><span class="row__p" aria-hidden="true">+</span></button>
     <div class="row__x" id="r${i}"><div class="row__c"><div class="row__g"><div class="media">${media(p, true)}</div><div>${story(p)}${links(p)}</div></div></div></div>
   </div>`).join('');
@@ -60,19 +60,19 @@
     el.innerHTML = text.split(' ').map(w => `<span class="w" aria-hidden="true"><span class="wi">${esc(w)}</span></span>`).join(' ');
   });
   const scrub = $('.scrub');
-  const scrubText = scrub.textContent;
-  scrub.setAttribute('aria-label', scrubText);
-  scrub.innerHTML = scrubText.split(' ').map(w => `<span aria-hidden="true">${esc(w)}</span>`).join(' ');
+  if (scrub) {
+    const scrubText = scrub.textContent;
+    scrub.setAttribute('aria-label', scrubText);
+    scrub.innerHTML = scrubText.split(' ').map(w => `<span aria-hidden="true">${esc(w)}</span>`).join(' ');
+  }
 
   const FIELD = window.FIELD = window.FIELD || { dive: 0, t: 'ink' };
 
   // Colour follows whichever section holds the middle of the screen
   const sections = $$('main [data-theme]');
-  const navs = $$('.nav nav a');
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     document.documentElement.dataset.theme = FIELD.t = e.target.dataset.theme;
-    if (e.target.id) navs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-50% 0px -50% 0px' });
   sections.forEach(s => io.observe(s));
 
@@ -84,9 +84,11 @@
     idle = setTimeout(() => {
       if (scrollY + innerHeight >= document.documentElement.scrollHeight - 40) return;
       if (!wide.matches || calm) return;
-      const r = $('.hscroll').getBoundingClientRect(), hero = $('.hero').getBoundingClientRect();
-      const sideways = r.top <= 1 && r.bottom >= innerHeight - 1;
-      if (!sideways && Math.abs(hero.top) > 1) return;
+      const hs = $('.hscroll'), he = $('.hero');
+      const r = hs && hs.getBoundingClientRect();
+      const sideways = !!r && r.top <= 1 && r.bottom >= innerHeight - 1;
+      const inHero = !!he && Math.abs(he.getBoundingClientRect().top) <= 1;
+      if (!sideways && !inHero) return;
       $('.more__d').textContent = sideways ? 'scroll for next project →' : 'scroll ↓';
       more.classList.add('on');
     }, 1300);
@@ -108,26 +110,30 @@
   }
 
   const loader = $('.loader');
-  if (!window.gsap || calm || document.hidden) { loader.remove(); return; }
+  if (!window.gsap || calm || document.hidden) { if (loader) loader.remove(); return; }
   gsap.registerPlugin(ScrollTrigger);
-  history.scrollRestoration = 'manual'; scrollTo(0, 0);
+  if ($('.hero')) { history.scrollRestoration = 'manual'; scrollTo(0, 0); }
   const lenis = new Lenis({ lerp: .11 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t); } }));
 
   // Opening: counter, flame curtain lifts, name rises
-  const n = { v: 0 }, count = $('.loader__n');
-  gsap.set('.name__t', { yPercent: 105 }); gsap.set('.tagline .wi', { yPercent: 115 }); gsap.set('.name__side', { opacity: 0, y: 30 }); gsap.set('.hero [data-r]', { opacity: 0, y: 24 });
-  gsap.timeline({ onComplete: () => loader.remove() })
-    .to(n, { v: 100, duration: 1.1, ease: 'power2.inOut', onUpdate: () => count.textContent = n.v | 0 })
-    .to(loader, { yPercent: -100, duration: .85, ease: 'expo.inOut' })
-    .to('.name__t', { yPercent: 0, duration: 1.1, stagger: .09, ease: 'expo.out' }, '-=.4')
-    .to('.tagline .wi', { yPercent: 0, duration: .9, stagger: .03, ease: 'power3.out' }, '-=.8')
-    .to('.name__side,.hero [data-r]', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.8');
+  if ($('.hero')) {
+    const n = { v: 0 }, count = $('.loader__n');
+    const fresh = !!loader && !document.documentElement.classList.contains('seen');
+    if (loader && !fresh) loader.remove();
+    gsap.set('.name__t', { yPercent: 105 }); gsap.set('.tagline .wi', { yPercent: 115 }); gsap.set('.name__side', { opacity: 0, y: 30 }); gsap.set('.hero [data-r]', { opacity: 0, y: 24 });
+    const intro = gsap.timeline({ onComplete: () => { if (fresh) loader.remove(); try { sessionStorage.setItem('intro-seen', '1'); } catch (e) {} } });
+    if (fresh) intro.to(n, { v: 100, duration: 1.1, ease: 'power2.inOut', onUpdate: () => count.textContent = n.v | 0 }).to(loader, { yPercent: -100, duration: .85, ease: 'expo.inOut' });
+    intro.to('.name__t', { yPercent: 0, duration: 1.1, stagger: .09, ease: 'expo.out' }, fresh ? '-=.4' : 0)
+      .to('.tagline .wi', { yPercent: 0, duration: .9, stagger: .03, ease: 'power3.out' }, '-=.8')
+      .to('.name__side,.hero [data-r]', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.8');
+  }
 
   // Hero as a scene: the name parts, the camera flies into the form, the promise appears inside it
   gsap.matchMedia().add('(min-width:900px)', () => {
+    if (!$('.hero')) return;
     const rows = $$('.name__row');
     document.documentElement.classList.add('has-scene');
     gsap.set('.dive .wi', { yPercent: 115 });
@@ -143,13 +149,14 @@
   // Pinned sideways walk through the top five
   gsap.matchMedia().add('(min-width:900px)', () => {
     const track = $('.track');
+    if (!track) return;
     gsap.to(track, { x: () => -(track.scrollWidth - innerWidth), ease: 'none', scrollTrigger: { trigger: '.hscroll', pin: true, scrub: .6, end: () => '+=' + (track.scrollWidth - innerWidth), invalidateOnRefresh: true } });
   });
 
   $$('.split').filter(e => !e.closest('.hero')).forEach(el => gsap.from($$('.wi', el), { yPercent: 115, duration: 1.1, stagger: .035, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none reverse' } }));
   $$('[data-r]').filter(e => !e.closest('.hero')).forEach(el => gsap.from(el, { y: 44, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: el.closest('.contact') ? { trigger: '.contact', start: 'top 45%', toggleActions: 'play none none reverse' } : { trigger: el, start: 'top 92%', toggleActions: 'play none none reverse' } }));
-  gsap.from($$('span', scrub), { opacity: .16, stagger: .1, ease: 'none', scrollTrigger: { trigger: scrub, start: 'top 78%', end: 'bottom 55%', scrub: true } });
-  gsap.to('.portrait img', { yPercent: 8, scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  if (scrub) gsap.from($$('span', scrub), { opacity: .16, stagger: .1, ease: 'none', scrollTrigger: { trigger: scrub, start: 'top 78%', end: 'bottom 55%', scrub: true } });
+  if ($('.hero')) gsap.to('.portrait img', { yPercent: 8, scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   addEventListener('load', () => ScrollTrigger.refresh());
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
 })();

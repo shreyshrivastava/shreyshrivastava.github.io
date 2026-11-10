@@ -27,7 +27,8 @@ if (ctx) {
   // [opacity, x offset, scale]
   const SET = { knot: [.55, 0, 1], cloud: [.14, 0, 1], wave: [.3, 0, 1], layers: [.1, 2.6, .9], helix: [.3, 3, .9], rings: [.09, 0, 1.1], spiral: [.16, 2.8, .9], globe: [.7, 2.4, 1] };
   if (small) { Object.values(SET).forEach(s => { s[1] = 0; s[2] *= .62; }); ['cloud', 'wave', 'layers', 'helix', 'rings', 'spiral'].forEach(k => SET[k][0] = 0); }
-  const LIFT = small ? { knot: 1.6, globe: 1.6 } : { knot: .55 };
+  if (small) SET.globe[2] = .46;
+  const LIFT = small ? { knot: 1.6, globe: 2 } : { knot: .55 };
   const COLOR = { ink: '#d6b36a', bone: '#a98a45', flame: '#a98a45' };
   const RAMP = ' .:-=+*#%@';
 

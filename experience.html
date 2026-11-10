@@ -1,19 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="bone">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-6xh4JdEw1ZTowKE5vQUfuYA7fkaatJTOSdGfn+3dSvA='; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Experience | Shrey Shrivastava</title>
-  <!-- The site is now one page. This old address forwards to its section (script first, meta refresh as a fallback, link for everyone else). -->
-  <script>location.replace('/#experience');</script>
-  <meta http-equiv="refresh" content="0; url=/#experience">
-  <link rel="canonical" href="https://shreyshrivastava.com/#experience">
-  <meta name="robots" content="noindex, follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0e0e0d;color:#efe9de;font:16px/1.6 system-ui,sans-serif}a{color:#c2a26a}</style>
+  <meta name="description" content="Shrey Shrivastava builds healthcare ML pipelines at CRO Prime, after internships covering churn, forecasting, text and image work.">
+  <meta name="theme-color" content="#fbfaf7">
+  <meta name="author" content="Shrey Shrivastava">
+  <meta name="keywords" content="Shrey Shrivastava, AI Engineer, Machine Learning, NLP, Computer Vision, AI Portfolio, Healthcare AI, Agentic AI">
+  <meta property="og:title" content="Experience | Shrey Shrivastava">
+  <meta property="og:description" content="Shrey Shrivastava builds healthcare ML pipelines at CRO Prime, after internships covering churn, forecasting, text and image work.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shreyshrivastava.com/experience.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Experience | Shrey Shrivastava">
+  <meta name="twitter:description" content="Shrey Shrivastava builds healthcare ML pipelines at CRO Prime, after internships covering churn, forecasting, text and image work.">
+  <link rel="canonical" href="https://shreyshrivastava.com/experience.html">
+  <meta name="color-scheme" content="dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400..700&family=Geist:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=48">
 </head>
 <body>
-  <p>Experience has moved to <a href="/#experience">shreyshrivastava.com/#experience</a>.</p>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="cursor" aria-hidden="true"></div>
+<img class="peek" alt="" aria-hidden="true">
+<div class="more" aria-hidden="true">-- more -- <span class="more__d">scroll ↓</span></div>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="nav">
+  <a class="nav__brand" href="index.html">shrey@portfolio<span>:~$</span></a>
+  <nav aria-label="Primary navigation">
+    <a href="index.html">About</a><a href="projects.html">Projects</a><a href="experience.html" class="on" aria-current="page">Experience</a><a href="education.html">Education</a><a href="contact.html">Contact</a>
+  </nav>
+  <a class="nav__email" href="mailto:shrey.shrivastava@yahoo.com">Email</a>
+</header>
+
+<main id="content">
+<section id="experience" class="wrap xp" data-theme="bone" data-form="rings">
+  <p class="label">Experience</p>
+  <h1 class="big split">Machine learning that has to work outside a notebook.</h1>
+  <p class="lede" data-r>I build healthcare ML pipelines at CRO Prime. Before that I did two internships covering customer churn, COVID-19 forecasting, text and image work.</p>
+  <article class="job" data-r>
+    <div class="job__h"><span>Feb 2025 - Present</span><h3>AI Engineer, CRO Prime</h3></div>
+    <dl class="story">
+      <div><dt>The problem</dt><dd>Healthcare teams hold medical data in many forms, structured records and free text, and turning it into predictions people can review needs a pipeline that gives the same result every run.</dd></div>
+      <div><dt>What I built</dt><dd>I built four-stage pipelines (ingestion, preprocessing, training and inference) that can be re-run reliably. I designed the medical data models so a prediction service can plug in, keeping accuracy and response time in mind, and I turned requirements from three stakeholder workflows into reusable ML components and review dashboards.</dd></div>
+      <div><dt>What came out</dt><dd>Delivery across those three stakeholder workflows got faster, because they share the same components and dashboards.</dd></div>
+    </dl>
+  </article>
+  <article class="job" data-r>
+    <div class="job__h"><span>Internship, remote</span><h3>Seekace</h3></div>
+    <dl class="story">
+      <div><dt>The problem</dt><dd>A business wants to know which customers are likely to leave, early enough to act.</dd></div>
+      <div><dt>What I built</dt><dd>I framed it as a retention problem, prepared the structured data, chose the features that predict churn, and turned the model's output into a signal a team could act on.</dd></div>
+      <div><dt>What came out</dt><dd>A churn prediction used as a decision signal, and my first hands-on experience of ML for a business decision. I have no figures to share from it.</dd></div>
+    </dl>
+  </article>
+  <article class="job" data-r>
+    <div class="job__h"><span>Internship, remote</span><h3>Innovians Tech</h3></div>
+    <dl class="story">
+      <div><dt>The problem</dt><dd>Different kinds of data need different approaches: numbers over time, text and images.</dd></div>
+      <div><dt>What I built</dt><dd>I worked on three projects: COVID-19 case forecasting (time series), text pipelines for NLP, and image recognition for computer vision.</dd></div>
+      <div><dt>What came out</dt><dd>One internship that covered three areas of applied ML.</dd></div>
+    </dl>
+  </article>
+</section>
+<a class="next" href="education.html"><span>Next</span><b>Education <i aria-hidden="true">→</i></b></a>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="app.js?v=25"></script>
+<script type="module" src="field.js?v=2"></script>
 </body>
 </html>
