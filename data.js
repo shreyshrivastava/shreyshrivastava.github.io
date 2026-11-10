@@ -62,7 +62,10 @@ window.PROJECTS = [
   "problem": "Someone who falls while alone, often an older person, may not be able to reach a phone to ask for help.",
   "built": "An Android app that reads the phone's motion sensors 50 times a second and runs a small PyTorch model on the phone every 400 ms. If it spots a fall, it starts a countdown the person can cancel, then alerts their contacts with the last known GPS location.",
   "result": "Detection runs on the phone itself, so it does not depend on a connection. It is a hackathon prototype, not a certified medical device.",
-  "github": "https://github.com/kushagr-tech/fall_detection"
+  "github": "https://github.com/kushagr-tech/fall_detection",
+  "video": "assets/video/fallguard-demo.mp4",
+  "poster": "assets/video/fallguard-demo-poster.jpg",
+  "videoAlt": "FallGuard AI demo in the Android emulator: adding an emergency contact, choosing a sensitivity, turning on Guard and answering a simulated fall alert"
  },
  {
   "title": "AI Healthcare Intel Engine",
