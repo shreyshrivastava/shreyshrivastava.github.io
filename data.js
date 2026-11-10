@@ -197,7 +197,10 @@ window.PROJECTS = [
   "built": "My MSc dissertation at Queen Mary. I turned an experimental BERT and SVM notebook into a FastAPI app that screens claims, retrieves evidence and gives a coarse stance. It falls back through four modes, down to simple rules, so it never crashes.",
   "result": "A live demo runs on Vercel. The cloud demo uses a hosted Llama model, because the original BERT model is too large for serverless. It is not a production fact-checker.",
   "github": "https://github.com/shreyshrivastava/claim-detection-project-on-Russia-and-conflict",
-  "demo": "https://claim-detection-project.vercel.app"
+  "demo": "https://claim-detection-project.vercel.app",
+  "video": "assets/video/claim-detection-demo.mp4",
+  "poster": "assets/video/claim-detection-demo-poster.jpg",
+  "videoAlt": "Claim Evidence Checker demo: a claim about a generator delivery comes back Supported with ranked news sources, then a power-plant claim comes back Refuted"
  },
  {
   "title": "Sentiment Analysis on Tweets",
